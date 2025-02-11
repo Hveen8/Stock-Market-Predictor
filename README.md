@@ -23,3 +23,9 @@ This gives us an estimate and forecast of the *True* value of the stock, which w
 ## Tools
 
 There are multiple different ways to get the stock prices; Bloomberg Terminals, and OpenBB
+
+(More underfitting)
+![image](https://github.com/user-attachments/assets/2af2493e-6d34-4803-9281-5657f0dc16a7)
+
+(More overfitting)
+![image](https://github.com/user-attachments/assets/0ab328da-cc07-4e80-aa7c-6c741ca1c5a9)
