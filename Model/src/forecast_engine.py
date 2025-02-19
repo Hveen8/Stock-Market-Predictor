@@ -75,3 +75,21 @@ class ForecastEngine:
         
         # Return only TAF values corresponding to predictions
         return taf_values, taf_values[-len(predictions):].reshape(-1, 1)
+
+    def calculate_ma(self, predictions, ma_window):
+            """Calculate Moving Average (MA)."""
+            n = len(predictions)
+            
+            if n < self.ma_window:
+                print("Not enough data to calculate MA")
+                return np.full((n,), np.nan)
+            
+            ma_values = np.convolve(predictions.flatten(), np.ones(self.ma_window)/self.ma_window, mode='valid')
+            
+            # Pad with NaN for alignment with original predictions length
+            ma_full = np.full(predictions.shape[0], np.nan)
+            ma_full[self.ma_window-1:] = ma_values
+            
+            return ma_full.reshape(-1, 1)
+
+    
