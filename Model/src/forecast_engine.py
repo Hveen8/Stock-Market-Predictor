@@ -77,22 +77,36 @@ class ForecastEngine:
         return taf_values, taf_values[-len(predictions):].reshape(-1, 1)
 
     def calculate_ma(self, predictions, ma_window):
-            """Calculate Moving Average (MA)."""
-            n = len(predictions)
-            
-            if n < self.ma_window:
-                print("Not enough data to calculate MA")
-                return np.full((n,), np.nan)
-            
-            ma_values = np.convolve(predictions.flatten(), np.ones(self.ma_window)/self.ma_window, mode='valid')
-            
-            # Pad with NaN for alignment with original predictions length
-            ma_full = np.full(predictions.shape[0], np.nan)
-            ma_full[self.ma_window-1:] = ma_values
-            
-            # output array contains MA values for positions where the entire window fits within input data
-            # it is essentially the length: n - window_size
-            # The end is the average of the window (so not to the end of the dataset)
-            return ma_full.reshape(-1, 1)
+        """Calculate Moving Average (MA)."""
+        n = len(predictions)
+        
+        if n < self.ma_window:
+            print("Not enough data to calculate MA")
+            return np.full((n,), np.nan)
+        
+        ma_values = np.convolve(predictions.flatten(), np.ones(self.ma_window)/self.ma_window, mode='valid')
+        
+        # Pad with NaN for alignment with original predictions length
+        ma_full = np.full(predictions.shape[0], np.nan)
+        ma_full[self.ma_window-1:] = ma_values
+        
+        # output array contains MA values for positions where the entire window fits within input data
+        # it is essentially the length: n - window_size
+        # The end is the average of the window (so not to the end of the dataset)
+        return ma_full.reshape(-1, 1)
 
-    
+    def adjust_predictions_with_taf(self, predictions_array, historical_data):
+        """Adjust predictions using TAF."""
+        taf_values = self.calculate_taf(predictions_array, historical_data)
+        
+        adjusted_predictions_taf = predictions_array + taf_values
+        
+        return adjusted_predictions_taf
+
+    def adjust_predictions_with_ma(self, predictions_array):
+        """Adjust predictions using Moving Average."""
+        ma_values = self.calculate_ma(predictions_array)
+        
+        adjusted_predictions_ma = predictions_array + ma_values[-len(predictions_array):]
+        
+        return adjusted_predictions_ma
