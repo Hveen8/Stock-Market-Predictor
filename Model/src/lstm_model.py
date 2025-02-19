@@ -21,7 +21,7 @@ class LSTMModel:
             model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
             model.add(LSTM(self.neurons, activation=self.activation, return_sequences=False))
         else:
-            model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=True))
+            model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=False))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
 
