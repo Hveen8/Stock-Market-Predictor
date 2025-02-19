@@ -105,8 +105,8 @@ class ForecastEngine:
 
     def adjust_predictions_with_ma(self, predictions_array):
         """Adjust predictions using Moving Average."""
-        ma_values = self.calculate_ma(predictions_array)
+        ma_values, ma_pred_values = self.calculate_ma(predictions_array)
         
-        adjusted_predictions_ma = predictions_array + ma_values[-len(predictions_array):]
+        adjusted_predictions_ma = predictions_array + ma_pred_values
         
         return adjusted_predictions_ma
