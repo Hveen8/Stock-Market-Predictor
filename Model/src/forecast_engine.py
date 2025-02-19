@@ -90,6 +90,9 @@ class ForecastEngine:
             ma_full = np.full(predictions.shape[0], np.nan)
             ma_full[self.ma_window-1:] = ma_values
             
+            # output array contains MA values for positions where the entire window fits within input data
+            # it is essentially the length: n - window_size
+            # The end is the average of the window (so not to the end of the dataset)
             return ma_full.reshape(-1, 1)
 
     
