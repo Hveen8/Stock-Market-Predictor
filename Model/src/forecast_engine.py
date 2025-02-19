@@ -2,12 +2,14 @@ import numpy as np
 import tensorflow as tf
 
 class ForecastEngine:
-    def __init__(self, trained_model, look_back, batch_size, neurons, is2Layer):
+    def __init__(self, trained_model, look_back, batch_size, neurons, is2Layer:
         self.trained_model = trained_model
         self.look_back = look_back
         self.batch_size = batch_size
         self.neurons = neurons
         self.is2Layer = is2Layer
+        # self.alpha = alpha
+        # self.beta = beta
 
     def forecast(self, start_input, steps):
         # Define a new forecasting model
@@ -49,24 +51,27 @@ class ForecastEngine:
 
         return predictions_array
 
-    def calculate_taf(self, predictions, historical_data):
+    def calculate_taf(self, predictions, historical_data, alpha, beta):
+        """full_taf, predicted_taf"""
         # Combine historical and predicted data
         combined_data = np.vstack((historical_data, predictions))
         n = len(combined_data)
 
-        # Smoothed forecast
+        # Smooth error
         st = np.zeros(n)
-        # Trend estimate
+        # Trend factor
         tt = np.zeros(n)
         
-        st[0] = combined_data[0]  # Initial smoothed forecast is the first prediction
-        tt[0] = 0  # Initial trend estimate is zero
+        # Using the first timestep (from data) as initial smoothed forecast
+        st[0] = combined_data[0]
+        tt[0] = 0
         
-        taf_values = np.zeros(n)  # To store TAF values
+        taf_values = np.zeros(n)
         
         for t in range(1, n):
             taf_values[t] = st[t - 1] + tt[t - 1]
-            st[t] = taf_values[t] + self.alpha * (combined_data[t] - taf_values[t])
-            tt[t] = tt[t - 1] + self.beta * (taf_values[t] - taf_values[t - 1] - tt[t - 1])
+            st[t] = taf_values[t] + alpha*(combined_data[t] - taf_values[t])
+            tt[t] = tt[t - 1] + beta*(taf_values[t] - taf_values[t - 1] - tt[t - 1])
         
-        return taf_values[-len(predictions):].reshape(-1, 1)  # Return only TAF values corresponding to predictions
+        # Return only TAF values corresponding to predictions
+        return taf_values, taf_values[-len(predictions):].reshape(-1, 1)
