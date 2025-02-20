@@ -3,13 +3,14 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, InputLayer
 
 class LSTMModel:
-    def __init__(self, look_back, batch_size, neurons, epochs, is2Layer, activation):
+    def __init__(self, look_back, batch_size, neurons, epochs, is2Layer, activation, dropout):
         self.look_back = look_back
         self.batch_size = batch_size
         self.neurons = neurons
         self.epochs = epochs
         self.is2Layer = is2Layer
         self.activation = activation # should be either the str 'tanh' or 'relu'
+        self.dropout = dropout
         self.model = self._build_model()
         # What the class will fill
         self.trainPredict = None
@@ -20,8 +21,8 @@ class LSTMModel:
         model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
         # the more complex the data -> more neurons needed
         if self.is2Layer:
-            model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
-            model.add(LSTM(self.neurons, activation=self.activation, return_sequences=False))
+            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
+            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=False))
         else:
             model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=False))
         model.add(Dense(1))
