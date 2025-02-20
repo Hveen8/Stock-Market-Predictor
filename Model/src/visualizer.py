@@ -29,11 +29,18 @@ class Visualizer:
         plot_array[len(historical):] = forecasts
         return plot_array
 
-    def plot_results(self, historical_data, train_predictions, future_predictions, curr_system, headroom, look_back, batch_size, neurons, epochs):
+     def plot_results(self, trained_model, forecast_engine, curr_dataset, future_predictions, curr_system):
+        """Plots historical data along with training and future predictions."""
         
+        # Extract parameters from the trained model and forecast engine
+        look_back = trained_model.look_back
+        batch_size = trained_model.batch_size
+        neurons = trained_model.neurons
+        epochs = trained_model.epochs  # or any other relevant parameter
+
         # Invert predictions
-        train_predictions_inverted = self.invert_predictions(train_predictions)
-        historical_data_inverted = self.invert_predictions(historical_data)
+        train_predictions_inverted = self.invert_predictions(trained_model.trainPredict)
+        historical_data_inverted = self.invert_predictions(curr_dataset)
         future_predictions_inverted = self.invert_predictions(future_predictions)
 
         # Calculate RMSE
@@ -44,7 +51,7 @@ class Visualizer:
         # Shift train predictions for plotting
         train_predict_plot = np.empty_like(historical_data_inverted)
         train_predict_plot[:, :] = np.nan
-        train_predict_plot[look_back:len(train_predictions) + look_back] = train_predictions_inverted
+        train_predict_plot[look_back:len(train_predictions_inverted) + look_back] = train_predictions_inverted
 
         # Create full time array for x-axis
         full_time = np.arange(len(historical_data_inverted) + len(future_predictions_inverted))
@@ -65,12 +72,13 @@ class Visualizer:
         plt.xlabel('Time')
         plt.ylabel('Value')
         plt.title(f'LSTM Predictions vs. Given Data for {curr_system}')
+        
         plt.legend()
 
         # Save the figure
-        save_dir = f'/mnt/slurm_nfs/ece498_w25_20/test_slurm5_L2_{headroom}_results_batched/'
+        save_dir = f'/mnt/slurm_nfs/ece498_w25_20/test_slurm5_L2_{trained_model.headroom}_results_batched/'
         
-        plt.savefig(f"{save_dir}{curr_system}_predictions (H_{headroom}) L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
+        plt.savefig(f"{save_dir}{curr_system}_predictions (H_{trained_model.headroom}) L_{look_back} B={batch_size} N={neurons} E={epochs}.png")
         
         plt.close()
         

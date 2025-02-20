@@ -48,10 +48,10 @@ class ForecastEngine:
 
             current_batch = new_batch
 
-        # Convert predictions to a numpy array
-        predictions_array = np.array(new_predictions).reshape(-1, 1)
+        # Convert predictions to a numpy array (predictions_array)
+        self.futurePredictions = np.array(new_predictions).reshape(-1, 1)
 
-        return predictions_array
+        return self.futurePredictions
 
     def calculate_taf(self, predictions, historical_data, alpha, beta):
         """full_taf, predicted_taf"""
