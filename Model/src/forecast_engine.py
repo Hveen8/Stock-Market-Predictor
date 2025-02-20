@@ -53,61 +53,61 @@ class ForecastEngine:
 
         return self.futurePredictions
 
-    def calculate_taf(self, predictions_array, historical_data, alpha, beta):
-        """full_taf, predicted_taf"""
-        # Combine historical and predicted data
-        combined_data = np.vstack((historical_data, predictions_array))
-        n = len(combined_data)
+    # def calculate_taf(self, predictions_array, historical_data, alpha, beta):
+    #     """full_taf, predicted_taf"""
+    #     # Combine historical and predicted data
+    #     combined_data = np.vstack((historical_data, predictions_array))
+    #     n = len(combined_data)
 
-        # Smooth error
-        st = np.zeros(n)
-        # Trend factor
-        tt = np.zeros(n)
+    #     # Smooth error
+    #     st = np.zeros(n)
+    #     # Trend factor
+    #     tt = np.zeros(n)
         
-        # Using the first timestep (from data) as initial smoothed forecast
-        st[0] = combined_data[0]
-        tt[0] = 0
+    #     # Using the first timestep (from data) as initial smoothed forecast
+    #     st[0] = combined_data[0]
+    #     tt[0] = 0
         
-        taf_values = np.zeros(n)
+    #     taf_values = np.zeros(n)
         
-        for t in range(1, n):
-            taf_values[t] = st[t - 1] + tt[t - 1]
-            st[t] = taf_values[t] + alpha*(combined_data[t] - taf_values[t])
-            tt[t] = tt[t - 1] + beta*(taf_values[t] - taf_values[t - 1] - tt[t - 1])
+    #     for t in range(1, n):
+    #         taf_values[t] = st[t - 1] + tt[t - 1]
+    #         st[t] = taf_values[t] + alpha*(combined_data[t] - taf_values[t])
+    #         tt[t] = tt[t - 1] + beta*(taf_values[t] - taf_values[t - 1] - tt[t - 1])
         
-        # Return only TAF values corresponding to predictions
-        return taf_values.reshape(-1, 1), taf_values[-len(predictions_array):].reshape(-1, 1)
+    #     # Return only TAF values corresponding to predictions
+    #     return taf_values.reshape(-1, 1), taf_values[-len(predictions_array):].reshape(-1, 1)
 
-    def calculate_ma(self, predictions_array, ma_window):
-        """Calculate Moving Average (MA)."""
-        n = len(predictions_array)
+    # def calculate_ma(self, predictions_array, ma_window):
+    #     """Calculate Moving Average (MA)."""
+    #     n = len(predictions_array)
         
-        if n < self.ma_window:
-            print("Not enough data to calculate MA")
-            return np.full((n,), np.nan)
+    #     if n < self.ma_window:
+    #         print("Not enough data to calculate MA")
+    #         return np.full((n,), np.nan)
         
-        ma_values = np.convolve(predictions_array.flatten(), np.ones(self.ma_window)/self.ma_window, mode='valid')
+    #     ma_values = np.convolve(predictions_array.flatten(), np.ones(self.ma_window)/self.ma_window, mode='valid')
         
-        # Pad with NaN for alignment with original predictions length
-        ma_full = np.full(predictions_array.shape[0], np.nan)
-        ma_full[self.ma_window-1:] = ma_values
+    #     # Pad with NaN for alignment with original predictions length
+    #     ma_full = np.full(predictions_array.shape[0], np.nan)
+    #     ma_full[self.ma_window-1:] = ma_values
         
-        # output array contains MA values for positions where the entire window fits within input data
-        # it is essentially the length: n - window_size
-        # The end is the average of the window (so not to the end of the dataset)
-        return ma_full.reshape(-1, 1)
+    #     # output array contains MA values for positions where the entire window fits within input data
+    #     # it is essentially the length: n - window_size
+    #     # The end is the average of the window (so not to the end of the dataset)
+    #     return ma_full.reshape(-1, 1)
 
-    def adjust_predictions_with_taf(self, predictions_array, historical_data):
-        taf_values, taf_pred_values = self.calculate_taf(predictions_array, historical_data)
+    # def adjust_predictions_with_taf(self, predictions_array, historical_data):
+    #     taf_values, taf_pred_values = self.calculate_taf(predictions_array, historical_data)
         
-        # The TAF is shifting each timestep from the predictions, given a shift wieght
-        adjusted_predictions_taf = predictions_array + taf_values
+    #     # The TAF is shifting each timestep from the predictions, given a shift wieght
+    #     adjusted_predictions_taf = predictions_array + taf_values
         
-        return adjusted_predictions_taf
+    #     return adjusted_predictions_taf
 
-    def adjust_predictions_with_ma(self, predictions_array):
-        ma_values, ma_pred_values = self.calculate_ma(predictions_array)
+    # def adjust_predictions_with_ma(self, predictions_array):
+    #     ma_values, ma_pred_values = self.calculate_ma(predictions_array)
         
-        adjusted_predictions_ma = predictions_array + ma_pred_values
+    #     adjusted_predictions_ma = predictions_array + ma_pred_values
         
-        return adjusted_predictions_ma
+    #     return adjusted_predictions_ma
