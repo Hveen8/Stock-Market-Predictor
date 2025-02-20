@@ -3,20 +3,20 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
 
 class Visualizer:
-    def __init__(self):
-    # def __init__(self, scaler: BufferedMinMaxScaler):
-    #     """Instance needs to be of BufferedMinMaxScaler type"""
-    #     if not isinstance(scaler, BufferedMinMaxScaler):
-    #         raise TypeError("Expected an instance of BufferedMinMaxScaler.")
-    #     # Create an instance of Visualizer with the scaler
-    #     # EXAMPLE: visualizer = Visualizer(scaler)
-    #     self.scaler = scaler
-
-    def invert_predictions(self, scaler: BufferedMinMaxScaler, predictions):
-        """Instance needs to be of BufferedMinMaxScaler type"""
+    def __init__(self, scaler: BufferedMinMaxScaler, trained_model: LSTMModel, forecast_engine: ForecastEngine):
+        """Instance needs to be of || BufferedMinMaxScaler | LSTMModel | ForecastEngine || type"""
         if not isinstance(scaler, BufferedMinMaxScaler):
             raise TypeError("Expected an instance of BufferedMinMaxScaler.")
-        return scaler.inverse_transform(predictions)
+        if not isinstance(trained_model, LSTMModel):
+            raise TypeError("Expected an instance of LSTMModel.")
+        if not isinstance(forecast_engine, ForecastEngine):
+            raise TypeError("Expected an instance of ForecastEngine.")
+        self.scalar = scalar
+        self.trained_model = trained_model
+        self.forecast_engine = forecast_engine
+
+    def invert_predictions(self, predictions):
+        return self.scaler.inverse_transform(predictions)
 
     def calculate_rmse(self, true_values, predicted_values):
         return np.sqrt(mean_squared_error(true_values, predicted_values))
@@ -29,17 +29,18 @@ class Visualizer:
         plot_array[len(historical):] = forecasts
         return plot_array
 
-     def plot_results(self, trained_model, forecast_engine, curr_dataset, future_predictions, curr_system):
-        """Plots historical data along with training and future predictions."""
-        
-        # Extract parameters from the trained model and forecast engine
-        look_back = trained_model.look_back
-        batch_size = trained_model.batch_size
-        neurons = trained_model.neurons
-        epochs = trained_model.epochs  # or any other relevant parameter
+     def plot_results(self, curr_dataset, curr_system):
+        # Extract parameters from the trained model
+        look_back = self.trained_model.look_back
+        batch_size = self.trained_model.batch_size
+        neurons = self.trained_model.neurons
+        epochs = self.trained_model.epochs
+        train_predictions = self.trained_model.trainPredict
+        # Extract parameters from the forecasted data
+        future_predictions = self.forecast_engine.futurePredictions
 
         # Invert predictions
-        train_predictions_inverted = self.invert_predictions(trained_model.trainPredict)
+        train_predictions_inverted = self.invert_predictions(train_predictions)
         historical_data_inverted = self.invert_predictions(curr_dataset)
         future_predictions_inverted = self.invert_predictions(future_predictions)
 
