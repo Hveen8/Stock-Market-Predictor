@@ -10,6 +10,8 @@ class ForecastEngine:
         self.is2Layer = is2Layer
         # self.alpha = alpha
         # self.beta = beta
+        # What the class will fill
+        self.futurePredictions = None
 
     def forecast(self, start_input, steps):
         # Define a new forecasting model

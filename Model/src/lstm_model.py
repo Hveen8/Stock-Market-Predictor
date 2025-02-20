@@ -11,6 +11,8 @@ class LSTMModel:
         self.is2Layer = is2Layer
         self.activation = activation # should be either the str 'tanh' or 'relu'
         self.model = self._build_model()
+        # What the class will fill
+        self.trainPredict = None
 
     def _build_model(self):
         model = Sequential()
@@ -48,4 +50,5 @@ class LSTMModel:
 
     def predict(self, trainX):
         # X is the training data
-        return self.model.predict(trainX, batch_size=self.batch_size)
+        self.trainPredict = self.model.predict(trainX, batch_size=self.batch_size)
+        return self.trainPredict
