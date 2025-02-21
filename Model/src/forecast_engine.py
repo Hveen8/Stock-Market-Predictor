@@ -28,6 +28,7 @@ class ForecastEngine(LSTMModel):
                          activation=params['activation'],
                          dropout=params['dropout'])
 
+        self.trained_model = trained_model
         # What the class will fill
         self.futurePredictions = None
 
@@ -74,6 +75,8 @@ class ForecastEngine(LSTMModel):
 
         # Convert predictions to a numpy array (predictions_array)
         self.futurePredictions = np.array(new_predictions).reshape(-1, 1)
+
+        # ***** May need to manage resetting the states better, however may not be necessary 
 
         return self.futurePredictions
 
