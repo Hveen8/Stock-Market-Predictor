@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
-from data_preprocessor import DataPreprocessor
-from lstm_model import LSTMModel
-from forecast_engine import ForecastEngine
-from visualizer import Visualizer
+from src.data_preprocessor import DataPreprocessor
+from src.lstm_model import LSTMModel
+from src.forecast_engine import ForecastEngine
+from src.visualizer import Visualizer
 import matplotlib.pyplot as plt
 
 # ------------------------------
