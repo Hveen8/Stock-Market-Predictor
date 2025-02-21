@@ -3,12 +3,13 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, InputLayer
 
 class LSTMModel:
-    def __init__(self, look_back, batch_size, neurons, epochs, is2Layer, activation, dropout):
+    def __init__(self, layers, isReturnSeq = False, look_back, batch_size, neurons, epochs, activation, dropout):
+        self.layers = layers
+        self.isReturnSeq = isReturnSeq # should be either True or False
         self.look_back = look_back
         self.batch_size = batch_size
         self.neurons = neurons
         self.epochs = epochs
-        self.is2Layer = is2Layer
         self.activation = activation # should be either the str 'tanh' or 'relu'
         self.dropout = dropout
         self.model = self._build_model()
@@ -20,11 +21,18 @@ class LSTMModel:
         # batch_input_shape (batch_size, num_steps, features)
         model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
         # the more complex the data -> more neurons needed
-        if self.is2Layer:
-            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
-            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=False))
+        if self.layers > 1:
+            for l in range(self.layers-1):
+                forecast_model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
+            # In multi-layered the last is non-stateful ***
+            forecast_model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
         else:
-            model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=False))
+            forecast_model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
+        # if self.is2Layer:
+        #     model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
+        #     model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=False))
+        # else:
+        #     model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=False))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
 
