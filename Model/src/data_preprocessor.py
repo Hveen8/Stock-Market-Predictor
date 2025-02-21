@@ -55,7 +55,5 @@ class DataPreprocessor:
         trim_size = len(dataX) - (len(dataX) % batch_size)
         return dataX[:trim_size], dataY[:trim_size]
 
-    def create_input_layer(self, batch_size, look_back):
-        # store the generated input layer into the class
-        self.input_layer = InputLayer(batch_input_shape=(batch_size, look_back, 1))
-        return self.input_layer
+    def combine_feature(self):
+        pass

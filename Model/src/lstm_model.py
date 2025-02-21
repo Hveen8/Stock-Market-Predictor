@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, InputLayer
+import 
 
 class LSTMModel:
     def __init__(self, layers, isReturnSeq = False, look_back, batch_size, neurons, epochs, activation, dropout):
@@ -28,15 +29,15 @@ class LSTMModel:
             forecast_model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
         else:
             forecast_model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
-        # if self.is2Layer:
-        #     model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
-        #     model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=False))
-        # else:
-        #     model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=False))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
 
         model.summary()
+
+    # def create_input_layer(self, batch_size, look_back):
+    #     # store the generated input layer into the class
+    #     self.input_layer = InputLayer(batch_input_shape=(batch_size, look_back, 1))
+    #     return self.input_layer
 
     def train(self, trainX, trainY):
         for layer in model.layers:
