@@ -1,7 +1,7 @@
 import numpy as np
 
 class TAFShift:
-    def __init__(self, alpha=0.1, beta=0.1):
+    def __init__(self, alpha=0.5, beta=0.5):
         self.alpha = alpha  # Smoothing constant for error TAF
         self.beta = beta    # Smoothing constant for trend in TAF
 
