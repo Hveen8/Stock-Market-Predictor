@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 
-class ForecastEngine():
+class ForecastEngine(LSTMModel):
     def __init__(self, trained_model, layers=None, isReturnSeq=True, look_back=None, batch_size=None, neurons=None, epochs=None, activation=None, dropout=None):
         params = {'layers': layers,
                 'isReturnSeq' : isReturnSeq,

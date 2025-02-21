@@ -31,8 +31,8 @@ class LSTMModel:
             forecast_model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
-
         model.summary()
+        return model
 
     # def create_input_layer(self, batch_size, look_back):
     #     # store the generated input layer into the class
@@ -56,7 +56,7 @@ class LSTMModel:
             for layer in model.layers:
                 if isinstance(layer, LSTM):
                     layer.reset_states()
-            print(f"Epoch {i+1}/{epochs} --- Completed")
+            print(f"Epoch {i+1}/{self.epochs} --- Completed")
 
     def predict(self, trainX):
         # X is the training data

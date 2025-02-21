@@ -56,28 +56,25 @@ def run():
                                 batch_size=batch_size,
                                 neurons=neurons,
                                 epochs=epochs,
-                                is2Layer=is2Layer,
                                 activation=activation,
                                 dropout=dropout)
-        lstm_model._build_model()
+        
         lstm_model.train(trainX, trainY)
+        
         # *** This MUST be called
         trainPredict = lstm_model.predict(trainX)
 
-        # 5. Forecast Future Values
-        # The length of the start_input sequence must match batch_size parameter
-        # start_input = scaled_data[-look_back:].reshape(1, look_back, 1)
-        # start_input = trainX.reshape(1, look_back, 1)
-        start_input = trainX
-        # Number of future steps to forecast
+        # 5. Forecast Future Values        
+        # Create ForecastEngine instance with parameters from lstm_model or defaults.
+        forecast_engine = ForecastEngine(trained_model=lstm_model,  # Use trained model's layers if None
+                                          isReturnSeq=True)  # Force return sequences to True for forecasting
+
+        # start_input = trainX[-1].reshape(1, look_back, 1)
+        # start_input = trainX
+
         forecast_steps = 2000
-        forecast_engine = ForecastEngine(trained_model=lstm_model.model,
-                                            look_back=look_back,
-                                            batch_size=batch_size,
-                                            neurons=neurons,
-                                            is2Layer=is2Layer)
         # *** This MUST be called           
-        future_predictions = forecast_engine.forecast(start_input, forecast_steps)
+        future_predictions = forecast_engine.forecast(trainX, forecast_steps)
 
         # 6. Visualize Results
         visualizer = Visualizer(scaler=data_preprocessor.scaler,
@@ -86,4 +83,4 @@ def run():
         visualizer.plot_results(curr_dataset, curr_system, curr_dir)
 
 if __name__ == "__main__":
-    main()
+    run()
