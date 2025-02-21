@@ -29,7 +29,7 @@ class Visualizer:
         plot_array[len(historical):] = forecasts
         return plot_array
 
-     def plot_results(self, curr_dataset, curr_system):
+     def plot_results(self, curr_dataset, curr_system, curr_dir):
         # Extract parameters from the trained model
         look_back = self.trained_model.look_back
         batch_size = self.trained_model.batch_size
@@ -37,7 +37,9 @@ class Visualizer:
         epochs = self.trained_model.epochs
         headroom = self.trained_model.headroom
         train_predictions = self.trained_model.trainPredict
+
         # Extract parameters from the forecasted data
+        layers = self.forecast_engine.layers
         future_predictions = self.forecast_engine.futurePredictions
 
         # Invert predictions
@@ -77,10 +79,10 @@ class Visualizer:
         
         plt.legend()
 
-        # Save the figure
-        save_dir = f'/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/results1/'
+        _dir = curr_dir
+        save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{_dir}/"
         
-        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
+        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
         
         plt.close()
         

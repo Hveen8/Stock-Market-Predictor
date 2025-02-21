@@ -34,6 +34,8 @@ def run():
     for curr_system in df.columns:
         curr_dataset = df[curr_system].values.reshape(-1, 1)
 
+        curr_dir = 'results1'
+
         # 2. Data Preprocessing
         data_preprocessor = DataPreprocessor(headroom=headroom)
         scaled_data = data_preprocessor.fit_transform(curr_dataset)
@@ -78,7 +80,7 @@ def run():
         visualizer = Visualizer(scaler=data_preprocessor.scaler,
                                 trained_model=lstm_model,
                                 forecast_engine=forecast_engine)
-        visualizer.plot_results(curr_dataset, curr_system)
+        visualizer.plot_results(curr_dataset, curr_system, curr_dir)
 
 if __name__ == "__main__":
     main()
