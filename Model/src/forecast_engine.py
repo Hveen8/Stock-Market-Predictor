@@ -51,7 +51,7 @@ class ForecastEngine(LSTMModel):
         forecast_model = self._build_model()  # Rebuild model for forecasting
 
         # Set weights from the trained model
-        forecast_model.set_weights(self.trained_model.get_weights())
+        forecast_model.set_weights(self.trained_model.model.get_weights())
 
         new_predictions = []
         current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction

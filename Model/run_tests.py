@@ -37,7 +37,7 @@ def run():
     # Parameters
     look_back = 6000 # bet look back ratio 0.6:1 >> 10000 -> ~6000, need to round to just whole 1000th
     batch_size = 128
-    neurons = 50
+    neurons = 100
     epochs = 10
     headroom = 1.0
     is2Layer = True
@@ -84,7 +84,7 @@ def run():
 
         # 5. Forecast Future Values        
         # Create ForecastEngine instance with parameters from lstm_model or defaults.
-        forecast_engine = ForecastEngine(trained_model=lstm_model,  # Use trained model's layers if None
+        forecast_engine = ForecastEngine(trained_model=lstm_model,
                                           isReturnSeq=True)  # Force return sequences to True for forecasting
 
         # start_input = trainX[-1].reshape(1, look_back, 1)
