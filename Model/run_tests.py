@@ -63,7 +63,7 @@ def run():
         # 5. Forecast Future Values
         # The length of the start_input sequence must match batch_size parameter
         #start_input = scaled_data[-look_back:].reshape(1, look_back, 1)
-        start_input = trainX[-1].reshape(1, look_back, 1)
+        start_input = trainX.reshape(1, look_back, 1)
         # Number of future steps to forecast
         forecast_steps = 2000
         forecast_engine = ForecastEngine(trained_model=lstm_model.model,

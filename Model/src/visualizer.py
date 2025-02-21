@@ -35,6 +35,7 @@ class Visualizer:
         batch_size = self.trained_model.batch_size
         neurons = self.trained_model.neurons
         epochs = self.trained_model.epochs
+        headroom = self.trained_model.headroom
         train_predictions = self.trained_model.trainPredict
         # Extract parameters from the forecasted data
         future_predictions = self.forecast_engine.futurePredictions
@@ -77,9 +78,9 @@ class Visualizer:
         plt.legend()
 
         # Save the figure
-        save_dir = f'/mnt/slurm_nfs/ece498_w25_20/test_slurm5_L2_{trained_model.headroom}_results_batched/'
+        save_dir = f'/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/results1/'
         
-        plt.savefig(f"{save_dir}{curr_system}_predictions (H_{trained_model.headroom}) L_{look_back} B={batch_size} N={neurons} E={epochs}.png")
+        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
         
         plt.close()
         

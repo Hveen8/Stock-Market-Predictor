@@ -2,12 +2,12 @@ import numpy as np
 import tensorflow as tf
 
 class ForecastEngine:
-    def __init__(self, trained_model, look_back, batch_size, neurons, is2Layer:
+    def __init__(self, trained_model, look_back, batch_size, neurons, layers:
         self.trained_model = trained_model
         self.look_back = look_back
         self.batch_size = batch_size
         self.neurons = neurons
-        self.is2Layer = is2Layer
+        self.layers = layers
         # self.alpha = alpha
         # self.beta = beta
         # What the class will fill
@@ -17,11 +17,14 @@ class ForecastEngine:
         # Define a new forecasting model
         forecast_model = Sequential()
         forecast_model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
-        if self.is2Layer:
-            model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
-            model.add(LSTM(self.neurons, activation=self.activation, return_sequences=True))
+        # really will only use 2 layers...
+        if self.layers > 1:
+            for l in range(self.layers-1):
+                forecast_model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
+            # In multi-layered the last is non-stateful ***
+            forecast_model.add(LSTM(self.neurons, activation=self.activation, return_sequences=True))
         else:
-            model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=True))
+            forecast_model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=True))
         forecast_model.add(Dense(1))
         forecast_model.compile(loss='mean_squared_error', optimizer='adam')
 
