@@ -1,3 +1,4 @@
+import math
 import numpy as np
 import tensorflow as tf
 from .lstm_model import LSTMModel
