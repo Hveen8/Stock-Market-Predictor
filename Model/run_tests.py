@@ -11,11 +11,11 @@ import matplotlib.pyplot as plt
 # ------------------------------
 def run():
     # 1. Load and Prepare Data
-    dir = '/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/data'
+    data_dir = '/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/data/'
     # Ensure the CSV is divided into columns named 'System1', 'System2', etc.
     file = 'UTD_Load_sorted.csv'
     try:
-        df = pd.read_csv('your_data.csv')
+        df = pd.read_csv(data_dir+file)
     except FileNotFoundError:
         print(f"Error: '{file}' not found. Place it into the '/data' directory")
         return
