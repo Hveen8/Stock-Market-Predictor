@@ -1,10 +1,24 @@
+import time
+import math
 import numpy as np
 import pandas as pd
+import tensorflow as tf
 from src.data_preprocessor import DataPreprocessor
 from src.lstm_model import LSTMModel
 from src.forecast_engine import ForecastEngine
 from src.visualizer import Visualizer
 import matplotlib.pyplot as plt
+
+# Enabling multi-GPU useage on 1 node
+# gpu_strategy = tf.distribute.MirroredStrategy()
+#print(f"Number of GPUs Available: {gpu_strategy.num_replicas_in_sync}")
+
+gpus = len(tf.config.list_physical_devices('GPU'))
+print(f"Num GPUs Available: {gpus}")
+#print(f"Worker (1 task per node) {os.environ.get('SLURM_PROCID', 'N/A')} sees {len(gpus)} GPU(s).")
+
+# Tensorflow distributed compute strategy (some shit that makes a distributed environment/rule-set)
+# gpu_strategy = tf.distribute.MultiWorkerMirroredStrategy()
 
 # ------------------------------
 #          Run Script
@@ -32,7 +46,11 @@ def run():
 
     # Iterate through each column (assuming each column represents a system)
     for curr_system in df.columns:
-        curr_dataset = df[curr_system].values.reshape(-1, 1)
+
+        if curr_system != 'B1':
+            continue
+
+        curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
         curr_dir = 'results1'
 

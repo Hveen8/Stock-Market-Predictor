@@ -23,11 +23,11 @@ class LSTMModel:
         # the more complex the data -> more neurons needed
         if self.layers > 1:
             for l in range(self.layers-1):
-                forecast_model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
+                model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=True))
             # In multi-layered the last is non-stateful ***
-            forecast_model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
+            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
         else:
-            forecast_model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
+            model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
         model.summary()
@@ -38,23 +38,25 @@ class LSTMModel:
     #     self.input_layer = InputLayer(batch_input_shape=(batch_size, look_back, 1))
     #     return self.input_layer
 
-    def train(self, trainX, trainY):
-        for layer in model.layers:
+    def reset_model_states(self):
+        for layer in self.model.layers:
             if isinstance(layer, LSTM):
                 layer.reset_states()
+        print('Model states reset')
+
+    def train(self, trainX, trainY):
+        self.reset_model_states()
 
         for i in range(self.epochs):
             # Unlike CNNs, for RNNs (LSTM fitted) we do not shuffle
-            model.fit(trainX, trainY, 
+            self.model.fit(trainX, trainY, 
                         epochs=1, 
                         batch_size=self.batch_size, 
                         shuffle=False, 
                         verbose=2)
             
             # Resetting states after each epoch for stateful LSTM
-            for layer in model.layers:
-                if isinstance(layer, LSTM):
-                    layer.reset_states()
+            self.reset_model_states()
             print(f"Epoch {i+1}/{self.epochs} --- Completed")
 
     def predict(self, trainX):
