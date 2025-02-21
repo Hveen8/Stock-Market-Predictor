@@ -1,9 +1,15 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
+# Avoid Import Issues 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from data_preprocessor import BufferedMinMaxScaler
+    from lstm_model import LSTMModel
+    from forecast_engine import ForecastEngine
 
 class Visualizer:
-    def __init__(self, scaler: BufferedMinMaxScaler, trained_model: LSTMModel, forecast_engine: ForecastEngine):
+    def __init__(self, scaler: 'BufferedMinMaxScaler', trained_model: 'LSTMModel', forecast_engine: 'ForecastEngine'):
         """Instance needs to be of || BufferedMinMaxScaler | LSTMModel | ForecastEngine || type"""
         if not isinstance(scaler, BufferedMinMaxScaler):
             raise TypeError("Expected an instance of BufferedMinMaxScaler.")
@@ -29,14 +35,14 @@ class Visualizer:
         plot_array[len(historical):] = forecasts
         return plot_array
 
-     def plot_results(self, curr_dataset, curr_system, curr_dir):
-        # Extract parameters from the trained model
-        look_back = self.trained_model.look_back
-        batch_size = self.trained_model.batch_size
-        neurons = self.trained_model.neurons
-        epochs = self.trained_model.epochs
-        headroom = self.trained_model.headroom
-        train_predictions = self.trained_model.trainPredict
+        def plot_results(self, curr_dataset, curr_system, curr_dir):
+            # Extract parameters from the trained model
+            look_back = self.trained_model.look_back
+            batch_size = self.trained_model.batch_size
+            neurons = self.trained_model.neurons
+            epochs = self.trained_model.epochs
+            headroom = self.trained_model.headroom
+            train_predictions = self.trained_model.trainPredict
 
         # Extract parameters from the forecasted data
         layers = self.forecast_engine.layers
