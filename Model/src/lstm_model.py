@@ -4,7 +4,7 @@ from tensorflow.keras.layers import LSTM, Dense, InputLayer
 import 
 
 class LSTMModel:
-    def __init__(self, layers, isReturnSeq = False, look_back, batch_size, neurons, epochs, activation, dropout):
+    def __init__(self, layers, isReturnSeq=False, look_back, batch_size, neurons, epochs, activation, dropout):
         self.layers = layers
         self.isReturnSeq = isReturnSeq # should be either True or False
         self.look_back = look_back

@@ -1,32 +1,52 @@
 import numpy as np
 import tensorflow as tf
 
-class ForecastEngine:
-    def __init__(self, trained_model, look_back, batch_size, neurons, layers):
-        self.trained_model = trained_model
-        self.look_back = look_back
-        self.batch_size = batch_size
-        self.neurons = neurons
-        self.layers = layers
-        # self.alpha = alpha
-        # self.beta = beta
+class ForecastEngine():
+    def __init__(self, trained_model, layers=None, isReturnSeq=True, look_back=None, batch_size=None, neurons=None, epochs=None, activation=None, dropout=None):
+        params = {'layers': layers,
+                'isReturnSeq' : isReturnSeq,
+                'look_back': look_back,
+                'batch_size': batch_size,
+                'neurons': neurons,
+                'epochs': epochs,
+                'activation': activation,
+                'dropout': dropout}
+
+        # Use parameters from trained_model or default values IF specified
+        for param_name in params:
+            if params[param_name] is None:
+                params[param_name] = getattr(trained_model, param_name)
+
+        # Initialize LSTMModel with inherited parameters
+        super().__init__(layers=params['layers'],
+                         isReturnSeq=params['isReturnSeq'],
+                         look_back=params['look_back'],
+                         batch_size=params['batch_size'],
+                         neurons=params['neurons'],
+                         epochs=params['epochs'],
+                         activation=params['activation'],
+                         dropout=params['dropout'])
+
         # What the class will fill
         self.futurePredictions = None
 
     def forecast(self, start_input, steps):
-        # Define a new forecasting model
-        forecast_model = Sequential()
-        forecast_model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
-        # really will only use 2 layers...
-        if self.layers > 1:
-            for l in range(self.layers-1):
-                forecast_model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
-            # In multi-layered the last is non-stateful ***
-            forecast_model.add(LSTM(self.neurons, activation=self.activation, return_sequences=True))
-        else:
-            forecast_model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=True))
-        forecast_model.add(Dense(1))
-        forecast_model.compile(loss='mean_squared_error', optimizer='adam')
+        # # Define a new forecasting model
+        # forecast_model = Sequential()
+        # forecast_model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
+        # # really will only use 2 layers...
+        # if self.layers > 1:
+        #     for l in range(self.layers-1):
+        #         forecast_model.add(LSTM(self.neurons, activation=self.activation, stateful=True, return_sequences=True))
+        #     # In multi-layered the last is non-stateful ***
+        #     forecast_model.add(LSTM(self.neurons, activation=self.activation, return_sequences=True))
+        # else:
+        #     forecast_model.add(LSTM(neurons, activation=self.activation, stateful=True, return_sequences=True))
+        # forecast_model.add(Dense(1))
+        # forecast_model.compile(loss='mean_squared_error', optimizer='adam')
+
+        # Use _build_model from LSTMModel to create a new model for forecasting
+        forecast_model = self._build_model()  # Rebuild model for forecasting
 
         # Set weights from the trained model
         forecast_model.set_weights(self.trained_model.get_weights())
