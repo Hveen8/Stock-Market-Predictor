@@ -8,23 +8,23 @@ class BufferedMinMaxScaler(MinMaxScaler):
         self.headroom = headroom
 
     def fit(self, X, y=None):
-		X = np.asarray(X)
-		# 1. Store original data min/max
-		self.orig_data_min_ = X.min(axis=0)
-		self.orig_data_max_ = X.max(axis=0)
-		#self.data_min_ = X.min(axis=0)
-		#self.data_max_ = X.max(axis=0)
+        X = np.asarray(X)
+        # 1. Store original data min/max
+        self.orig_data_min_ = X.min(axis=0)
+        self.orig_data_max_ = X.max(axis=0)
+        #self.data_min_ = X.min(axis=0)
+        #self.data_max_ = X.max(axis=0)
 
-		# 2. Calculate buffer-adjusted max
-		data_range = self.orig_data_max_ - self.orig_data_min_
-		self.data_max_ = self.orig_data_max_ + data_range * self.headroom
-		self.data_min_ = self.orig_data_min_  # Keep original min (for now, potentially will need to change)
+        # 2. Calculate buffer-adjusted max
+        data_range = self.orig_data_max_ - self.orig_data_min_
+        self.data_max_ = self.orig_data_max_ + data_range * self.headroom
+        self.data_min_ = self.orig_data_min_  # Keep original min (for now, potentially will need to change)
 
-		# 3. Calculate parent class parameters (data_range_ is for parent class, incorporating the headroom)
-		self.data_range_ = self.data_max_ - self.data_min_
-		self.scale_ = (self.feature_range[1] - self.feature_range[0]) / self.data_range_
-		self.min_ = self.feature_range[0] - self.data_min_ * self.scale_
-		return self
+        # 3. Calculate parent class parameters (data_range_ is for parent class, incorporating the headroom)
+        self.data_range_ = self.data_max_ - self.data_min_
+        self.scale_ = (self.feature_range[1] - self.feature_range[0]) / self.data_range_
+        self.min_ = self.feature_range[0] - self.data_min_ * self.scale_
+        return self 
 
 class DataPreprocessor:
     def __init__(self, headroom=0.2):
