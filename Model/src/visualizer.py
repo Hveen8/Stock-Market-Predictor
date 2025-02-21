@@ -1,12 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
-# Avoid Import Issues 
-from typing import TYPE_CHECKING
-if TYPE_CHECKING:
-    from data_preprocessor import BufferedMinMaxScaler
-    from lstm_model import LSTMModel
-    from forecast_engine import ForecastEngine
+from data_preprocessor import BufferedMinMaxScaler
+from lstm_model import LSTMModel
+from forecast_engine import ForecastEngine
 
 class Visualizer:
     def __init__(self, scaler: 'BufferedMinMaxScaler', trained_model: 'LSTMModel', forecast_engine: 'ForecastEngine'):
