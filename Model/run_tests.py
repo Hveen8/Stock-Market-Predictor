@@ -50,7 +50,9 @@ def run():
         trainY = dataY
 
         # 4. Train LSTM Model
-        lstm_model = LSTMModel(look_back=look_back,
+        lstm_model = LSTMModel(layers=2,
+                                isReturnSeq=False,
+                                look_back=look_back,
                                 batch_size=batch_size,
                                 neurons=neurons,
                                 epochs=epochs,
