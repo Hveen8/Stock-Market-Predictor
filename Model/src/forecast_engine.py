@@ -2,7 +2,7 @@ import numpy as np
 import tensorflow as tf
 
 class ForecastEngine:
-    def __init__(self, trained_model, look_back, batch_size, neurons, layers:
+    def __init__(self, trained_model, look_back, batch_size, neurons, layers):
         self.trained_model = trained_model
         self.look_back = look_back
         self.batch_size = batch_size
