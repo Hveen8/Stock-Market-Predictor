@@ -17,7 +17,7 @@ class Visualizer:
             raise TypeError("Expected an instance of LSTMModel.")
         if not isinstance(forecast_engine, ForecastEngine):
             raise TypeError("Expected an instance of ForecastEngine.")
-        self.scalar = scalar
+        self.scaler = scaler
         self.trained_model = trained_model
         self.forecast_engine = forecast_engine
 
