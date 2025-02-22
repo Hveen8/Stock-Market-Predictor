@@ -85,7 +85,7 @@ def run():
                             headroom = hm
                             dropout = do
 
-                            forecast_horizon = 4000    # number of points to forecast per fold
+                            forecast_horizon = 2000    # number of points to forecast per fold
                             initial_train_size = 8000  # choose your training size
                             step_size = 0           # roll the window forward by this many points
 
@@ -100,12 +100,12 @@ def run():
                                             'neurons': neurons,
                                             'activation': activation}
 
-                            model, train_data_inverted, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
+                            model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
 
                             visualizer = Visualizer(scaler=model[0].scaler,
                                                     trained_model=model[1],
                                                     forecast_engine=model[2])
-                            visualizer.plot_results(train_data_inverted, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
+                            visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
 
                             print("Cross-Validation RMSEs:", rmse_list)
                             print("Mean RMSE:", np.mean(rmse_list))
