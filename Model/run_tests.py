@@ -78,83 +78,92 @@ def run():
                 for ep in epoch_list:
                     for hm in headroom_list:
                         for do in dropout_list:
-                            try:
-                                look_back = lb
-                                batch_size = bs
-                                epochs = ep
-                                headroom = hm
-                                dropout = do
+                            # try:
+                            look_back = lb
+                            batch_size = bs
+                            epochs = ep
+                            headroom = hm
+                            dropout = do
 
-                                model_params = {'look_back': look_back,
-                                                'batch_size': batch_size,
-                                                'epochs': epochs,
-                                                'headroom': headroom,
-                                                'dropout': dropout,
-                                                'layers': layers,
-                                                'neurons': neurons,
-                                                'activation': activation}
+                            model_params = {'look_back': look_back,
+                                            'batch_size': batch_size,
+                                            'epochs': epochs,
+                                            'headroom': headroom,
+                                            'dropout': dropout,
+                                            'layers': layers,
+                                            'neurons': neurons,
+                                            'activation': activation}
 
-                                # forecast_horizon = 2000    # number of points to forecast per fold
-                                # initial_train_size = 8000  # choose your training size
-                                # step_size = 0           # roll the window forward by this many points
+                            forecast_horizon = 4000    # number of points to forecast per fold
+                            initial_train_size = 6000  # choose your training size
+                            step_size = 0           # roll the window forward by this many points
 
+                            train_data_inverted, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
 
+                        
+                            visualizer = Visualizer(scaler=data_preprocessor.scaler,
+                                                    trained_model=lstm_model,
+                                                    forecast_engine=forecast_engine)
+                            visualizer.plot_results(train_data_inverted, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
 
-                                # 2. Data Preprocessing
-                                data_preprocessor = DataPreprocessor(headroom=headroom)
-                                scaled_data = data_preprocessor.fit_transform(curr_dataset)
+                            print("Cross-Validation RMSEs:", rmse_list)
+                            print("Mean RMSE:", np.mean(rmse_list))
 
-                                print(f'curr_dataset shape: ', curr_dataset.shape)
-                                print(f'scaled_data shape: ', scaled_data.shape)
+                                # # 2. Data Preprocessing
+                                # data_preprocessor = DataPreprocessor(headroom=headroom)
+                                # scaled_data = data_preprocessor.fit_transform(curr_dataset)
 
-                                # 3. Create Dataset for LSTM
-                                dataX, dataY = data_preprocessor.create_dataset(scaled_data, look_back=look_back)
-                                dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, batch_size)
+                                # print(f'curr_dataset shape: ', curr_dataset.shape)
+                                # print(f'scaled_data shape: ', scaled_data.shape)
 
-                                # Reshape input to be [samples, time steps, features] which is required for LSTM
-                                # *****Need to tie input layer to Model class*****
-                                trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
-                                print('trainX shape (After Reshape): ', trainX.shape)
-                                trainY = dataY
+                                # # 3. Create Dataset for LSTM
+                                # dataX, dataY = data_preprocessor.create_dataset(scaled_data, look_back=look_back)
+                                # dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, batch_size)
 
-                                # 4. Train LSTM Model
-                                lstm_model = LSTMModel(layers=layers,
-                                                        isReturnSeq=False,
-                                                        look_back=look_back,
-                                                        batch_size=batch_size,
-                                                        neurons=neurons,
-                                                        epochs=epochs,
-                                                        activation=activation,
-                                                        dropout=dropout)
+                                # # Reshape input to be [samples, time steps, features] which is required for LSTM
+                                # # *****Need to tie input layer to Model class*****
+                                # trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
+                                # print('trainX shape (After Reshape): ', trainX.shape)
+                                # trainY = dataY
+
+                                # # 4. Train LSTM Model
+                                # lstm_model = LSTMModel(layers=layers,
+                                #                         isReturnSeq=False,
+                                #                         look_back=look_back,
+                                #                         batch_size=batch_size,
+                                #                         neurons=neurons,
+                                #                         epochs=epochs,
+                                #                         activation=activation,
+                                #                         dropout=dropout)
                                 
-                                lstm_model.train(trainX, trainY)
+                                # lstm_model.train(trainX, trainY)
                                 
-                                # *** This MUST be called
-                                trainPredict = lstm_model.predict(trainX)
-                                print('Training infered data shape: ', trainPredict.shape)
+                                # # *** This MUST be called
+                                # trainPredict = lstm_model.predict(trainX)
+                                # print('Training infered data shape: ', trainPredict.shape)
 
-                                # 5. Forecast Future Values        
-                                # Create ForecastEngine instance with parameters from lstm_model or defaults.
-                                forecast_engine = ForecastEngine(trained_model=lstm_model,
-                                                                isReturnSeq=True)  # Force return sequences to True for forecasting
+                                # # 5. Forecast Future Values        
+                                # # Create ForecastEngine instance with parameters from lstm_model or defaults.
+                                # forecast_engine = ForecastEngine(trained_model=lstm_model,
+                                #                                 isReturnSeq=True)  # Force return sequences to True for forecasting
 
-                                # start_input = trainX[-1].reshape(1, look_back, 1)
-                                # start_input = trainX
+                                # # start_input = trainX[-1].reshape(1, look_back, 1)
+                                # # start_input = trainX
 
-                                forecast_steps = 2000
-                                # *** This MUST be called           
-                                futurePredictions = forecast_engine.forecast(trainX, forecast_steps)
-                                print('Forecast infered data shape: ', futurePredictions.shape)
+                                # forecast_steps = 2000
+                                # # *** This MUST be called           
+                                # futurePredictions = forecast_engine.forecast(trainX, forecast_steps)
+                                # print('Forecast infered data shape: ', futurePredictions.shape)
 
-                                # 6. Visualize Results
-                                visualizer = Visualizer(scaler=data_preprocessor.scaler,
-                                                        trained_model=lstm_model,
-                                                        forecast_engine=forecast_engine)
+                                # # 6. Visualize Results
+                                # visualizer = Visualizer(scaler=data_preprocessor.scaler,
+                                #                         trained_model=lstm_model,
+                                #                         forecast_engine=forecast_engine)
                                 
-                                visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
-                            except Exception as e:
-                                print("ERROR! Details:", e)
-                                continue
+                                # visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
+                            # except Exception as e:
+                            #     print("ERROR! Details:", e)
+                            #     continue
 
 if __name__ == "__main__":
     run()
