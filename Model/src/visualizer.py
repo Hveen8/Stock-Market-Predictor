@@ -46,11 +46,11 @@ class Visualizer:
         # Extract parameters from the scaler
         headroom = self.scaler.headroom
 
-        # Invert predictions
+        # Invert transformations
         train_predictions_inverted = self.invert_predictions(train_predictions)
-        # historical_data_inverted = self.invert_predictions(curr_dataset) -> curr_dataset is already inverted
+        # historical_data_inverted = self.invert_predictions(curr_dataset) -> curr_dataset was never transformed
         # wrapping train_Y into a list -> to make it 2D, which invert_predictions requires
-        train_Y_inverted = self.invert_predictions([train_Y])
+        # train_Y_inverted = self.invert_predictions([train_Y])
         future_predictions_inverted = self.invert_predictions(future_predictions)
 
         # Calculate RMSE (Of the Training prediction, not forecast)

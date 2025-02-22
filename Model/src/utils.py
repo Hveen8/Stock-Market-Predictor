@@ -1,7 +1,4 @@
 import numpy as np
 
-def create_plot_array(historical, forecasts):
-    
-
-def trim_XY(dataX, dataY, batch_size):
-    
+def calculate_rmse(true_values, predicted_values):
+    return np.sqrt(mean_squared_error(true_values, predicted_values))

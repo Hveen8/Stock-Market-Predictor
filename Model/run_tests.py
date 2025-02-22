@@ -7,6 +7,8 @@ from src.data_preprocessor import DataPreprocessor
 from src.lstm_model import LSTMModel
 from src.forecast_engine import ForecastEngine
 from src.visualizer import Visualizer
+from src.utils import calculate_rmse
+from src.cross_validation import time_series_cross_validation
 import matplotlib.pyplot as plt
 
 # Enabling multi-GPU useage on 1 node
@@ -51,7 +53,7 @@ def run():
     # batch_size_list = [256]
     # look_back_list  = [5000, 6000]
     look_back_list  = [6000]
-    epoch_list      = [8, 10, 12, 14, 16, 18, 20, 22, 24]
+    epoch_list      = [1, 8, 10, 12, 14, 16, 18, 20, 22, 24]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
     dropout_list    = [0]
@@ -83,6 +85,21 @@ def run():
                                 headroom = hm
                                 dropout = do
 
+                                model_params = {'look_back': look_back,
+                                                'batch_size': batch_size,
+                                                'epochs': epochs,
+                                                'headroom': headroom,
+                                                'dropout': dropout,
+                                                'layers': layers,
+                                                'neurons': neurons,
+                                                'activation': activation}
+
+                                # forecast_horizon = 2000    # number of points to forecast per fold
+                                # initial_train_size = 8000  # choose your training size
+                                # step_size = 0           # roll the window forward by this many points
+
+
+
                                 # 2. Data Preprocessing
                                 data_preprocessor = DataPreprocessor(headroom=headroom)
                                 scaled_data = data_preprocessor.fit_transform(curr_dataset)
@@ -95,7 +112,7 @@ def run():
                                 dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, batch_size)
 
                                 # Reshape input to be [samples, time steps, features] which is required for LSTM
-                                # *Need to tie input layer to Model class*
+                                # *****Need to tie input layer to Model class*****
                                 trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
                                 print('trainX shape (After Reshape): ', trainX.shape)
                                 trainY = dataY
