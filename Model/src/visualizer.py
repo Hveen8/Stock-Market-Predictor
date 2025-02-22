@@ -53,11 +53,10 @@ class Visualizer:
         train_Y_inverted = self.invert_predictions([train_Y])
         future_predictions_inverted = self.invert_predictions(future_predictions)
 
-        # Calculate RMSE
+        # Calculate RMSE (Of the Training prediction, not forecast)
         # train_rmse = self.calculate_rmse(historical_data_inverted[look_back:], train_predictions_inverted)
-        train_rmse = self.calculate_rmse(train_Y_inverted[0], train_predictions_inverted[:, 0])
-        
-        print('Train Score: %.2f RMSE' % (train_rmse))
+        # train_rmse = self.calculate_rmse(train_Y_inverted[0], train_predictions_inverted[:, 0])
+        # print('Train Score: %.2f RMSE' % (train_rmse))
 
         # Create full time array for x-axis
         full_time = np.arange(len(curr_dataset) + len(future_predictions_inverted))

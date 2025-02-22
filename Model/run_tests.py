@@ -47,15 +47,14 @@ def run():
     # activation = 'tanh'  # or 'relu' but relu is shit
     # dropout = 0.1
 
-    # batch_size_list = [128, 256]
-    batch_size_list = [256]
+    batch_size_list = [128, 256]
+    # batch_size_list = [256]
     # look_back_list  = [5000, 6000]
     look_back_list  = [6000]
-    # epoch_list      = [8, 10, 12, 14, 16, 18, 20]
-    epoch_list      = [10]
+    epoch_list      = [8, 10, 12, 14, 16, 18, 20, 22, 24]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
-    dropout_list    = list(np.arange(0.0, 1.0, 0.05))
+    dropout_list    = [0]
     activation      = 'tanh'
     layers          = 2
     neurons         = 100
