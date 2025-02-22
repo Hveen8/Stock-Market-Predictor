@@ -1,3 +1,4 @@
+import math
 import numpy as np
 from src.data_preprocessor import DataPreprocessor
 from src.lstm_model import LSTMModel
@@ -19,7 +20,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     start = 0
     # for start in range(0, n - initial_train_size - forecast_horizon + 1, step_size):
     train_end = start + initial_train_size 
-    test_end = train_end + forecast_horizon
+    test_end = train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
 
     train_data = curr_dataset[start:train_end]
     test_data  = curr_dataset[train_end:test_end]
@@ -36,7 +37,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     trainY = dataY
 
     lstm_model = LSTMModel(
-        layers=model_params.get('layers'),
+        layers=model_params['layers'],
         isReturnSeq=False,
         look_back=model_params['look_back'],
         batch_size=model_params['batch_size'],
@@ -59,7 +60,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     # Calculate RMSE between forecast and actual test data
     # rmse = np.sqrt(np.mean((forecasted_inverted[:, 0] - test_data_inverted[:, 0]) ** 2))
     rmse = calculate_rmse(forecasted_inverted[:, 0], test_data_inverted[:, 0])
-    rmse_list.append(rmse)
     print(f"Fold RMSE: {rmse:.2f}")
+    rmse_list.append(rmse)
         
-    return train_data_inverted, forecasted_inverted, rmse_list
+    return [data_preprocessor, lstm_model, forecast_engine], train_data_inverted, forecasted_inverted, rmse_list
