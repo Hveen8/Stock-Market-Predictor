@@ -47,7 +47,6 @@ class TAFShift:
         # predicted_taf = predicted_taf
 
         if normalize:
-            # Normalize predicted_taf so its maximum absolute value is 1 (if not zero)
             scale_factor = np.max(np.abs(predicted_taf))
             if scale_factor == 0:
                 scale_factor = 1.0
