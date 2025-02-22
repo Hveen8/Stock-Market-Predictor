@@ -62,6 +62,8 @@ class ForecastEngine(LSTMModel):
 
             for b in range(self.batch_size):
                 new_predictions.append(pred[b, -1, 0])
+            # print('Predictions shape: ', pred[i, -1, :].shape)
+		    # print('New Inference (Prediction): ', pred[-1, -1, 0])
 
             # Update each sequence in the batch
             new_batch = np.zeros_like(current_batch)

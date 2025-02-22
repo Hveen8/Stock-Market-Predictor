@@ -1,9 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error
-from data_preprocessor import BufferedMinMaxScaler
-from lstm_model import LSTMModel
-from forecast_engine import ForecastEngine
+from .data_preprocessor import BufferedMinMaxScaler
+from .lstm_model import LSTMModel
+from .forecast_engine import ForecastEngine
 
 class Visualizer:
     def __init__(self, scaler: 'BufferedMinMaxScaler', trained_model: 'LSTMModel', forecast_engine: 'ForecastEngine'):
@@ -24,56 +24,53 @@ class Visualizer:
     def calculate_rmse(self, true_values, predicted_values):
         return np.sqrt(mean_squared_error(true_values, predicted_values))
 
-    def create_plot_array(self, historical, forecasts):
-        # Combines historical and forecast data for plotting.
-        full_length = len(historical) + len(forecasts)
-        plot_array = np.full((full_length, 1), np.nan)
-        plot_array[:len(historical)] = historical
-        plot_array[len(historical):] = forecasts
+    def create_plot_array(self, full_length, loaction_num, value_arr):
+        # full_length = len(historical) + len(forecasts)
+        plot_array = np.zeros((len(full_length), 1))
+        plot_array[loaction_num:loaction_num + len(value_arr)] = value_arr
         return plot_array
 
-        def plot_results(self, curr_dataset, curr_system, curr_dir):
-            # Extract parameters from the trained model
-            look_back = self.trained_model.look_back
-            batch_size = self.trained_model.batch_size
-            neurons = self.trained_model.neurons
-            epochs = self.trained_model.epochs
-            headroom = self.trained_model.headroom
-            train_predictions = self.trained_model.trainPredict
+    def plot_results(self, curr_dataset, train_Y, curr_system, curr_dir):
+        # Extract parameters from the trained model
+        look_back = self.trained_model.look_back
+        batch_size = self.trained_model.batch_size
+        neurons = self.trained_model.neurons
+        epochs = self.trained_model.epochs
+        train_predictions = self.trained_model.trainPredict
 
         # Extract parameters from the forecasted data
         layers = self.forecast_engine.layers
         future_predictions = self.forecast_engine.futurePredictions
 
+        # Extract parameters from the scaler
+        headroom = self.scaler.headroom
+
         # Invert predictions
         train_predictions_inverted = self.invert_predictions(train_predictions)
-        historical_data_inverted = self.invert_predictions(curr_dataset)
+        # historical_data_inverted = self.invert_predictions(curr_dataset) -> curr_dataset is already inverted
+        # wrapping train_Y into a list -> to make it 2D, which invert_predictions requires
+        train_Y_inverted = self.invert_predictions([train_Y])
         future_predictions_inverted = self.invert_predictions(future_predictions)
 
         # Calculate RMSE
-        train_rmse = self.calculate_rmse(historical_data_inverted[look_back:], train_predictions_inverted)
+        # train_rmse = self.calculate_rmse(historical_data_inverted[look_back:], train_predictions_inverted)
+        train_rmse = self.calculate_rmse(train_Y_inverted[0], train_predictions_inverted[:, 0])
         
         print('Train Score: %.2f RMSE' % (train_rmse))
 
-        # Shift train predictions for plotting
-        train_predict_plot = np.empty_like(historical_data_inverted)
-        train_predict_plot[:, :] = np.nan
-        train_predict_plot[look_back:len(train_predictions_inverted) + look_back] = train_predictions_inverted
-
         # Create full time array for x-axis
-        full_time = np.arange(len(historical_data_inverted) + len(future_predictions_inverted))
+        full_time = np.arange(len(curr_dataset) + len(future_predictions_inverted))
 
-        # Create plot array with NaNs
-        plot_array = self.create_plot_array(historical_data_inverted, future_predictions_inverted)
+        # Create plot array for plot values
+        plot_array_train = self.create_plot_array(full_time, len(curr_dataset)-len(train_predictions_inverted), train_predictions_inverted)
+        plot_array_forecast = self.create_plot_array(full_time, len(curr_dataset), future_predictions_inverted)
 
         # Plotting
         plt.figure(figsize=(12, 6))
         
-        plt.plot(full_time[:len(historical_data)], historical_data_inverted, color='blue', linewidth=1.5, label='Given Data')
-        plt.plot(full_time[look_back:len(train_predict_plot) + look_back], train_predict_plot[look_back:], color='green', alpha=0.75, label='Training Data (Prediction)')
-        
-        # Plot future predictions
-        plt.plot(full_time[len(historical_data):], future_predictions_inverted, color='red', linestyle='--', linewidth=1.5, label='Future Predictions')
+        plt.plot(full_time[:len(curr_dataset)], curr_dataset, color='blue', linewidth=1.5, label='Given Data')
+        plt.plot(full_time[:len(curr_dataset)], plot_array_train[:len(curr_dataset)], color='green', linewidth=1.0, alpha=0.75, label='Training Data (Prediction)')
+        plt.plot(full_time[len(curr_dataset):], plot_array_forecast[len(curr_dataset):], color='red', linestyle='--', linewidth=1.5, label='Future Predictions')
 
         # Add labels and title
         plt.xlabel('Time')
@@ -82,7 +79,8 @@ class Visualizer:
         
         plt.legend()
 
-        save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{curr_dir}/"
+        # save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{curr_dir}/"
+        save_dir = f"{curr_dir}"
         
         plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
         
