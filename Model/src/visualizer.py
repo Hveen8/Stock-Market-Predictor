@@ -30,7 +30,8 @@ class Visualizer:
         plot_array[loaction_num:loaction_num+len(value_arr)] = value_arr
         return plot_array
 
-    def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, curr_dir):
+    # def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, curr_dir):
+    def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, curr_dir, TAFvars):
         """Both Train and Forecast must be given INVERTED, following the .predict/forecast output"""
         # Extract parameters from the trained model
         look_back = self.trained_model.look_back
@@ -78,7 +79,7 @@ class Visualizer:
         # Add labels and title
         plt.xlabel('Time')
         plt.ylabel('Value')
-        plt.title(f'{curr_system}, RMSE: {rmse:.2f}')
+        plt.title(f'{curr_system}, RMSE: {rmse:.2f} | TAF A:{TAFvars[0]} B:{TAFvars[1]} W:{TAFvars[2]}')
         
         plt.legend()
 

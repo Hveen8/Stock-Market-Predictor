@@ -54,7 +54,7 @@ def run():
     batch_size_list = [256]
     # look_back_list  = [5000, 6000]
     look_back_list  = [6000]
-    epoch_list      = list(range(18, 100, 2))
+    epoch_list      = list(range(10, 101, 1))
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
     dropout_list    = [0]
@@ -72,7 +72,7 @@ def run():
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results2'
+        curr_dir = 'results3'
 
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -101,15 +101,26 @@ def run():
                                                 'neurons': neurons,
                                                 'activation': activation}
 
-                                model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
+                                taf_params_list = [(0.1, 0.1, 0.5),
+                                                    (0.1, 0.1, 1.0),
+                                                    (0.5, 0.5, 0.5),
+                                                    (0.5, 0.5, 1.0),
+                                                    (1.0, 1.0, 0.5),
+                                                    (1.0, 1.0, 1.0)]
+
+                                model, train_data_inverted, train_end, test_end, rmse_TAFs = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, taf_params_list)
+                                # model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
 
                                 visualizer = Visualizer(scaler=model[0].scaler,
                                                         trained_model=model[1],
                                                         forecast_engine=model[2])
-                                visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
+                                # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
+                                for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
+                                    visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
+                                    print("Cross-Validation RMSEs:", rmse_taf)    
 
-                                print("Cross-Validation RMSEs:", rmse_list)
-                                print("Mean RMSE:", np.mean(rmse_list))
+                                # print("Cross-Validation RMSEs:", rmse_list)
+                                # print("Mean RMSE:", np.mean(rmse_list))
 
                                 # # 2. Data Preprocessing
                                 # data_preprocessor = DataPreprocessor(headroom=headroom)
@@ -164,8 +175,12 @@ def run():
                                 
                                 # visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
                             except Exception as e:
+                                print("+======================================================================================+")
+                                print("+======================================================================================+")
                                 print("ERROR! Details: ")
                                 traceback.print_exc()
+                                print("+======================================================================================+")
+                                print("+======================================================================================+")
                                 continue
 
 if __name__ == "__main__":
