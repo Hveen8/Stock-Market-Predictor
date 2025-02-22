@@ -37,15 +37,30 @@ def run():
         print(f"Error: '{file}' not found. Place it into the '/data' directory")
         return
 
-    # Parameters
-    look_back = 6000 # bet look back ratio 0.6:1 >> 10000 -> ~6000, need to round to just whole 1000th
-    batch_size = 128
-    neurons = 100
-    epochs = 1
-    headroom = 1.0
-    is2Layer = True
-    activation = 'tanh'  # or 'relu' but relu is shit
-    dropout = 0.0
+    # # Parameters
+    # look_back = 6000 # bet look back ratio 0.6:1 >> 10000 -> ~6000, need to round to just whole 1000th
+    # batch_size = 128
+    # neurons = 100
+    # epochs = 10
+    # headroom = 1.0
+    # is2Layer = True
+    # activation = 'tanh'  # or 'relu' but relu is shit
+    # dropout = 0.1
+
+    # batch_size_list = [128, 256]
+    batch_size_list = [256]
+    # look_back_list  = [5000, 6000]
+    look_back_list  = [6000]
+    # epoch_list      = [8, 10, 12, 14, 16, 18, 20]
+    epoch_list      = [1]
+    # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
+    headroom_list   = [1.0]
+    dropout_list    = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    activation      = 'tanh'
+    layers          = 2
+    neurons         = 100
+    forecast_steps  = 2000
+
 
     # Iterate through each column (assuming each column represents a system)
     for curr_system in df.columns:
@@ -57,58 +72,69 @@ def run():
 
         curr_dir = 'results1'
 
-        # 2. Data Preprocessing
-        data_preprocessor = DataPreprocessor(headroom=headroom)
-        scaled_data = data_preprocessor.fit_transform(curr_dataset)
+        for bs in batch_size_list:
+            for lb in look_back_list:
+                for ep in epoch_list:
+                    for hm in headroom_list:
+                        for do in dropout_list:
+                            look_back = lb
+                            batch_size = bs
+                            epochs = ep
+                            headroom = hm
+                            dropout = do
 
-        print(f'curr_dataset shape: ', curr_dataset.shape)
-        print(f'scaled_data shape: ', scaled_data.shape)
+                            # 2. Data Preprocessing
+                            data_preprocessor = DataPreprocessor(headroom=headroom)
+                            scaled_data = data_preprocessor.fit_transform(curr_dataset)
 
-        # 3. Create Dataset for LSTM
-        dataX, dataY = data_preprocessor.create_dataset(scaled_data, look_back=look_back)
-        dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, batch_size)
+                            print(f'curr_dataset shape: ', curr_dataset.shape)
+                            print(f'scaled_data shape: ', scaled_data.shape)
 
-        # Reshape input to be [samples, time steps, features] which is required for LSTM
-        # *Need to tie input layer to Model class*
-        trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
-        print('trainX shape (After Reshape): ', trainX.shape)
-        trainY = dataY
+                            # 3. Create Dataset for LSTM
+                            dataX, dataY = data_preprocessor.create_dataset(scaled_data, look_back=look_back)
+                            dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, batch_size)
 
-        # 4. Train LSTM Model
-        lstm_model = LSTMModel(layers=2,
-                                isReturnSeq=False,
-                                look_back=look_back,
-                                batch_size=batch_size,
-                                neurons=neurons,
-                                epochs=epochs,
-                                activation=activation,
-                                dropout=dropout)
-        
-        lstm_model.train(trainX, trainY)
-        
-        # *** This MUST be called
-        trainPredict = lstm_model.predict(trainX)
-        print('Training infered data shape: ', trainPredict.shape)
+                            # Reshape input to be [samples, time steps, features] which is required for LSTM
+                            # *Need to tie input layer to Model class*
+                            trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
+                            print('trainX shape (After Reshape): ', trainX.shape)
+                            trainY = dataY
 
-        # 5. Forecast Future Values        
-        # Create ForecastEngine instance with parameters from lstm_model or defaults.
-        forecast_engine = ForecastEngine(trained_model=lstm_model,
-                                         isReturnSeq=True)  # Force return sequences to True for forecasting
+                            # 4. Train LSTM Model
+                            lstm_model = LSTMModel(layers=layers,
+                                                    isReturnSeq=False,
+                                                    look_back=look_back,
+                                                    batch_size=batch_size,
+                                                    neurons=neurons,
+                                                    epochs=epochs,
+                                                    activation=activation,
+                                                    dropout=dropout)
+                            
+                            lstm_model.train(trainX, trainY)
+                            
+                            # *** This MUST be called
+                            trainPredict = lstm_model.predict(trainX)
+                            print('Training infered data shape: ', trainPredict.shape)
 
-        # start_input = trainX[-1].reshape(1, look_back, 1)
-        # start_input = trainX
+                            # 5. Forecast Future Values        
+                            # Create ForecastEngine instance with parameters from lstm_model or defaults.
+                            forecast_engine = ForecastEngine(trained_model=lstm_model,
+                                                            isReturnSeq=True)  # Force return sequences to True for forecasting
 
-        forecast_steps = 2000
-        # *** This MUST be called           
-        futurePredictions = forecast_engine.forecast(trainX, forecast_steps)
-        print('Forecast infered data shape: ', futurePredictions.shape)
+                            # start_input = trainX[-1].reshape(1, look_back, 1)
+                            # start_input = trainX
 
-        # 6. Visualize Results
-        visualizer = Visualizer(scaler=data_preprocessor.scaler,
-                                trained_model=lstm_model,
-                                forecast_engine=forecast_engine)
-        
-        visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
+                            forecast_steps = 2000
+                            # *** This MUST be called           
+                            futurePredictions = forecast_engine.forecast(trainX, forecast_steps)
+                            print('Forecast infered data shape: ', futurePredictions.shape)
+
+                            # 6. Visualize Results
+                            visualizer = Visualizer(scaler=data_preprocessor.scaler,
+                                                    trained_model=lstm_model,
+                                                    forecast_engine=forecast_engine)
+                            
+                            visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
 
 if __name__ == "__main__":
     run()

@@ -27,7 +27,7 @@ class Visualizer:
     def create_plot_array(self, full_length, loaction_num, value_arr):
         # full_length = len(historical) + len(forecasts)
         plot_array = np.zeros((len(full_length), 1))
-        plot_array[loaction_num:loaction_num + len(value_arr)] = value_arr
+        plot_array[loaction_num:loaction_num+len(value_arr)] = value_arr
         return plot_array
 
     def plot_results(self, curr_dataset, train_Y, curr_system, curr_dir):
@@ -36,6 +36,7 @@ class Visualizer:
         batch_size = self.trained_model.batch_size
         neurons = self.trained_model.neurons
         epochs = self.trained_model.epochs
+        dropout = self.trained_model.dropout
         train_predictions = self.trained_model.trainPredict
 
         # Extract parameters from the forecasted data
@@ -82,7 +83,7 @@ class Visualizer:
         # save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{curr_dir}/"
         save_dir = f"{curr_dir}/"
         
-        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
+        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} N_{neurons} B_{batch_size} L_{look_back} E_{epochs} D_{dropout}.png")
         
         plt.close()
         
