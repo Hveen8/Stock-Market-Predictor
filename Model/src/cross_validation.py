@@ -38,16 +38,14 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
     trainY = dataY
 
-    lstm_model = LSTMModel(
-        layers=model_params['layers'],
-        isReturnSeq=False,
-        look_back=model_params['look_back'],
-        batch_size=model_params['batch_size'],
-        neurons=model_params['neurons'],
-        epochs=model_params['epochs'],
-        activation=model_params['activation'],
-        dropout=model_params['dropout']
-    )
+    lstm_model = LSTMModel(layers=model_params['layers'],
+                            isReturnSeq=False,
+                            look_back=model_params['look_back'],
+                            batch_size=model_params['batch_size'],
+                            neurons=model_params['neurons'],
+                            epochs=model_params['epochs'],
+                            activation=model_params['activation'],
+                            dropout=model_params['dropout'])
     lstm_model.train(trainX, trainY)
     trainPredict = lstm_model.predict(trainX)
 
@@ -64,5 +62,5 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     rmse = calculate_rmse(forecasted_inverted[:, 0], test_data[:, 0])
     print(f"Fold RMSE: {rmse:.2f}")
     rmse_list.append(rmse)
-        
+
     return [data_preprocessor, lstm_model, forecast_engine], train_data_inverted, effective_train_end, test_end, forecasted_inverted, rmse_list

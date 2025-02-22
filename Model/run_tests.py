@@ -1,5 +1,6 @@
 import time
 import math
+import traceback
 import numpy as np
 import pandas as pd
 import tensorflow as tf
@@ -49,11 +50,11 @@ def run():
     # activation = 'tanh'  # or 'relu' but relu is shit
     # dropout = 0.1
 
-    batch_size_list = [128, 256]
-    # batch_size_list = [256]
+    # batch_size_list = [128, 256]
+    batch_size_list = [256]
     # look_back_list  = [5000, 6000]
     look_back_list  = [6000]
-    epoch_list      = [1, 8, 10, 12, 14, 16, 18, 20, 22, 24]
+    epoch_list      = list(range(18, 100, 2))
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
     dropout_list    = [0]
@@ -71,44 +72,44 @@ def run():
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results1'
+        curr_dir = 'results2'
 
         for bs in batch_size_list:
             for lb in look_back_list:
                 for ep in epoch_list:
                     for hm in headroom_list:
                         for do in dropout_list:
-                            # try:
-                            # look_back = lb
-                            batch_size = bs
-                            epochs = ep
-                            headroom = hm
-                            dropout = do
+                            try:
+                                # look_back = lb
+                                batch_size = bs
+                                epochs = ep
+                                headroom = hm
+                                dropout = do
 
-                            forecast_horizon = 2000    # number of points to forecast per fold
-                            initial_train_size = 8000  # choose your training size
-                            step_size = 0           # roll the window forward by this many points
+                                forecast_horizon = 2000    # number of points to forecast per fold
+                                initial_train_size = 8000  # choose your training size
+                                step_size = 0           # roll the window forward by this many points
 
-                            look_back = math.ceil(initial_train_size*0.6)
+                                look_back = math.ceil(initial_train_size*0.6)
 
-                            model_params = {'look_back': look_back,
-                                            'batch_size': batch_size,
-                                            'epochs': epochs,
-                                            'headroom': headroom,
-                                            'dropout': dropout,
-                                            'layers': layers,
-                                            'neurons': neurons,
-                                            'activation': activation}
+                                model_params = {'look_back': look_back,
+                                                'batch_size': batch_size,
+                                                'epochs': epochs,
+                                                'headroom': headroom,
+                                                'dropout': dropout,
+                                                'layers': layers,
+                                                'neurons': neurons,
+                                                'activation': activation}
 
-                            model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
+                                model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
 
-                            visualizer = Visualizer(scaler=model[0].scaler,
-                                                    trained_model=model[1],
-                                                    forecast_engine=model[2])
-                            visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
+                                visualizer = Visualizer(scaler=model[0].scaler,
+                                                        trained_model=model[1],
+                                                        forecast_engine=model[2])
+                                visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
 
-                            print("Cross-Validation RMSEs:", rmse_list)
-                            print("Mean RMSE:", np.mean(rmse_list))
+                                print("Cross-Validation RMSEs:", rmse_list)
+                                print("Mean RMSE:", np.mean(rmse_list))
 
                                 # # 2. Data Preprocessing
                                 # data_preprocessor = DataPreprocessor(headroom=headroom)
@@ -162,9 +163,10 @@ def run():
                                 #                         forecast_engine=forecast_engine)
                                 
                                 # visualizer.plot_results(curr_dataset, trainY, curr_system, results_dir+curr_dir)
-                            # except Exception as e:
-                            #     print("ERROR! Details:", e)
-                            #     continue
+                            except Exception as e:
+                                print("ERROR! Details: ")
+                                traceback.print_exc()
+                                continue
 
 if __name__ == "__main__":
     run()

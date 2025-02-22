@@ -33,4 +33,14 @@ class TAFShift:
 
         
         # return taf_values.reshape(-1, 1), taf_values[-len(predictions_array):].reshape(-1, 1)
-        return taf_values, taf_values[len(data):]
+        # return taf_values, taf_values[len(data):]
+        return taf_values.reshape(-1, 1), taf_values[len(data):].reshape(-1, 1)
+
+    def apply_taf(self, forecasted, historical_data, weight=1.0):
+        _, predicted_taf = self.calculate_taf(historical_data, forecasted)
+        # may not be needed
+        # predicted_taf = predicted_taf.reshape(-1, 1)
+        predicted_taf = predicted_taf
+
+        adjusted_forecast = forecasted * (1 + weight * predicted_taf)
+        return adjusted_forecast
