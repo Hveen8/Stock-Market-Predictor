@@ -80,7 +80,7 @@ class Visualizer:
         plt.legend()
 
         # save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{curr_dir}/"
-        save_dir = f"{curr_dir}"
+        save_dir = f"{curr_dir}/"
         
         plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} L_{look_back} B_{batch_size} N_{neurons} E_{epochs}.png")
         
