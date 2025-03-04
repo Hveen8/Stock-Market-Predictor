@@ -54,7 +54,8 @@ def run():
     batch_size_list = [256]
     # look_back_list  = [5000, 6000]
     look_back_list  = [6000]
-    epoch_list      = list(range(10, 101, 1))
+    # epoch_list      = list(range(10, 101, 1))
+    epoch_list      = [30]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
     dropout_list    = [0]
@@ -72,7 +73,7 @@ def run():
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results3'
+        curr_dir = 'results5'
 
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -88,7 +89,7 @@ def run():
 
                                 forecast_horizon = 2000    # number of points to forecast per fold
                                 initial_train_size = 8000  # choose your training size
-                                step_size = 0           # roll the window forward by this many points
+                                step_size = 0              # roll the window forward by this many points
 
                                 look_back = math.ceil(initial_train_size*0.6)
 
@@ -101,12 +102,22 @@ def run():
                                                 'neurons': neurons,
                                                 'activation': activation}
 
-                                taf_params_list = [(0.1, 0.1, 0.5),
-                                                    (0.1, 0.1, 1.0),
-                                                    (0.5, 0.5, 0.5),
-                                                    (0.5, 0.5, 1.0),
-                                                    (1.0, 1.0, 0.5),
-                                                    (1.0, 1.0, 1.0)]
+                                # alpha_range = np.arange(0.1, 1.0, 0.1)
+                                alpha_range = [0.1]
+                                # beta_range = np.arange(0.1, 1.0, 0.1)
+                                # beta_range = [0.4, 0.5, 0.6]
+                                beta_range = [0.5]
+                                # weight_range = np.arange(0.005, 0.1, 0.005)
+                                weight_range = [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035]
+
+                                # Generate all possible (alpha, beta, weight) combinations
+                                taf_params_list = [(round(alpha, 2), round(beta, 2), round(weight, 3)) 
+                                                    for alpha in alpha_range 
+                                                    for beta in beta_range 
+                                                    for weight in weight_range]
+
+                                print("Generated TAF parameter combinations:")
+                                print(taf_params_list)
 
                                 model, train_data_inverted, train_end, test_end, rmse_TAFs = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, taf_params_list)
                                 # model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
@@ -116,8 +127,9 @@ def run():
                                                         forecast_engine=model[2])
                                 # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
                                 for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
-                                    visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
-                                    print("Cross-Validation RMSEs:", rmse_taf)    
+                                    if rmse_taf < 79:
+                                        visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
+                                        print("Cross-Validation RMSEs:", rmse_taf)    
 
                                 # print("Cross-Validation RMSEs:", rmse_list)
                                 # print("Mean RMSE:", np.mean(rmse_list))

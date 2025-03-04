@@ -35,6 +35,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     test_end = effective_train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
     test_data = curr_dataset[effective_train_end:test_end]
 
+    print('*********** Starting New Cross-Validation ***********')
     print(f"Fold (Cross Validation) with train indices {start}:{effective_train_end} and test indices {effective_train_end}:{test_end}")
 
     # *****Need to tie input layer to Model class*****
@@ -70,7 +71,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
         # You might choose a different historical reference (e.g., the raw train data)
 
         adjusted_forecast = taf_shift.apply_taf(scaled_train, forecasted_inverted, weight=weight, normalize=False)
-        rmse_taf = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+        rmse_taf = calculate_rmse(adjusted_forecast[:, 0], train_predict_inverted[:, 0])
         rmse_results[(alpha, beta, weight)] = (rmse_taf, adjusted_forecast)
         print(f"TAF alpha={alpha}, beta={beta}, weight={weight}: RMSE={rmse_taf:.2f}")
 

@@ -1,0 +1,222 @@
+/var/lib/slurm/slurmd/job04827/slurm_script: line 20: module: command not found
++======================================================================================+
+              Runing Script: Model/run_tests.py
++======================================================================================+
+2025-02-23 02:00:05.274814: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1740276005.285987  684399 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1740276005.289387  684399 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-02-23 02:00:05.317529: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+mkdir -p failed for path /home/ece498_w25_20/.config/matplotlib: [Errno 13] Permission denied: '/home/ece498_w25_20'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-bvptoc4p because there was an issue with the default path (/home/ece498_w25_20/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+I0000 00:00:1740276010.752392  684399 gpu_device.cc:2022] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 46645 MB memory:  -> device: 0, name: NVIDIA RTX A6000, pci bus id: 0000:51:00.0, compute capability: 8.6
+Num GPUs Available: 1
+Generated TAF parameter combinations:
+[(0.1, 0.4, np.float64(0.005)), (0.1, 0.4, np.float64(0.01)), (0.1, 0.4, np.float64(0.015)), (0.1, 0.4, np.float64(0.02)), (0.1, 0.4, np.float64(0.025)), (0.1, 0.4, np.float64(0.03)), (0.1, 0.4, np.float64(0.035)), (0.1, 0.4, np.float64(0.04)), (0.1, 0.4, np.float64(0.045)), (0.1, 0.4, np.float64(0.05)), (0.1, 0.4, np.float64(0.055)), (0.1, 0.4, np.float64(0.06)), (0.1, 0.4, np.float64(0.065)), (0.1, 0.4, np.float64(0.07)), (0.1, 0.4, np.float64(0.075)), (0.1, 0.4, np.float64(0.08)), (0.1, 0.4, np.float64(0.085)), (0.1, 0.4, np.float64(0.09)), (0.1, 0.4, np.float64(0.095)), (0.1, 0.5, np.float64(0.005)), (0.1, 0.5, np.float64(0.01)), (0.1, 0.5, np.float64(0.015)), (0.1, 0.5, np.float64(0.02)), (0.1, 0.5, np.float64(0.025)), (0.1, 0.5, np.float64(0.03)), (0.1, 0.5, np.float64(0.035)), (0.1, 0.5, np.float64(0.04)), (0.1, 0.5, np.float64(0.045)), (0.1, 0.5, np.float64(0.05)), (0.1, 0.5, np.float64(0.055)), (0.1, 0.5, np.float64(0.06)), (0.1, 0.5, np.float64(0.065)), (0.1, 0.5, np.float64(0.07)), (0.1, 0.5, np.float64(0.075)), (0.1, 0.5, np.float64(0.08)), (0.1, 0.5, np.float64(0.085)), (0.1, 0.5, np.float64(0.09)), (0.1, 0.5, np.float64(0.095)), (0.1, 0.6, np.float64(0.005)), (0.1, 0.6, np.float64(0.01)), (0.1, 0.6, np.float64(0.015)), (0.1, 0.6, np.float64(0.02)), (0.1, 0.6, np.float64(0.025)), (0.1, 0.6, np.float64(0.03)), (0.1, 0.6, np.float64(0.035)), (0.1, 0.6, np.float64(0.04)), (0.1, 0.6, np.float64(0.045)), (0.1, 0.6, np.float64(0.05)), (0.1, 0.6, np.float64(0.055)), (0.1, 0.6, np.float64(0.06)), (0.1, 0.6, np.float64(0.065)), (0.1, 0.6, np.float64(0.07)), (0.1, 0.6, np.float64(0.075)), (0.1, 0.6, np.float64(0.08)), (0.1, 0.6, np.float64(0.085)), (0.1, 0.6, np.float64(0.09)), (0.1, 0.6, np.float64(0.095))]
+*********** Starting New Cross-Validation ***********
+Fold (Cross Validation) with train indices 0:7872 and test indices 7872:9920
+trainX shape (After Reshape):  (3072, 4800, 1)
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm (LSTM)                     │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_1 (LSTM)                   │ (256, 100)             │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (256, 1)               │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+I0000 00:00:1740276014.035876  684880 cuda_dnn.cc:529] Loaded cuDNN version 90300
+Model states reset
+12/12 - 5s - 435ms/step - loss: 0.0176
+Model states reset
+Epoch 1/30 --- Completed
+12/12 - 3s - 262ms/step - loss: 0.0050
+Model states reset
+Epoch 2/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0034
+Model states reset
+Epoch 3/30 --- Completed
+12/12 - 3s - 262ms/step - loss: 0.0031
+Model states reset
+Epoch 4/30 --- Completed
+12/12 - 3s - 264ms/step - loss: 0.0028
+Model states reset
+Epoch 5/30 --- Completed
+12/12 - 3s - 262ms/step - loss: 0.0026
+Model states reset
+Epoch 6/30 --- Completed
+12/12 - 3s - 263ms/step - loss: 0.0026
+Model states reset
+Epoch 7/30 --- Completed
+12/12 - 3s - 264ms/step - loss: 0.0025
+Model states reset
+Epoch 8/30 --- Completed
+12/12 - 3s - 264ms/step - loss: 0.0024
+Model states reset
+Epoch 9/30 --- Completed
+12/12 - 3s - 264ms/step - loss: 0.0023
+Model states reset
+Epoch 10/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0022
+Model states reset
+Epoch 11/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0021
+Model states reset
+Epoch 12/30 --- Completed
+12/12 - 3s - 266ms/step - loss: 0.0020
+Model states reset
+Epoch 13/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0019
+Model states reset
+Epoch 14/30 --- Completed
+12/12 - 3s - 266ms/step - loss: 0.0018
+Model states reset
+Epoch 15/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 0.0016
+Model states reset
+Epoch 16/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0013
+Model states reset
+Epoch 17/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 0.0011
+Model states reset
+Epoch 18/30 --- Completed
+12/12 - 3s - 265ms/step - loss: 0.0010
+Model states reset
+Epoch 19/30 --- Completed
+12/12 - 3s - 269ms/step - loss: 9.6338e-04
+Model states reset
+Epoch 20/30 --- Completed
+12/12 - 3s - 267ms/step - loss: 9.3085e-04
+Model states reset
+Epoch 21/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 9.0762e-04
+Model states reset
+Epoch 22/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 8.8839e-04
+Model states reset
+Epoch 23/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 8.7198e-04
+Model states reset
+Epoch 24/30 --- Completed
+12/12 - 3s - 266ms/step - loss: 8.5688e-04
+Model states reset
+Epoch 25/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 8.4258e-04
+Model states reset
+Epoch 26/30 --- Completed
+12/12 - 3s - 267ms/step - loss: 8.2900e-04
+Model states reset
+Epoch 27/30 --- Completed
+12/12 - 3s - 267ms/step - loss: 8.1587e-04
+Model states reset
+Epoch 28/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 8.0326e-04
+Model states reset
+Epoch 29/30 --- Completed
+12/12 - 3s - 268ms/step - loss: 7.9055e-04
+Model states reset
+Epoch 30/30 --- Completed
+[1m 1/12[0m [32m━[0m[37m━━━━━━━━━━━━━━━━━━━[0m [1m1s[0m 181ms/step[1m 2/12[0m [32m━━━[0m[37m━━━━━━━━━━━━━━━━━[0m [1m1s[0m 102ms/step[1m 3/12[0m [32m━━━━━[0m[37m━━━━━━━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 4/12[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 103ms/step[1m 5/12[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 102ms/step[1m 6/12[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 7/12[0m [32m━━━━━━━━━━━[0m[37m━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 8/12[0m [32m━━━━━━━━━━━━━[0m[37m━━━━━━━[0m [1m0s[0m 100ms/step[1m 9/12[0m [32m━━━━━━━━━━━━━━━[0m[37m━━━━━[0m [1m0s[0m 100ms/step[1m10/12[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 100ms/step[1m11/12[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 100ms/step[1m12/12[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 99ms/step [1m12/12[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 100ms/step
+Model: "sequential_1"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm_2 (LSTM)                   │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_3 (LSTM)                   │ (256, 4800, 100)       │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (256, 4800, 1)         │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+Model: "sequential_2"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm_4 (LSTM)                   │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_5 (LSTM)                   │ (256, 4800, 100)       │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (256, 4800, 1)         │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+Future batch steps:  8
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 180ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 191ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 115ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 126ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 111ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 121ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 112ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 123ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 110ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 121ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 114ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 125ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 111ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 123ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 116ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 127ms/step
+Forecast infered data shape:  (2048, 1)
+TAF alpha=0.1, beta=0.4, weight=0.005: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.01: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.015: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.02: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.025: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.03: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.035: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.04: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.045: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.05: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.055: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.06: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.065: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.07: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.075: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.08: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.085: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.09: RMSE=79.26
+TAF alpha=0.1, beta=0.4, weight=0.095: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.005: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.01: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.015: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.02: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.025: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.03: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.035: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.04: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.045: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.05: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.055: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.06: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.065: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.07: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.075: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.08: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.085: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.09: RMSE=79.26
+TAF alpha=0.1, beta=0.5, weight=0.095: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.005: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.01: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.015: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.02: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.025: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.03: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.035: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.04: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.045: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.05: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.055: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.06: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.065: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.07: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.075: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.08: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.085: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.09: RMSE=79.26
+TAF alpha=0.1, beta=0.6, weight=0.095: RMSE=79.26
++===========================================+
+Runtime for: Model/run_tests.py
+-----------> 00d:00h:02m:52s
++===========================================+

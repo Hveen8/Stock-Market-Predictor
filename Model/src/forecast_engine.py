@@ -57,6 +57,7 @@ class ForecastEngine(LSTMModel):
         new_predictions = []
         current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction
 
+        print('Future batch steps: ', math.ceil( steps/self.batch_size ))
         for i in range(math.ceil( steps/self.batch_size )):
             pred = forecast_model.predict(current_batch, batch_size=self.batch_size)
 

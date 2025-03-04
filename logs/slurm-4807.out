@@ -1,0 +1,1406 @@
+/var/lib/slurm/slurmd/job04807/slurm_script: line 20: module: command not found
++======================================================================================+
+              Runing Script: Model/run_tests.py
++======================================================================================+
+2025-02-22 23:01:35.763727: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1740265295.783362 3900241 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1740265295.789710 3900241 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-02-22 23:01:35.814663: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+mkdir -p failed for path /home/ece498_w25_20/.config/matplotlib: [Errno 13] Permission denied: '/home/ece498_w25_20'
+Matplotlib created a temporary cache directory at /tmp/matplotlib-co_8lifs because there was an issue with the default path (/home/ece498_w25_20/.config/matplotlib); it is highly recommended to set the MPLCONFIGDIR environment variable to a writable directory, in particular to speed up the import of Matplotlib and to better support multiprocessing.
+I0000 00:00:1740265301.650802 3900241 gpu_device.cc:2022] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 46653 MB memory:  -> device: 0, name: NVIDIA RTX A6000, pci bus id: 0000:9c:00.0, compute capability: 8.6
+Num GPUs Available: 1
+Generated TAF parameter combinations:
+[(np.float64(0.1), np.float64(0.1), np.float64(0.05)), (np.float64(0.1), np.float64(0.1), np.float64(0.1)), (np.float64(0.1), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.1), np.float64(0.2)), (np.float64(0.1), np.float64(0.1), np.float64(0.25)), (np.float64(0.1), np.float64(0.1), np.float64(0.3)), (np.float64(0.1), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.1), np.float64(0.4)), (np.float64(0.1), np.float64(0.1), np.float64(0.45)), (np.float64(0.1), np.float64(0.2), np.float64(0.05)), (np.float64(0.1), np.float64(0.2), np.float64(0.1)), (np.float64(0.1), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.2), np.float64(0.2)), (np.float64(0.1), np.float64(0.2), np.float64(0.25)), (np.float64(0.1), np.float64(0.2), np.float64(0.3)), (np.float64(0.1), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.2), np.float64(0.4)), (np.float64(0.1), np.float64(0.2), np.float64(0.45)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.1), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.1), np.float64(0.4), np.float64(0.05)), (np.float64(0.1), np.float64(0.4), np.float64(0.1)), (np.float64(0.1), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.4), np.float64(0.2)), (np.float64(0.1), np.float64(0.4), np.float64(0.25)), (np.float64(0.1), np.float64(0.4), np.float64(0.3)), (np.float64(0.1), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.4), np.float64(0.4)), (np.float64(0.1), np.float64(0.4), np.float64(0.45)), (np.float64(0.1), np.float64(0.5), np.float64(0.05)), (np.float64(0.1), np.float64(0.5), np.float64(0.1)), (np.float64(0.1), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.5), np.float64(0.2)), (np.float64(0.1), np.float64(0.5), np.float64(0.25)), (np.float64(0.1), np.float64(0.5), np.float64(0.3)), (np.float64(0.1), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.5), np.float64(0.4)), (np.float64(0.1), np.float64(0.5), np.float64(0.45)), (np.float64(0.1), np.float64(0.6), np.float64(0.05)), (np.float64(0.1), np.float64(0.6), np.float64(0.1)), (np.float64(0.1), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.6), np.float64(0.2)), (np.float64(0.1), np.float64(0.6), np.float64(0.25)), (np.float64(0.1), np.float64(0.6), np.float64(0.3)), (np.float64(0.1), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.6), np.float64(0.4)), (np.float64(0.1), np.float64(0.6), np.float64(0.45)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.1), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.1), np.float64(0.8), np.float64(0.05)), (np.float64(0.1), np.float64(0.8), np.float64(0.1)), (np.float64(0.1), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.8), np.float64(0.2)), (np.float64(0.1), np.float64(0.8), np.float64(0.25)), (np.float64(0.1), np.float64(0.8), np.float64(0.3)), (np.float64(0.1), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.8), np.float64(0.4)), (np.float64(0.1), np.float64(0.8), np.float64(0.45)), (np.float64(0.1), np.float64(0.9), np.float64(0.05)), (np.float64(0.1), np.float64(0.9), np.float64(0.1)), (np.float64(0.1), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.1), np.float64(0.9), np.float64(0.2)), (np.float64(0.1), np.float64(0.9), np.float64(0.25)), (np.float64(0.1), np.float64(0.9), np.float64(0.3)), (np.float64(0.1), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.1), np.float64(0.9), np.float64(0.4)), (np.float64(0.1), np.float64(0.9), np.float64(0.45)), (np.float64(0.2), np.float64(0.1), np.float64(0.05)), (np.float64(0.2), np.float64(0.1), np.float64(0.1)), (np.float64(0.2), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.1), np.float64(0.2)), (np.float64(0.2), np.float64(0.1), np.float64(0.25)), (np.float64(0.2), np.float64(0.1), np.float64(0.3)), (np.float64(0.2), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.1), np.float64(0.4)), (np.float64(0.2), np.float64(0.1), np.float64(0.45)), (np.float64(0.2), np.float64(0.2), np.float64(0.05)), (np.float64(0.2), np.float64(0.2), np.float64(0.1)), (np.float64(0.2), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.2), np.float64(0.2)), (np.float64(0.2), np.float64(0.2), np.float64(0.25)), (np.float64(0.2), np.float64(0.2), np.float64(0.3)), (np.float64(0.2), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.2), np.float64(0.4)), (np.float64(0.2), np.float64(0.2), np.float64(0.45)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.2), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.2), np.float64(0.4), np.float64(0.05)), (np.float64(0.2), np.float64(0.4), np.float64(0.1)), (np.float64(0.2), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.4), np.float64(0.2)), (np.float64(0.2), np.float64(0.4), np.float64(0.25)), (np.float64(0.2), np.float64(0.4), np.float64(0.3)), (np.float64(0.2), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.4), np.float64(0.4)), (np.float64(0.2), np.float64(0.4), np.float64(0.45)), (np.float64(0.2), np.float64(0.5), np.float64(0.05)), (np.float64(0.2), np.float64(0.5), np.float64(0.1)), (np.float64(0.2), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.5), np.float64(0.2)), (np.float64(0.2), np.float64(0.5), np.float64(0.25)), (np.float64(0.2), np.float64(0.5), np.float64(0.3)), (np.float64(0.2), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.5), np.float64(0.4)), (np.float64(0.2), np.float64(0.5), np.float64(0.45)), (np.float64(0.2), np.float64(0.6), np.float64(0.05)), (np.float64(0.2), np.float64(0.6), np.float64(0.1)), (np.float64(0.2), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.6), np.float64(0.2)), (np.float64(0.2), np.float64(0.6), np.float64(0.25)), (np.float64(0.2), np.float64(0.6), np.float64(0.3)), (np.float64(0.2), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.6), np.float64(0.4)), (np.float64(0.2), np.float64(0.6), np.float64(0.45)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.2), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.2), np.float64(0.8), np.float64(0.05)), (np.float64(0.2), np.float64(0.8), np.float64(0.1)), (np.float64(0.2), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.8), np.float64(0.2)), (np.float64(0.2), np.float64(0.8), np.float64(0.25)), (np.float64(0.2), np.float64(0.8), np.float64(0.3)), (np.float64(0.2), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.8), np.float64(0.4)), (np.float64(0.2), np.float64(0.8), np.float64(0.45)), (np.float64(0.2), np.float64(0.9), np.float64(0.05)), (np.float64(0.2), np.float64(0.9), np.float64(0.1)), (np.float64(0.2), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.2), np.float64(0.9), np.float64(0.2)), (np.float64(0.2), np.float64(0.9), np.float64(0.25)), (np.float64(0.2), np.float64(0.9), np.float64(0.3)), (np.float64(0.2), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.2), np.float64(0.9), np.float64(0.4)), (np.float64(0.2), np.float64(0.9), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.1), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.2), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.4), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.5), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.6), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.8), np.float64(0.45)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.05)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.1)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.2)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.25)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.3)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.4)), (np.float64(0.30000000000000004), np.float64(0.9), np.float64(0.45)), (np.float64(0.4), np.float64(0.1), np.float64(0.05)), (np.float64(0.4), np.float64(0.1), np.float64(0.1)), (np.float64(0.4), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.1), np.float64(0.2)), (np.float64(0.4), np.float64(0.1), np.float64(0.25)), (np.float64(0.4), np.float64(0.1), np.float64(0.3)), (np.float64(0.4), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.1), np.float64(0.4)), (np.float64(0.4), np.float64(0.1), np.float64(0.45)), (np.float64(0.4), np.float64(0.2), np.float64(0.05)), (np.float64(0.4), np.float64(0.2), np.float64(0.1)), (np.float64(0.4), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.2), np.float64(0.2)), (np.float64(0.4), np.float64(0.2), np.float64(0.25)), (np.float64(0.4), np.float64(0.2), np.float64(0.3)), (np.float64(0.4), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.2), np.float64(0.4)), (np.float64(0.4), np.float64(0.2), np.float64(0.45)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.4), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.4), np.float64(0.4), np.float64(0.05)), (np.float64(0.4), np.float64(0.4), np.float64(0.1)), (np.float64(0.4), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.4), np.float64(0.2)), (np.float64(0.4), np.float64(0.4), np.float64(0.25)), (np.float64(0.4), np.float64(0.4), np.float64(0.3)), (np.float64(0.4), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.4), np.float64(0.4)), (np.float64(0.4), np.float64(0.4), np.float64(0.45)), (np.float64(0.4), np.float64(0.5), np.float64(0.05)), (np.float64(0.4), np.float64(0.5), np.float64(0.1)), (np.float64(0.4), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.5), np.float64(0.2)), (np.float64(0.4), np.float64(0.5), np.float64(0.25)), (np.float64(0.4), np.float64(0.5), np.float64(0.3)), (np.float64(0.4), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.5), np.float64(0.4)), (np.float64(0.4), np.float64(0.5), np.float64(0.45)), (np.float64(0.4), np.float64(0.6), np.float64(0.05)), (np.float64(0.4), np.float64(0.6), np.float64(0.1)), (np.float64(0.4), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.6), np.float64(0.2)), (np.float64(0.4), np.float64(0.6), np.float64(0.25)), (np.float64(0.4), np.float64(0.6), np.float64(0.3)), (np.float64(0.4), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.6), np.float64(0.4)), (np.float64(0.4), np.float64(0.6), np.float64(0.45)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.4), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.4), np.float64(0.8), np.float64(0.05)), (np.float64(0.4), np.float64(0.8), np.float64(0.1)), (np.float64(0.4), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.8), np.float64(0.2)), (np.float64(0.4), np.float64(0.8), np.float64(0.25)), (np.float64(0.4), np.float64(0.8), np.float64(0.3)), (np.float64(0.4), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.8), np.float64(0.4)), (np.float64(0.4), np.float64(0.8), np.float64(0.45)), (np.float64(0.4), np.float64(0.9), np.float64(0.05)), (np.float64(0.4), np.float64(0.9), np.float64(0.1)), (np.float64(0.4), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.4), np.float64(0.9), np.float64(0.2)), (np.float64(0.4), np.float64(0.9), np.float64(0.25)), (np.float64(0.4), np.float64(0.9), np.float64(0.3)), (np.float64(0.4), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.4), np.float64(0.9), np.float64(0.4)), (np.float64(0.4), np.float64(0.9), np.float64(0.45)), (np.float64(0.5), np.float64(0.1), np.float64(0.05)), (np.float64(0.5), np.float64(0.1), np.float64(0.1)), (np.float64(0.5), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.1), np.float64(0.2)), (np.float64(0.5), np.float64(0.1), np.float64(0.25)), (np.float64(0.5), np.float64(0.1), np.float64(0.3)), (np.float64(0.5), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.1), np.float64(0.4)), (np.float64(0.5), np.float64(0.1), np.float64(0.45)), (np.float64(0.5), np.float64(0.2), np.float64(0.05)), (np.float64(0.5), np.float64(0.2), np.float64(0.1)), (np.float64(0.5), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.2), np.float64(0.2)), (np.float64(0.5), np.float64(0.2), np.float64(0.25)), (np.float64(0.5), np.float64(0.2), np.float64(0.3)), (np.float64(0.5), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.2), np.float64(0.4)), (np.float64(0.5), np.float64(0.2), np.float64(0.45)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.5), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.5), np.float64(0.4), np.float64(0.05)), (np.float64(0.5), np.float64(0.4), np.float64(0.1)), (np.float64(0.5), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.4), np.float64(0.2)), (np.float64(0.5), np.float64(0.4), np.float64(0.25)), (np.float64(0.5), np.float64(0.4), np.float64(0.3)), (np.float64(0.5), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.4), np.float64(0.4)), (np.float64(0.5), np.float64(0.4), np.float64(0.45)), (np.float64(0.5), np.float64(0.5), np.float64(0.05)), (np.float64(0.5), np.float64(0.5), np.float64(0.1)), (np.float64(0.5), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.5), np.float64(0.2)), (np.float64(0.5), np.float64(0.5), np.float64(0.25)), (np.float64(0.5), np.float64(0.5), np.float64(0.3)), (np.float64(0.5), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.5), np.float64(0.4)), (np.float64(0.5), np.float64(0.5), np.float64(0.45)), (np.float64(0.5), np.float64(0.6), np.float64(0.05)), (np.float64(0.5), np.float64(0.6), np.float64(0.1)), (np.float64(0.5), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.6), np.float64(0.2)), (np.float64(0.5), np.float64(0.6), np.float64(0.25)), (np.float64(0.5), np.float64(0.6), np.float64(0.3)), (np.float64(0.5), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.6), np.float64(0.4)), (np.float64(0.5), np.float64(0.6), np.float64(0.45)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.5), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.5), np.float64(0.8), np.float64(0.05)), (np.float64(0.5), np.float64(0.8), np.float64(0.1)), (np.float64(0.5), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.8), np.float64(0.2)), (np.float64(0.5), np.float64(0.8), np.float64(0.25)), (np.float64(0.5), np.float64(0.8), np.float64(0.3)), (np.float64(0.5), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.8), np.float64(0.4)), (np.float64(0.5), np.float64(0.8), np.float64(0.45)), (np.float64(0.5), np.float64(0.9), np.float64(0.05)), (np.float64(0.5), np.float64(0.9), np.float64(0.1)), (np.float64(0.5), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.5), np.float64(0.9), np.float64(0.2)), (np.float64(0.5), np.float64(0.9), np.float64(0.25)), (np.float64(0.5), np.float64(0.9), np.float64(0.3)), (np.float64(0.5), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.5), np.float64(0.9), np.float64(0.4)), (np.float64(0.5), np.float64(0.9), np.float64(0.45)), (np.float64(0.6), np.float64(0.1), np.float64(0.05)), (np.float64(0.6), np.float64(0.1), np.float64(0.1)), (np.float64(0.6), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.1), np.float64(0.2)), (np.float64(0.6), np.float64(0.1), np.float64(0.25)), (np.float64(0.6), np.float64(0.1), np.float64(0.3)), (np.float64(0.6), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.1), np.float64(0.4)), (np.float64(0.6), np.float64(0.1), np.float64(0.45)), (np.float64(0.6), np.float64(0.2), np.float64(0.05)), (np.float64(0.6), np.float64(0.2), np.float64(0.1)), (np.float64(0.6), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.2), np.float64(0.2)), (np.float64(0.6), np.float64(0.2), np.float64(0.25)), (np.float64(0.6), np.float64(0.2), np.float64(0.3)), (np.float64(0.6), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.2), np.float64(0.4)), (np.float64(0.6), np.float64(0.2), np.float64(0.45)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.6), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.6), np.float64(0.4), np.float64(0.05)), (np.float64(0.6), np.float64(0.4), np.float64(0.1)), (np.float64(0.6), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.4), np.float64(0.2)), (np.float64(0.6), np.float64(0.4), np.float64(0.25)), (np.float64(0.6), np.float64(0.4), np.float64(0.3)), (np.float64(0.6), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.4), np.float64(0.4)), (np.float64(0.6), np.float64(0.4), np.float64(0.45)), (np.float64(0.6), np.float64(0.5), np.float64(0.05)), (np.float64(0.6), np.float64(0.5), np.float64(0.1)), (np.float64(0.6), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.5), np.float64(0.2)), (np.float64(0.6), np.float64(0.5), np.float64(0.25)), (np.float64(0.6), np.float64(0.5), np.float64(0.3)), (np.float64(0.6), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.5), np.float64(0.4)), (np.float64(0.6), np.float64(0.5), np.float64(0.45)), (np.float64(0.6), np.float64(0.6), np.float64(0.05)), (np.float64(0.6), np.float64(0.6), np.float64(0.1)), (np.float64(0.6), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.6), np.float64(0.2)), (np.float64(0.6), np.float64(0.6), np.float64(0.25)), (np.float64(0.6), np.float64(0.6), np.float64(0.3)), (np.float64(0.6), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.6), np.float64(0.4)), (np.float64(0.6), np.float64(0.6), np.float64(0.45)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.6), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.6), np.float64(0.8), np.float64(0.05)), (np.float64(0.6), np.float64(0.8), np.float64(0.1)), (np.float64(0.6), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.8), np.float64(0.2)), (np.float64(0.6), np.float64(0.8), np.float64(0.25)), (np.float64(0.6), np.float64(0.8), np.float64(0.3)), (np.float64(0.6), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.8), np.float64(0.4)), (np.float64(0.6), np.float64(0.8), np.float64(0.45)), (np.float64(0.6), np.float64(0.9), np.float64(0.05)), (np.float64(0.6), np.float64(0.9), np.float64(0.1)), (np.float64(0.6), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.6), np.float64(0.9), np.float64(0.2)), (np.float64(0.6), np.float64(0.9), np.float64(0.25)), (np.float64(0.6), np.float64(0.9), np.float64(0.3)), (np.float64(0.6), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.6), np.float64(0.9), np.float64(0.4)), (np.float64(0.6), np.float64(0.9), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.1), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.2), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.4), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.5), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.6), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.8), np.float64(0.45)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.05)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.1)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.2)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.25)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.3)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.4)), (np.float64(0.7000000000000001), np.float64(0.9), np.float64(0.45)), (np.float64(0.8), np.float64(0.1), np.float64(0.05)), (np.float64(0.8), np.float64(0.1), np.float64(0.1)), (np.float64(0.8), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.1), np.float64(0.2)), (np.float64(0.8), np.float64(0.1), np.float64(0.25)), (np.float64(0.8), np.float64(0.1), np.float64(0.3)), (np.float64(0.8), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.1), np.float64(0.4)), (np.float64(0.8), np.float64(0.1), np.float64(0.45)), (np.float64(0.8), np.float64(0.2), np.float64(0.05)), (np.float64(0.8), np.float64(0.2), np.float64(0.1)), (np.float64(0.8), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.2), np.float64(0.2)), (np.float64(0.8), np.float64(0.2), np.float64(0.25)), (np.float64(0.8), np.float64(0.2), np.float64(0.3)), (np.float64(0.8), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.2), np.float64(0.4)), (np.float64(0.8), np.float64(0.2), np.float64(0.45)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.8), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.8), np.float64(0.4), np.float64(0.05)), (np.float64(0.8), np.float64(0.4), np.float64(0.1)), (np.float64(0.8), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.4), np.float64(0.2)), (np.float64(0.8), np.float64(0.4), np.float64(0.25)), (np.float64(0.8), np.float64(0.4), np.float64(0.3)), (np.float64(0.8), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.4), np.float64(0.4)), (np.float64(0.8), np.float64(0.4), np.float64(0.45)), (np.float64(0.8), np.float64(0.5), np.float64(0.05)), (np.float64(0.8), np.float64(0.5), np.float64(0.1)), (np.float64(0.8), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.5), np.float64(0.2)), (np.float64(0.8), np.float64(0.5), np.float64(0.25)), (np.float64(0.8), np.float64(0.5), np.float64(0.3)), (np.float64(0.8), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.5), np.float64(0.4)), (np.float64(0.8), np.float64(0.5), np.float64(0.45)), (np.float64(0.8), np.float64(0.6), np.float64(0.05)), (np.float64(0.8), np.float64(0.6), np.float64(0.1)), (np.float64(0.8), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.6), np.float64(0.2)), (np.float64(0.8), np.float64(0.6), np.float64(0.25)), (np.float64(0.8), np.float64(0.6), np.float64(0.3)), (np.float64(0.8), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.6), np.float64(0.4)), (np.float64(0.8), np.float64(0.6), np.float64(0.45)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.8), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.8), np.float64(0.8), np.float64(0.05)), (np.float64(0.8), np.float64(0.8), np.float64(0.1)), (np.float64(0.8), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.8), np.float64(0.2)), (np.float64(0.8), np.float64(0.8), np.float64(0.25)), (np.float64(0.8), np.float64(0.8), np.float64(0.3)), (np.float64(0.8), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.8), np.float64(0.4)), (np.float64(0.8), np.float64(0.8), np.float64(0.45)), (np.float64(0.8), np.float64(0.9), np.float64(0.05)), (np.float64(0.8), np.float64(0.9), np.float64(0.1)), (np.float64(0.8), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.8), np.float64(0.9), np.float64(0.2)), (np.float64(0.8), np.float64(0.9), np.float64(0.25)), (np.float64(0.8), np.float64(0.9), np.float64(0.3)), (np.float64(0.8), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.8), np.float64(0.9), np.float64(0.4)), (np.float64(0.8), np.float64(0.9), np.float64(0.45)), (np.float64(0.9), np.float64(0.1), np.float64(0.05)), (np.float64(0.9), np.float64(0.1), np.float64(0.1)), (np.float64(0.9), np.float64(0.1), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.1), np.float64(0.2)), (np.float64(0.9), np.float64(0.1), np.float64(0.25)), (np.float64(0.9), np.float64(0.1), np.float64(0.3)), (np.float64(0.9), np.float64(0.1), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.1), np.float64(0.4)), (np.float64(0.9), np.float64(0.1), np.float64(0.45)), (np.float64(0.9), np.float64(0.2), np.float64(0.05)), (np.float64(0.9), np.float64(0.2), np.float64(0.1)), (np.float64(0.9), np.float64(0.2), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.2), np.float64(0.2)), (np.float64(0.9), np.float64(0.2), np.float64(0.25)), (np.float64(0.9), np.float64(0.2), np.float64(0.3)), (np.float64(0.9), np.float64(0.2), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.2), np.float64(0.4)), (np.float64(0.9), np.float64(0.2), np.float64(0.45)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.05)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.1)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.2)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.25)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.3)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.4)), (np.float64(0.9), np.float64(0.30000000000000004), np.float64(0.45)), (np.float64(0.9), np.float64(0.4), np.float64(0.05)), (np.float64(0.9), np.float64(0.4), np.float64(0.1)), (np.float64(0.9), np.float64(0.4), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.4), np.float64(0.2)), (np.float64(0.9), np.float64(0.4), np.float64(0.25)), (np.float64(0.9), np.float64(0.4), np.float64(0.3)), (np.float64(0.9), np.float64(0.4), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.4), np.float64(0.4)), (np.float64(0.9), np.float64(0.4), np.float64(0.45)), (np.float64(0.9), np.float64(0.5), np.float64(0.05)), (np.float64(0.9), np.float64(0.5), np.float64(0.1)), (np.float64(0.9), np.float64(0.5), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.5), np.float64(0.2)), (np.float64(0.9), np.float64(0.5), np.float64(0.25)), (np.float64(0.9), np.float64(0.5), np.float64(0.3)), (np.float64(0.9), np.float64(0.5), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.5), np.float64(0.4)), (np.float64(0.9), np.float64(0.5), np.float64(0.45)), (np.float64(0.9), np.float64(0.6), np.float64(0.05)), (np.float64(0.9), np.float64(0.6), np.float64(0.1)), (np.float64(0.9), np.float64(0.6), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.6), np.float64(0.2)), (np.float64(0.9), np.float64(0.6), np.float64(0.25)), (np.float64(0.9), np.float64(0.6), np.float64(0.3)), (np.float64(0.9), np.float64(0.6), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.6), np.float64(0.4)), (np.float64(0.9), np.float64(0.6), np.float64(0.45)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.05)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.1)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.2)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.25)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.3)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.4)), (np.float64(0.9), np.float64(0.7000000000000001), np.float64(0.45)), (np.float64(0.9), np.float64(0.8), np.float64(0.05)), (np.float64(0.9), np.float64(0.8), np.float64(0.1)), (np.float64(0.9), np.float64(0.8), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.8), np.float64(0.2)), (np.float64(0.9), np.float64(0.8), np.float64(0.25)), (np.float64(0.9), np.float64(0.8), np.float64(0.3)), (np.float64(0.9), np.float64(0.8), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.8), np.float64(0.4)), (np.float64(0.9), np.float64(0.8), np.float64(0.45)), (np.float64(0.9), np.float64(0.9), np.float64(0.05)), (np.float64(0.9), np.float64(0.9), np.float64(0.1)), (np.float64(0.9), np.float64(0.9), np.float64(0.15000000000000002)), (np.float64(0.9), np.float64(0.9), np.float64(0.2)), (np.float64(0.9), np.float64(0.9), np.float64(0.25)), (np.float64(0.9), np.float64(0.9), np.float64(0.3)), (np.float64(0.9), np.float64(0.9), np.float64(0.35000000000000003)), (np.float64(0.9), np.float64(0.9), np.float64(0.4)), (np.float64(0.9), np.float64(0.9), np.float64(0.45))]
+*********** Starting New Cross-Validation ***********
+Fold (Cross Validation) with train indices 0:7872 and test indices 7872:9920
+trainX shape (After Reshape):  (3072, 4800, 1)
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm (LSTM)                     │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_1 (LSTM)                   │ (256, 100)             │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (256, 1)               │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+I0000 00:00:1740265305.676303 3901383 cuda_dnn.cc:529] Loaded cuDNN version 90300
+Model states reset
+12/12 - 6s - 475ms/step - loss: 0.0166
+Model states reset
+Epoch 1/30 --- Completed
+12/12 - 3s - 277ms/step - loss: 0.0043
+Model states reset
+Epoch 2/30 --- Completed
+12/12 - 3s - 279ms/step - loss: 0.0031
+Model states reset
+Epoch 3/30 --- Completed
+12/12 - 3s - 281ms/step - loss: 0.0029
+Model states reset
+Epoch 4/30 --- Completed
+12/12 - 3s - 282ms/step - loss: 0.0027
+Model states reset
+Epoch 5/30 --- Completed
+12/12 - 3s - 282ms/step - loss: 0.0025
+Model states reset
+Epoch 6/30 --- Completed
+12/12 - 3s - 281ms/step - loss: 0.0025
+Model states reset
+Epoch 7/30 --- Completed
+12/12 - 3s - 278ms/step - loss: 0.0024
+Model states reset
+Epoch 8/30 --- Completed
+12/12 - 3s - 275ms/step - loss: 0.0023
+Model states reset
+Epoch 9/30 --- Completed
+12/12 - 3s - 277ms/step - loss: 0.0023
+Model states reset
+Epoch 10/30 --- Completed
+12/12 - 3s - 277ms/step - loss: 0.0022
+Model states reset
+Epoch 11/30 --- Completed
+12/12 - 3s - 279ms/step - loss: 0.0021
+Model states reset
+Epoch 12/30 --- Completed
+12/12 - 3s - 278ms/step - loss: 0.0020
+Model states reset
+Epoch 13/30 --- Completed
+12/12 - 3s - 281ms/step - loss: 0.0019
+Model states reset
+Epoch 14/30 --- Completed
+12/12 - 3s - 279ms/step - loss: 0.0017
+Model states reset
+Epoch 15/30 --- Completed
+12/12 - 3s - 276ms/step - loss: 0.0014
+Model states reset
+Epoch 16/30 --- Completed
+12/12 - 3s - 274ms/step - loss: 0.0012
+Model states reset
+Epoch 17/30 --- Completed
+12/12 - 3s - 277ms/step - loss: 0.0010
+Model states reset
+Epoch 18/30 --- Completed
+12/12 - 3s - 279ms/step - loss: 9.6713e-04
+Model states reset
+Epoch 19/30 --- Completed
+12/12 - 3s - 278ms/step - loss: 9.3984e-04
+Model states reset
+Epoch 20/30 --- Completed
+12/12 - 3s - 275ms/step - loss: 9.1865e-04
+Model states reset
+Epoch 21/30 --- Completed
+12/12 - 3s - 272ms/step - loss: 9.0295e-04
+Model states reset
+Epoch 22/30 --- Completed
+12/12 - 3s - 275ms/step - loss: 8.8749e-04
+Model states reset
+Epoch 23/30 --- Completed
+12/12 - 3s - 271ms/step - loss: 8.7285e-04
+Model states reset
+Epoch 24/30 --- Completed
+12/12 - 3s - 275ms/step - loss: 8.5843e-04
+Model states reset
+Epoch 25/30 --- Completed
+12/12 - 3s - 276ms/step - loss: 8.4419e-04
+Model states reset
+Epoch 26/30 --- Completed
+12/12 - 3s - 279ms/step - loss: 8.3075e-04
+Model states reset
+Epoch 27/30 --- Completed
+12/12 - 3s - 275ms/step - loss: 8.1777e-04
+Model states reset
+Epoch 28/30 --- Completed
+12/12 - 3s - 276ms/step - loss: 8.0524e-04
+Model states reset
+Epoch 29/30 --- Completed
+12/12 - 3s - 277ms/step - loss: 7.9300e-04
+Model states reset
+Epoch 30/30 --- Completed
+[1m 1/12[0m [32m━[0m[37m━━━━━━━━━━━━━━━━━━━[0m [1m2s[0m 194ms/step[1m 2/12[0m [32m━━━[0m[37m━━━━━━━━━━━━━━━━━[0m [1m1s[0m 104ms/step[1m 3/12[0m [32m━━━━━[0m[37m━━━━━━━━━━━━━━━[0m [1m0s[0m 102ms/step[1m 4/12[0m [32m━━━━━━[0m[37m━━━━━━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 5/12[0m [32m━━━━━━━━[0m[37m━━━━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 6/12[0m [32m━━━━━━━━━━[0m[37m━━━━━━━━━━[0m [1m0s[0m 101ms/step[1m 7/12[0m [32m━━━━━━━━━━━[0m[37m━━━━━━━━━[0m [1m0s[0m 100ms/step[1m 8/12[0m [32m━━━━━━━━━━━━━[0m[37m━━━━━━━[0m [1m0s[0m 101ms/step[1m 9/12[0m [32m━━━━━━━━━━━━━━━[0m[37m━━━━━[0m [1m0s[0m 101ms/step[1m10/12[0m [32m━━━━━━━━━━━━━━━━[0m[37m━━━━[0m [1m0s[0m 101ms/step[1m11/12[0m [32m━━━━━━━━━━━━━━━━━━[0m[37m━━[0m [1m0s[0m 101ms/step[1m12/12[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 100ms/step[1m12/12[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 101ms/step
+Model: "sequential_1"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm_2 (LSTM)                   │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_3 (LSTM)                   │ (256, 4800, 100)       │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (256, 4800, 1)         │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+Model: "sequential_2"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ lstm_4 (LSTM)                   │ (256, 4800, 100)       │        40,800 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ lstm_5 (LSTM)                   │ (256, 4800, 100)       │        80,400 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_2 (Dense)                 │ (256, 4800, 1)         │           101 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 121,301 (473.83 KB)
+ Trainable params: 121,301 (473.83 KB)
+ Non-trainable params: 0 (0.00 B)
+Future batch steps:  8
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 223ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 238ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 119ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 135ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 130ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 143ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 129ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 145ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 124ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 139ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 129ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 144ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 127ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 143ms/step
+[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 125ms/step[1m1/1[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 141ms/step
+Forecast infered data shape:  (2048, 1)
+TAF alpha=0.1, beta=0.1, weight=0.05: RMSE=79.48
+TAF alpha=0.1, beta=0.1, weight=0.1: RMSE=82.97
+TAF alpha=0.1, beta=0.1, weight=0.15000000000000002: RMSE=88.42
+TAF alpha=0.1, beta=0.1, weight=0.2: RMSE=95.51
+TAF alpha=0.1, beta=0.1, weight=0.25: RMSE=103.90
+TAF alpha=0.1, beta=0.1, weight=0.3: RMSE=113.30
+TAF alpha=0.1, beta=0.1, weight=0.35000000000000003: RMSE=123.48
+TAF alpha=0.1, beta=0.1, weight=0.4: RMSE=134.26
+TAF alpha=0.1, beta=0.1, weight=0.45: RMSE=145.51
+TAF alpha=0.1, beta=0.2, weight=0.05: RMSE=79.27
+TAF alpha=0.1, beta=0.2, weight=0.1: RMSE=82.58
+TAF alpha=0.1, beta=0.2, weight=0.15000000000000002: RMSE=87.89
+TAF alpha=0.1, beta=0.2, weight=0.2: RMSE=94.87
+TAF alpha=0.1, beta=0.2, weight=0.25: RMSE=103.18
+TAF alpha=0.1, beta=0.2, weight=0.3: RMSE=112.53
+TAF alpha=0.1, beta=0.2, weight=0.35000000000000003: RMSE=122.67
+TAF alpha=0.1, beta=0.2, weight=0.4: RMSE=133.43
+TAF alpha=0.1, beta=0.2, weight=0.45: RMSE=144.67
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.05: RMSE=79.00
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.1: RMSE=82.09
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=87.24
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.2: RMSE=94.12
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.25: RMSE=102.38
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.3: RMSE=111.71
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=121.87
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.4: RMSE=132.66
+TAF alpha=0.1, beta=0.30000000000000004, weight=0.45: RMSE=143.95
+TAF alpha=0.1, beta=0.4, weight=0.05: RMSE=78.73
+TAF alpha=0.1, beta=0.4, weight=0.1: RMSE=81.65
+TAF alpha=0.1, beta=0.4, weight=0.15000000000000002: RMSE=86.76
+TAF alpha=0.1, beta=0.4, weight=0.2: RMSE=93.68
+TAF alpha=0.1, beta=0.4, weight=0.25: RMSE=102.05
+TAF alpha=0.1, beta=0.4, weight=0.3: RMSE=111.55
+TAF alpha=0.1, beta=0.4, weight=0.35000000000000003: RMSE=121.91
+TAF alpha=0.1, beta=0.4, weight=0.4: RMSE=132.93
+TAF alpha=0.1, beta=0.4, weight=0.45: RMSE=144.47
+TAF alpha=0.1, beta=0.5, weight=0.05: RMSE=78.62
+TAF alpha=0.1, beta=0.5, weight=0.1: RMSE=81.68
+TAF alpha=0.1, beta=0.5, weight=0.15000000000000002: RMSE=87.12
+TAF alpha=0.1, beta=0.5, weight=0.2: RMSE=94.54
+TAF alpha=0.1, beta=0.5, weight=0.25: RMSE=103.50
+TAF alpha=0.1, beta=0.5, weight=0.3: RMSE=113.64
+TAF alpha=0.1, beta=0.5, weight=0.35000000000000003: RMSE=124.68
+TAF alpha=0.1, beta=0.5, weight=0.4: RMSE=136.40
+TAF alpha=0.1, beta=0.5, weight=0.45: RMSE=148.63
+TAF alpha=0.1, beta=0.6, weight=0.05: RMSE=78.94
+TAF alpha=0.1, beta=0.6, weight=0.1: RMSE=82.85
+TAF alpha=0.1, beta=0.6, weight=0.15000000000000002: RMSE=89.55
+TAF alpha=0.1, beta=0.6, weight=0.2: RMSE=98.47
+TAF alpha=0.1, beta=0.6, weight=0.25: RMSE=109.06
+TAF alpha=0.1, beta=0.6, weight=0.3: RMSE=120.89
+TAF alpha=0.1, beta=0.6, weight=0.35000000000000003: RMSE=133.62
+TAF alpha=0.1, beta=0.6, weight=0.4: RMSE=147.02
+TAF alpha=0.1, beta=0.6, weight=0.45: RMSE=160.93
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.05: RMSE=81.41
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.1: RMSE=88.85
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=99.60
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.2: RMSE=112.71
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.25: RMSE=127.46
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.3: RMSE=143.35
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=160.03
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.4: RMSE=177.28
+TAF alpha=0.1, beta=0.7000000000000001, weight=0.45: RMSE=194.95
+TAF alpha=0.1, beta=0.8, weight=0.05: RMSE=85.48
+TAF alpha=0.1, beta=0.8, weight=0.1: RMSE=96.48
+TAF alpha=0.1, beta=0.8, weight=0.15000000000000002: RMSE=110.09
+TAF alpha=0.1, beta=0.8, weight=0.2: RMSE=125.47
+TAF alpha=0.1, beta=0.8, weight=0.25: RMSE=142.05
+TAF alpha=0.1, beta=0.8, weight=0.3: RMSE=159.46
+TAF alpha=0.1, beta=0.8, weight=0.35000000000000003: RMSE=177.44
+TAF alpha=0.1, beta=0.8, weight=0.4: RMSE=195.85
+TAF alpha=0.1, beta=0.8, weight=0.45: RMSE=214.57
+TAF alpha=0.1, beta=0.9, weight=0.05: RMSE=86.31
+TAF alpha=0.1, beta=0.9, weight=0.1: RMSE=98.76
+TAF alpha=0.1, beta=0.9, weight=0.15000000000000002: RMSE=114.17
+TAF alpha=0.1, beta=0.9, weight=0.2: RMSE=131.49
+TAF alpha=0.1, beta=0.9, weight=0.25: RMSE=150.07
+TAF alpha=0.1, beta=0.9, weight=0.3: RMSE=169.49
+TAF alpha=0.1, beta=0.9, weight=0.35000000000000003: RMSE=189.49
+TAF alpha=0.1, beta=0.9, weight=0.4: RMSE=209.92
+TAF alpha=0.1, beta=0.9, weight=0.45: RMSE=230.64
+TAF alpha=0.2, beta=0.1, weight=0.05: RMSE=79.82
+TAF alpha=0.2, beta=0.1, weight=0.1: RMSE=83.65
+TAF alpha=0.2, beta=0.1, weight=0.15000000000000002: RMSE=89.41
+TAF alpha=0.2, beta=0.1, weight=0.2: RMSE=96.76
+TAF alpha=0.2, beta=0.1, weight=0.25: RMSE=105.37
+TAF alpha=0.2, beta=0.1, weight=0.3: RMSE=114.96
+TAF alpha=0.2, beta=0.1, weight=0.35000000000000003: RMSE=125.31
+TAF alpha=0.2, beta=0.1, weight=0.4: RMSE=136.23
+TAF alpha=0.2, beta=0.1, weight=0.45: RMSE=147.60
+TAF alpha=0.2, beta=0.2, weight=0.05: RMSE=79.89
+TAF alpha=0.2, beta=0.2, weight=0.1: RMSE=83.82
+TAF alpha=0.2, beta=0.2, weight=0.15000000000000002: RMSE=89.71
+TAF alpha=0.2, beta=0.2, weight=0.2: RMSE=97.22
+TAF alpha=0.2, beta=0.2, weight=0.25: RMSE=105.99
+TAF alpha=0.2, beta=0.2, weight=0.3: RMSE=115.74
+TAF alpha=0.2, beta=0.2, weight=0.35000000000000003: RMSE=126.25
+TAF alpha=0.2, beta=0.2, weight=0.4: RMSE=137.34
+TAF alpha=0.2, beta=0.2, weight=0.45: RMSE=148.88
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.05: RMSE=80.39
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.1: RMSE=84.88
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=91.35
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.2: RMSE=99.42
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.25: RMSE=108.72
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.3: RMSE=118.97
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=129.95
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.4: RMSE=141.48
+TAF alpha=0.2, beta=0.30000000000000004, weight=0.45: RMSE=153.44
+TAF alpha=0.2, beta=0.4, weight=0.05: RMSE=81.35
+TAF alpha=0.2, beta=0.4, weight=0.1: RMSE=86.80
+TAF alpha=0.2, beta=0.4, weight=0.15000000000000002: RMSE=94.19
+TAF alpha=0.2, beta=0.4, weight=0.2: RMSE=103.10
+TAF alpha=0.2, beta=0.4, weight=0.25: RMSE=113.17
+TAF alpha=0.2, beta=0.4, weight=0.3: RMSE=124.11
+TAF alpha=0.2, beta=0.4, weight=0.35000000000000003: RMSE=135.72
+TAF alpha=0.2, beta=0.4, weight=0.4: RMSE=147.83
+TAF alpha=0.2, beta=0.4, weight=0.45: RMSE=160.34
+TAF alpha=0.2, beta=0.5, weight=0.05: RMSE=81.80
+TAF alpha=0.2, beta=0.5, weight=0.1: RMSE=87.70
+TAF alpha=0.2, beta=0.5, weight=0.15000000000000002: RMSE=95.48
+TAF alpha=0.2, beta=0.5, weight=0.2: RMSE=104.73
+TAF alpha=0.2, beta=0.5, weight=0.25: RMSE=115.10
+TAF alpha=0.2, beta=0.5, weight=0.3: RMSE=126.30
+TAF alpha=0.2, beta=0.5, weight=0.35000000000000003: RMSE=138.14
+TAF alpha=0.2, beta=0.5, weight=0.4: RMSE=150.47
+TAF alpha=0.2, beta=0.5, weight=0.45: RMSE=163.17
+TAF alpha=0.2, beta=0.6, weight=0.05: RMSE=81.75
+TAF alpha=0.2, beta=0.6, weight=0.1: RMSE=87.58
+TAF alpha=0.2, beta=0.6, weight=0.15000000000000002: RMSE=95.30
+TAF alpha=0.2, beta=0.6, weight=0.2: RMSE=104.48
+TAF alpha=0.2, beta=0.6, weight=0.25: RMSE=114.78
+TAF alpha=0.2, beta=0.6, weight=0.3: RMSE=125.93
+TAF alpha=0.2, beta=0.6, weight=0.35000000000000003: RMSE=137.71
+TAF alpha=0.2, beta=0.6, weight=0.4: RMSE=149.98
+TAF alpha=0.2, beta=0.6, weight=0.45: RMSE=162.63
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.05: RMSE=81.61
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.1: RMSE=87.29
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=94.86
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.2: RMSE=103.89
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.25: RMSE=114.05
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.3: RMSE=125.06
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=136.71
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.4: RMSE=148.85
+TAF alpha=0.2, beta=0.7000000000000001, weight=0.45: RMSE=161.38
+TAF alpha=0.2, beta=0.8, weight=0.05: RMSE=81.37
+TAF alpha=0.2, beta=0.8, weight=0.1: RMSE=86.83
+TAF alpha=0.2, beta=0.8, weight=0.15000000000000002: RMSE=94.19
+TAF alpha=0.2, beta=0.8, weight=0.2: RMSE=103.05
+TAF alpha=0.2, beta=0.8, weight=0.25: RMSE=113.06
+TAF alpha=0.2, beta=0.8, weight=0.3: RMSE=123.94
+TAF alpha=0.2, beta=0.8, weight=0.35000000000000003: RMSE=135.49
+TAF alpha=0.2, beta=0.8, weight=0.4: RMSE=147.53
+TAF alpha=0.2, beta=0.8, weight=0.45: RMSE=159.97
+TAF alpha=0.2, beta=0.9, weight=0.05: RMSE=81.07
+TAF alpha=0.2, beta=0.9, weight=0.1: RMSE=86.45
+TAF alpha=0.2, beta=0.9, weight=0.15000000000000002: RMSE=93.93
+TAF alpha=0.2, beta=0.9, weight=0.2: RMSE=103.04
+TAF alpha=0.2, beta=0.9, weight=0.25: RMSE=113.41
+TAF alpha=0.2, beta=0.9, weight=0.3: RMSE=124.70
+TAF alpha=0.2, beta=0.9, weight=0.35000000000000003: RMSE=136.70
+TAF alpha=0.2, beta=0.9, weight=0.4: RMSE=149.24
+TAF alpha=0.2, beta=0.9, weight=0.45: RMSE=162.19
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.05: RMSE=80.24
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.1: RMSE=84.46
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.15000000000000002: RMSE=90.58
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.2: RMSE=98.23
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.25: RMSE=107.10
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.3: RMSE=116.90
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.35000000000000003: RMSE=127.43
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.4: RMSE=138.51
+TAF alpha=0.30000000000000004, beta=0.1, weight=0.45: RMSE=150.02
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.05: RMSE=80.59
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.1: RMSE=85.17
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.15000000000000002: RMSE=91.64
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.2: RMSE=99.63
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.25: RMSE=108.80
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.3: RMSE=118.89
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.35000000000000003: RMSE=129.67
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.4: RMSE=141.00
+TAF alpha=0.30000000000000004, beta=0.2, weight=0.45: RMSE=152.74
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.05: RMSE=81.10
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.1: RMSE=86.19
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=93.14
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.2: RMSE=101.57
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.25: RMSE=111.14
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.3: RMSE=121.58
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=132.68
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.4: RMSE=144.30
+TAF alpha=0.30000000000000004, beta=0.30000000000000004, weight=0.45: RMSE=156.32
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.05: RMSE=81.34
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.1: RMSE=86.67
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.15000000000000002: RMSE=93.83
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.2: RMSE=102.45
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.25: RMSE=112.18
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.3: RMSE=122.77
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.35000000000000003: RMSE=134.01
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.4: RMSE=145.75
+TAF alpha=0.30000000000000004, beta=0.4, weight=0.45: RMSE=157.88
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.05: RMSE=81.32
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.1: RMSE=86.63
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.15000000000000002: RMSE=93.78
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.2: RMSE=102.39
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.25: RMSE=112.11
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.3: RMSE=122.69
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.35000000000000003: RMSE=133.92
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.4: RMSE=145.65
+TAF alpha=0.30000000000000004, beta=0.5, weight=0.45: RMSE=157.77
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.05: RMSE=81.24
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.1: RMSE=86.48
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.15000000000000002: RMSE=93.59
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.2: RMSE=102.16
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.25: RMSE=111.86
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.3: RMSE=122.43
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.35000000000000003: RMSE=133.65
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.4: RMSE=145.39
+TAF alpha=0.30000000000000004, beta=0.6, weight=0.45: RMSE=157.51
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.05: RMSE=81.18
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.1: RMSE=86.41
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=93.55
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.2: RMSE=102.18
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.25: RMSE=111.98
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.3: RMSE=122.65
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=133.99
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.4: RMSE=145.84
+TAF alpha=0.30000000000000004, beta=0.7000000000000001, weight=0.45: RMSE=158.10
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.05: RMSE=81.19
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.1: RMSE=86.60
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.15000000000000002: RMSE=94.04
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.2: RMSE=103.06
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.25: RMSE=113.30
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.3: RMSE=124.44
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.35000000000000003: RMSE=136.28
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.4: RMSE=148.64
+TAF alpha=0.30000000000000004, beta=0.8, weight=0.45: RMSE=161.40
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.05: RMSE=81.82
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.1: RMSE=88.16
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.15000000000000002: RMSE=96.69
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.2: RMSE=106.90
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.25: RMSE=118.36
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.3: RMSE=130.72
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.35000000000000003: RMSE=143.77
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.4: RMSE=157.33
+TAF alpha=0.30000000000000004, beta=0.9, weight=0.45: RMSE=171.28
+TAF alpha=0.4, beta=0.1, weight=0.05: RMSE=80.50
+TAF alpha=0.4, beta=0.1, weight=0.1: RMSE=84.96
+TAF alpha=0.4, beta=0.1, weight=0.15000000000000002: RMSE=91.29
+TAF alpha=0.4, beta=0.1, weight=0.2: RMSE=99.13
+TAF alpha=0.4, beta=0.1, weight=0.25: RMSE=108.14
+TAF alpha=0.4, beta=0.1, weight=0.3: RMSE=118.07
+TAF alpha=0.4, beta=0.1, weight=0.35000000000000003: RMSE=128.69
+TAF alpha=0.4, beta=0.1, weight=0.4: RMSE=139.86
+TAF alpha=0.4, beta=0.1, weight=0.45: RMSE=151.45
+TAF alpha=0.4, beta=0.2, weight=0.05: RMSE=80.84
+TAF alpha=0.4, beta=0.2, weight=0.1: RMSE=85.65
+TAF alpha=0.4, beta=0.2, weight=0.15000000000000002: RMSE=92.30
+TAF alpha=0.4, beta=0.2, weight=0.2: RMSE=100.44
+TAF alpha=0.4, beta=0.2, weight=0.25: RMSE=109.72
+TAF alpha=0.4, beta=0.2, weight=0.3: RMSE=119.89
+TAF alpha=0.4, beta=0.2, weight=0.35000000000000003: RMSE=130.74
+TAF alpha=0.4, beta=0.2, weight=0.4: RMSE=142.11
+TAF alpha=0.4, beta=0.2, weight=0.45: RMSE=153.89
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.05: RMSE=81.12
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.1: RMSE=86.21
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=93.12
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.2: RMSE=101.49
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.25: RMSE=110.98
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.3: RMSE=121.34
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=132.35
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.4: RMSE=143.88
+TAF alpha=0.4, beta=0.30000000000000004, weight=0.45: RMSE=155.80
+TAF alpha=0.4, beta=0.4, weight=0.05: RMSE=81.20
+TAF alpha=0.4, beta=0.4, weight=0.1: RMSE=86.36
+TAF alpha=0.4, beta=0.4, weight=0.15000000000000002: RMSE=93.34
+TAF alpha=0.4, beta=0.4, weight=0.2: RMSE=101.77
+TAF alpha=0.4, beta=0.4, weight=0.25: RMSE=111.33
+TAF alpha=0.4, beta=0.4, weight=0.3: RMSE=121.73
+TAF alpha=0.4, beta=0.4, weight=0.35000000000000003: RMSE=132.80
+TAF alpha=0.4, beta=0.4, weight=0.4: RMSE=144.37
+TAF alpha=0.4, beta=0.4, weight=0.45: RMSE=156.33
+TAF alpha=0.4, beta=0.5, weight=0.05: RMSE=81.19
+TAF alpha=0.4, beta=0.5, weight=0.1: RMSE=86.35
+TAF alpha=0.4, beta=0.5, weight=0.15000000000000002: RMSE=93.34
+TAF alpha=0.4, beta=0.5, weight=0.2: RMSE=101.78
+TAF alpha=0.4, beta=0.5, weight=0.25: RMSE=111.35
+TAF alpha=0.4, beta=0.5, weight=0.3: RMSE=121.78
+TAF alpha=0.4, beta=0.5, weight=0.35000000000000003: RMSE=132.86
+TAF alpha=0.4, beta=0.5, weight=0.4: RMSE=144.45
+TAF alpha=0.4, beta=0.5, weight=0.45: RMSE=156.44
+TAF alpha=0.4, beta=0.6, weight=0.05: RMSE=81.21
+TAF alpha=0.4, beta=0.6, weight=0.1: RMSE=86.40
+TAF alpha=0.4, beta=0.6, weight=0.15000000000000002: RMSE=93.44
+TAF alpha=0.4, beta=0.6, weight=0.2: RMSE=101.93
+TAF alpha=0.4, beta=0.6, weight=0.25: RMSE=111.56
+TAF alpha=0.4, beta=0.6, weight=0.3: RMSE=122.05
+TAF alpha=0.4, beta=0.6, weight=0.35000000000000003: RMSE=133.20
+TAF alpha=0.4, beta=0.6, weight=0.4: RMSE=144.85
+TAF alpha=0.4, beta=0.6, weight=0.45: RMSE=156.90
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.05: RMSE=81.30
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.1: RMSE=86.60
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=93.75
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.2: RMSE=102.36
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.25: RMSE=112.10
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.3: RMSE=122.69
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=133.94
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.4: RMSE=145.70
+TAF alpha=0.4, beta=0.7000000000000001, weight=0.45: RMSE=157.84
+TAF alpha=0.4, beta=0.8, weight=0.05: RMSE=81.37
+TAF alpha=0.4, beta=0.8, weight=0.1: RMSE=86.75
+TAF alpha=0.4, beta=0.8, weight=0.15000000000000002: RMSE=93.96
+TAF alpha=0.4, beta=0.8, weight=0.2: RMSE=102.64
+TAF alpha=0.4, beta=0.8, weight=0.25: RMSE=112.44
+TAF alpha=0.4, beta=0.8, weight=0.3: RMSE=123.09
+TAF alpha=0.4, beta=0.8, weight=0.35000000000000003: RMSE=134.38
+TAF alpha=0.4, beta=0.8, weight=0.4: RMSE=146.18
+TAF alpha=0.4, beta=0.8, weight=0.45: RMSE=158.37
+TAF alpha=0.4, beta=0.9, weight=0.05: RMSE=81.33
+TAF alpha=0.4, beta=0.9, weight=0.1: RMSE=86.66
+TAF alpha=0.4, beta=0.9, weight=0.15000000000000002: RMSE=93.82
+TAF alpha=0.4, beta=0.9, weight=0.2: RMSE=102.45
+TAF alpha=0.4, beta=0.9, weight=0.25: RMSE=112.19
+TAF alpha=0.4, beta=0.9, weight=0.3: RMSE=122.79
+TAF alpha=0.4, beta=0.9, weight=0.35000000000000003: RMSE=134.04
+TAF alpha=0.4, beta=0.9, weight=0.4: RMSE=145.79
+TAF alpha=0.4, beta=0.9, weight=0.45: RMSE=157.93
+TAF alpha=0.5, beta=0.1, weight=0.05: RMSE=80.64
+TAF alpha=0.5, beta=0.1, weight=0.1: RMSE=85.23
+TAF alpha=0.5, beta=0.1, weight=0.15000000000000002: RMSE=91.67
+TAF alpha=0.5, beta=0.1, weight=0.2: RMSE=99.60
+TAF alpha=0.5, beta=0.1, weight=0.25: RMSE=108.69
+TAF alpha=0.5, beta=0.1, weight=0.3: RMSE=118.67
+TAF alpha=0.5, beta=0.1, weight=0.35000000000000003: RMSE=129.35
+TAF alpha=0.5, beta=0.1, weight=0.4: RMSE=140.56
+TAF alpha=0.5, beta=0.1, weight=0.45: RMSE=152.18
+TAF alpha=0.5, beta=0.2, weight=0.05: RMSE=80.92
+TAF alpha=0.5, beta=0.2, weight=0.1: RMSE=85.79
+TAF alpha=0.5, beta=0.2, weight=0.15000000000000002: RMSE=92.48
+TAF alpha=0.5, beta=0.2, weight=0.2: RMSE=100.65
+TAF alpha=0.5, beta=0.2, weight=0.25: RMSE=109.95
+TAF alpha=0.5, beta=0.2, weight=0.3: RMSE=120.13
+TAF alpha=0.5, beta=0.2, weight=0.35000000000000003: RMSE=130.98
+TAF alpha=0.5, beta=0.2, weight=0.4: RMSE=142.34
+TAF alpha=0.5, beta=0.2, weight=0.45: RMSE=154.11
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.05: RMSE=81.09
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.1: RMSE=86.13
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=92.99
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.2: RMSE=101.29
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.25: RMSE=110.72
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.3: RMSE=121.02
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=131.97
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.4: RMSE=143.43
+TAF alpha=0.5, beta=0.30000000000000004, weight=0.45: RMSE=155.29
+TAF alpha=0.5, beta=0.4, weight=0.05: RMSE=81.14
+TAF alpha=0.5, beta=0.4, weight=0.1: RMSE=86.22
+TAF alpha=0.5, beta=0.4, weight=0.15000000000000002: RMSE=93.13
+TAF alpha=0.5, beta=0.4, weight=0.2: RMSE=101.48
+TAF alpha=0.5, beta=0.4, weight=0.25: RMSE=110.95
+TAF alpha=0.5, beta=0.4, weight=0.3: RMSE=121.28
+TAF alpha=0.5, beta=0.4, weight=0.35000000000000003: RMSE=132.26
+TAF alpha=0.5, beta=0.4, weight=0.4: RMSE=143.76
+TAF alpha=0.5, beta=0.4, weight=0.45: RMSE=155.64
+TAF alpha=0.5, beta=0.5, weight=0.05: RMSE=81.16
+TAF alpha=0.5, beta=0.5, weight=0.1: RMSE=86.27
+TAF alpha=0.5, beta=0.5, weight=0.15000000000000002: RMSE=93.19
+TAF alpha=0.5, beta=0.5, weight=0.2: RMSE=101.57
+TAF alpha=0.5, beta=0.5, weight=0.25: RMSE=111.06
+TAF alpha=0.5, beta=0.5, weight=0.3: RMSE=121.42
+TAF alpha=0.5, beta=0.5, weight=0.35000000000000003: RMSE=132.43
+TAF alpha=0.5, beta=0.5, weight=0.4: RMSE=143.94
+TAF alpha=0.5, beta=0.5, weight=0.45: RMSE=155.85
+TAF alpha=0.5, beta=0.6, weight=0.05: RMSE=81.18
+TAF alpha=0.5, beta=0.6, weight=0.1: RMSE=86.32
+TAF alpha=0.5, beta=0.6, weight=0.15000000000000002: RMSE=93.28
+TAF alpha=0.5, beta=0.6, weight=0.2: RMSE=101.68
+TAF alpha=0.5, beta=0.6, weight=0.25: RMSE=111.21
+TAF alpha=0.5, beta=0.6, weight=0.3: RMSE=121.58
+TAF alpha=0.5, beta=0.6, weight=0.35000000000000003: RMSE=132.62
+TAF alpha=0.5, beta=0.6, weight=0.4: RMSE=144.16
+TAF alpha=0.5, beta=0.6, weight=0.45: RMSE=156.09
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.05: RMSE=81.19
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.1: RMSE=86.32
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=93.28
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.2: RMSE=101.68
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.25: RMSE=111.20
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.3: RMSE=121.57
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=132.60
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.4: RMSE=144.14
+TAF alpha=0.5, beta=0.7000000000000001, weight=0.45: RMSE=156.06
+TAF alpha=0.5, beta=0.8, weight=0.05: RMSE=81.14
+TAF alpha=0.5, beta=0.8, weight=0.1: RMSE=86.23
+TAF alpha=0.5, beta=0.8, weight=0.15000000000000002: RMSE=93.15
+TAF alpha=0.5, beta=0.8, weight=0.2: RMSE=101.51
+TAF alpha=0.5, beta=0.8, weight=0.25: RMSE=110.99
+TAF alpha=0.5, beta=0.8, weight=0.3: RMSE=121.33
+TAF alpha=0.5, beta=0.8, weight=0.35000000000000003: RMSE=132.32
+TAF alpha=0.5, beta=0.8, weight=0.4: RMSE=143.83
+TAF alpha=0.5, beta=0.8, weight=0.45: RMSE=155.73
+TAF alpha=0.5, beta=0.9, weight=0.05: RMSE=81.08
+TAF alpha=0.5, beta=0.9, weight=0.1: RMSE=86.13
+TAF alpha=0.5, beta=0.9, weight=0.15000000000000002: RMSE=93.01
+TAF alpha=0.5, beta=0.9, weight=0.2: RMSE=101.36
+TAF alpha=0.5, beta=0.9, weight=0.25: RMSE=110.83
+TAF alpha=0.5, beta=0.9, weight=0.3: RMSE=121.17
+TAF alpha=0.5, beta=0.9, weight=0.35000000000000003: RMSE=132.17
+TAF alpha=0.5, beta=0.9, weight=0.4: RMSE=143.68
+TAF alpha=0.5, beta=0.9, weight=0.45: RMSE=155.60
+TAF alpha=0.6, beta=0.1, weight=0.05: RMSE=80.72
+TAF alpha=0.6, beta=0.1, weight=0.1: RMSE=85.38
+TAF alpha=0.6, beta=0.1, weight=0.15000000000000002: RMSE=91.87
+TAF alpha=0.6, beta=0.1, weight=0.2: RMSE=99.84
+TAF alpha=0.6, beta=0.1, weight=0.25: RMSE=108.97
+TAF alpha=0.6, beta=0.1, weight=0.3: RMSE=118.99
+TAF alpha=0.6, beta=0.1, weight=0.35000000000000003: RMSE=129.69
+TAF alpha=0.6, beta=0.1, weight=0.4: RMSE=140.92
+TAF alpha=0.6, beta=0.1, weight=0.45: RMSE=152.56
+TAF alpha=0.6, beta=0.2, weight=0.05: RMSE=80.94
+TAF alpha=0.6, beta=0.2, weight=0.1: RMSE=85.82
+TAF alpha=0.6, beta=0.2, weight=0.15000000000000002: RMSE=92.52
+TAF alpha=0.6, beta=0.2, weight=0.2: RMSE=100.69
+TAF alpha=0.6, beta=0.2, weight=0.25: RMSE=109.98
+TAF alpha=0.6, beta=0.2, weight=0.3: RMSE=120.15
+TAF alpha=0.6, beta=0.2, weight=0.35000000000000003: RMSE=130.98
+TAF alpha=0.6, beta=0.2, weight=0.4: RMSE=142.34
+TAF alpha=0.6, beta=0.2, weight=0.45: RMSE=154.09
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.05: RMSE=81.06
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.1: RMSE=86.06
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=92.88
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.2: RMSE=101.14
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.25: RMSE=110.52
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.3: RMSE=120.77
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=131.68
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.4: RMSE=143.10
+TAF alpha=0.6, beta=0.30000000000000004, weight=0.45: RMSE=154.91
+TAF alpha=0.6, beta=0.4, weight=0.05: RMSE=81.10
+TAF alpha=0.6, beta=0.4, weight=0.1: RMSE=86.13
+TAF alpha=0.6, beta=0.4, weight=0.15000000000000002: RMSE=92.98
+TAF alpha=0.6, beta=0.4, weight=0.2: RMSE=101.28
+TAF alpha=0.6, beta=0.4, weight=0.25: RMSE=110.69
+TAF alpha=0.6, beta=0.4, weight=0.3: RMSE=120.96
+TAF alpha=0.6, beta=0.4, weight=0.35000000000000003: RMSE=131.90
+TAF alpha=0.6, beta=0.4, weight=0.4: RMSE=143.34
+TAF alpha=0.6, beta=0.4, weight=0.45: RMSE=155.18
+TAF alpha=0.6, beta=0.5, weight=0.05: RMSE=81.11
+TAF alpha=0.6, beta=0.5, weight=0.1: RMSE=86.16
+TAF alpha=0.6, beta=0.5, weight=0.15000000000000002: RMSE=93.02
+TAF alpha=0.6, beta=0.5, weight=0.2: RMSE=101.33
+TAF alpha=0.6, beta=0.5, weight=0.25: RMSE=110.75
+TAF alpha=0.6, beta=0.5, weight=0.3: RMSE=121.04
+TAF alpha=0.6, beta=0.5, weight=0.35000000000000003: RMSE=131.98
+TAF alpha=0.6, beta=0.5, weight=0.4: RMSE=143.43
+TAF alpha=0.6, beta=0.5, weight=0.45: RMSE=155.27
+TAF alpha=0.6, beta=0.6, weight=0.05: RMSE=81.10
+TAF alpha=0.6, beta=0.6, weight=0.1: RMSE=86.15
+TAF alpha=0.6, beta=0.6, weight=0.15000000000000002: RMSE=93.00
+TAF alpha=0.6, beta=0.6, weight=0.2: RMSE=101.30
+TAF alpha=0.6, beta=0.6, weight=0.25: RMSE=110.72
+TAF alpha=0.6, beta=0.6, weight=0.3: RMSE=121.00
+TAF alpha=0.6, beta=0.6, weight=0.35000000000000003: RMSE=131.94
+TAF alpha=0.6, beta=0.6, weight=0.4: RMSE=143.39
+TAF alpha=0.6, beta=0.6, weight=0.45: RMSE=155.23
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.05: RMSE=81.07
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.1: RMSE=86.09
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=92.91
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.2: RMSE=101.19
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.25: RMSE=110.59
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.3: RMSE=120.85
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=131.77
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.4: RMSE=143.20
+TAF alpha=0.6, beta=0.7000000000000001, weight=0.45: RMSE=155.02
+TAF alpha=0.6, beta=0.8, weight=0.05: RMSE=81.03
+TAF alpha=0.6, beta=0.8, weight=0.1: RMSE=86.01
+TAF alpha=0.6, beta=0.8, weight=0.15000000000000002: RMSE=92.80
+TAF alpha=0.6, beta=0.8, weight=0.2: RMSE=101.05
+TAF alpha=0.6, beta=0.8, weight=0.25: RMSE=110.43
+TAF alpha=0.6, beta=0.8, weight=0.3: RMSE=120.67
+TAF alpha=0.6, beta=0.8, weight=0.35000000000000003: RMSE=131.58
+TAF alpha=0.6, beta=0.8, weight=0.4: RMSE=143.00
+TAF alpha=0.6, beta=0.8, weight=0.45: RMSE=154.81
+TAF alpha=0.6, beta=0.9, weight=0.05: RMSE=81.01
+TAF alpha=0.6, beta=0.9, weight=0.1: RMSE=85.98
+TAF alpha=0.6, beta=0.9, weight=0.15000000000000002: RMSE=92.79
+TAF alpha=0.6, beta=0.9, weight=0.2: RMSE=101.08
+TAF alpha=0.6, beta=0.9, weight=0.25: RMSE=110.50
+TAF alpha=0.6, beta=0.9, weight=0.3: RMSE=120.80
+TAF alpha=0.6, beta=0.9, weight=0.35000000000000003: RMSE=131.76
+TAF alpha=0.6, beta=0.9, weight=0.4: RMSE=143.24
+TAF alpha=0.6, beta=0.9, weight=0.45: RMSE=155.12
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.05: RMSE=80.76
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.1: RMSE=85.46
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.15000000000000002: RMSE=91.98
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.2: RMSE=99.98
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.25: RMSE=109.13
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.3: RMSE=119.16
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.35000000000000003: RMSE=129.87
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.4: RMSE=141.11
+TAF alpha=0.7000000000000001, beta=0.1, weight=0.45: RMSE=152.75
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.05: RMSE=80.94
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.1: RMSE=85.82
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.15000000000000002: RMSE=92.52
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.2: RMSE=100.67
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.25: RMSE=109.95
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.3: RMSE=120.10
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.35000000000000003: RMSE=130.92
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.4: RMSE=142.26
+TAF alpha=0.7000000000000001, beta=0.2, weight=0.45: RMSE=154.00
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.05: RMSE=81.03
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.1: RMSE=86.00
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=92.78
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.2: RMSE=101.00
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.25: RMSE=110.35
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.3: RMSE=120.57
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=131.44
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.4: RMSE=142.83
+TAF alpha=0.7000000000000001, beta=0.30000000000000004, weight=0.45: RMSE=154.61
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.05: RMSE=81.06
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.1: RMSE=86.05
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.15000000000000002: RMSE=92.85
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.2: RMSE=101.10
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.25: RMSE=110.47
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.3: RMSE=120.70
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.35000000000000003: RMSE=131.59
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.4: RMSE=142.99
+TAF alpha=0.7000000000000001, beta=0.4, weight=0.45: RMSE=154.79
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.05: RMSE=81.06
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.1: RMSE=86.05
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.15000000000000002: RMSE=92.85
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.2: RMSE=101.10
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.25: RMSE=110.47
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.3: RMSE=120.70
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.35000000000000003: RMSE=131.59
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.4: RMSE=142.99
+TAF alpha=0.7000000000000001, beta=0.5, weight=0.45: RMSE=154.79
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.05: RMSE=81.04
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.1: RMSE=86.01
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.15000000000000002: RMSE=92.80
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.2: RMSE=101.03
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.25: RMSE=110.38
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.3: RMSE=120.60
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.35000000000000003: RMSE=131.48
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.4: RMSE=142.87
+TAF alpha=0.7000000000000001, beta=0.6, weight=0.45: RMSE=154.66
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.05: RMSE=81.01
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.1: RMSE=85.95
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=92.71
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.2: RMSE=100.92
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.25: RMSE=110.26
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.3: RMSE=120.46
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=131.32
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.4: RMSE=142.70
+TAF alpha=0.7000000000000001, beta=0.7000000000000001, weight=0.45: RMSE=154.47
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.05: RMSE=80.98
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.1: RMSE=85.90
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.15000000000000002: RMSE=92.64
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.2: RMSE=100.84
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.25: RMSE=110.17
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.3: RMSE=120.36
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.35000000000000003: RMSE=131.22
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.4: RMSE=142.59
+TAF alpha=0.7000000000000001, beta=0.8, weight=0.45: RMSE=154.37
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.05: RMSE=80.97
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.1: RMSE=85.89
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.15000000000000002: RMSE=92.64
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.2: RMSE=100.85
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.25: RMSE=110.19
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.3: RMSE=120.41
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.35000000000000003: RMSE=131.29
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.4: RMSE=142.68
+TAF alpha=0.7000000000000001, beta=0.9, weight=0.45: RMSE=154.48
+TAF alpha=0.8, beta=0.1, weight=0.05: RMSE=80.78
+TAF alpha=0.8, beta=0.1, weight=0.1: RMSE=85.50
+TAF alpha=0.8, beta=0.1, weight=0.15000000000000002: RMSE=92.04
+TAF alpha=0.8, beta=0.1, weight=0.2: RMSE=100.06
+TAF alpha=0.8, beta=0.1, weight=0.25: RMSE=109.21
+TAF alpha=0.8, beta=0.1, weight=0.3: RMSE=119.25
+TAF alpha=0.8, beta=0.1, weight=0.35000000000000003: RMSE=129.97
+TAF alpha=0.8, beta=0.1, weight=0.4: RMSE=141.21
+TAF alpha=0.8, beta=0.1, weight=0.45: RMSE=152.86
+TAF alpha=0.8, beta=0.2, weight=0.05: RMSE=80.94
+TAF alpha=0.8, beta=0.2, weight=0.1: RMSE=85.80
+TAF alpha=0.8, beta=0.2, weight=0.15000000000000002: RMSE=92.49
+TAF alpha=0.8, beta=0.2, weight=0.2: RMSE=100.63
+TAF alpha=0.8, beta=0.2, weight=0.25: RMSE=109.90
+TAF alpha=0.8, beta=0.2, weight=0.3: RMSE=120.04
+TAF alpha=0.8, beta=0.2, weight=0.35000000000000003: RMSE=130.84
+TAF alpha=0.8, beta=0.2, weight=0.4: RMSE=142.17
+TAF alpha=0.8, beta=0.2, weight=0.45: RMSE=153.89
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.05: RMSE=81.01
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.1: RMSE=85.94
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=92.69
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.2: RMSE=100.89
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.25: RMSE=110.21
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.3: RMSE=120.40
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=131.25
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.4: RMSE=142.61
+TAF alpha=0.8, beta=0.30000000000000004, weight=0.45: RMSE=154.37
+TAF alpha=0.8, beta=0.4, weight=0.05: RMSE=81.02
+TAF alpha=0.8, beta=0.4, weight=0.1: RMSE=85.98
+TAF alpha=0.8, beta=0.4, weight=0.15000000000000002: RMSE=92.74
+TAF alpha=0.8, beta=0.4, weight=0.2: RMSE=100.95
+TAF alpha=0.8, beta=0.4, weight=0.25: RMSE=110.28
+TAF alpha=0.8, beta=0.4, weight=0.3: RMSE=120.48
+TAF alpha=0.8, beta=0.4, weight=0.35000000000000003: RMSE=131.34
+TAF alpha=0.8, beta=0.4, weight=0.4: RMSE=142.71
+TAF alpha=0.8, beta=0.4, weight=0.45: RMSE=154.48
+TAF alpha=0.8, beta=0.5, weight=0.05: RMSE=81.01
+TAF alpha=0.8, beta=0.5, weight=0.1: RMSE=85.96
+TAF alpha=0.8, beta=0.5, weight=0.15000000000000002: RMSE=92.72
+TAF alpha=0.8, beta=0.5, weight=0.2: RMSE=100.92
+TAF alpha=0.8, beta=0.5, weight=0.25: RMSE=110.25
+TAF alpha=0.8, beta=0.5, weight=0.3: RMSE=120.44
+TAF alpha=0.8, beta=0.5, weight=0.35000000000000003: RMSE=131.29
+TAF alpha=0.8, beta=0.5, weight=0.4: RMSE=142.66
+TAF alpha=0.8, beta=0.5, weight=0.45: RMSE=154.42
+TAF alpha=0.8, beta=0.6, weight=0.05: RMSE=80.99
+TAF alpha=0.8, beta=0.6, weight=0.1: RMSE=85.92
+TAF alpha=0.8, beta=0.6, weight=0.15000000000000002: RMSE=92.66
+TAF alpha=0.8, beta=0.6, weight=0.2: RMSE=100.84
+TAF alpha=0.8, beta=0.6, weight=0.25: RMSE=110.15
+TAF alpha=0.8, beta=0.6, weight=0.3: RMSE=120.33
+TAF alpha=0.8, beta=0.6, weight=0.35000000000000003: RMSE=131.17
+TAF alpha=0.8, beta=0.6, weight=0.4: RMSE=142.53
+TAF alpha=0.8, beta=0.6, weight=0.45: RMSE=154.28
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.05: RMSE=80.97
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.1: RMSE=85.87
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=92.58
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.2: RMSE=100.75
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.25: RMSE=110.05
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.3: RMSE=120.21
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=131.04
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.4: RMSE=142.39
+TAF alpha=0.8, beta=0.7000000000000001, weight=0.45: RMSE=154.13
+TAF alpha=0.8, beta=0.8, weight=0.05: RMSE=80.94
+TAF alpha=0.8, beta=0.8, weight=0.1: RMSE=85.82
+TAF alpha=0.8, beta=0.8, weight=0.15000000000000002: RMSE=92.52
+TAF alpha=0.8, beta=0.8, weight=0.2: RMSE=100.68
+TAF alpha=0.8, beta=0.8, weight=0.25: RMSE=109.97
+TAF alpha=0.8, beta=0.8, weight=0.3: RMSE=120.12
+TAF alpha=0.8, beta=0.8, weight=0.35000000000000003: RMSE=130.95
+TAF alpha=0.8, beta=0.8, weight=0.4: RMSE=142.29
+TAF alpha=0.8, beta=0.8, weight=0.45: RMSE=154.03
+TAF alpha=0.8, beta=0.9, weight=0.05: RMSE=80.92
+TAF alpha=0.8, beta=0.9, weight=0.1: RMSE=85.78
+TAF alpha=0.8, beta=0.9, weight=0.15000000000000002: RMSE=92.48
+TAF alpha=0.8, beta=0.9, weight=0.2: RMSE=100.63
+TAF alpha=0.8, beta=0.9, weight=0.25: RMSE=109.93
+TAF alpha=0.8, beta=0.9, weight=0.3: RMSE=120.10
+TAF alpha=0.8, beta=0.9, weight=0.35000000000000003: RMSE=130.94
+TAF alpha=0.8, beta=0.9, weight=0.4: RMSE=142.30
+TAF alpha=0.8, beta=0.9, weight=0.45: RMSE=154.06
+TAF alpha=0.9, beta=0.1, weight=0.05: RMSE=80.80
+TAF alpha=0.9, beta=0.1, weight=0.1: RMSE=85.53
+TAF alpha=0.9, beta=0.1, weight=0.15000000000000002: RMSE=92.08
+TAF alpha=0.9, beta=0.1, weight=0.2: RMSE=100.10
+TAF alpha=0.9, beta=0.1, weight=0.25: RMSE=109.26
+TAF alpha=0.9, beta=0.1, weight=0.3: RMSE=119.30
+TAF alpha=0.9, beta=0.1, weight=0.35000000000000003: RMSE=130.02
+TAF alpha=0.9, beta=0.1, weight=0.4: RMSE=141.26
+TAF alpha=0.9, beta=0.1, weight=0.45: RMSE=152.91
+TAF alpha=0.9, beta=0.2, weight=0.05: RMSE=80.93
+TAF alpha=0.9, beta=0.2, weight=0.1: RMSE=85.78
+TAF alpha=0.9, beta=0.2, weight=0.15000000000000002: RMSE=92.46
+TAF alpha=0.9, beta=0.2, weight=0.2: RMSE=100.58
+TAF alpha=0.9, beta=0.2, weight=0.25: RMSE=109.84
+TAF alpha=0.9, beta=0.2, weight=0.3: RMSE=119.97
+TAF alpha=0.9, beta=0.2, weight=0.35000000000000003: RMSE=130.76
+TAF alpha=0.9, beta=0.2, weight=0.4: RMSE=142.07
+TAF alpha=0.9, beta=0.2, weight=0.45: RMSE=153.78
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.05: RMSE=80.98
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.1: RMSE=85.90
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.15000000000000002: RMSE=92.62
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.2: RMSE=100.79
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.25: RMSE=110.09
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.3: RMSE=120.25
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.35000000000000003: RMSE=131.08
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.4: RMSE=142.42
+TAF alpha=0.9, beta=0.30000000000000004, weight=0.45: RMSE=154.16
+TAF alpha=0.9, beta=0.4, weight=0.05: RMSE=80.99
+TAF alpha=0.9, beta=0.4, weight=0.1: RMSE=85.91
+TAF alpha=0.9, beta=0.4, weight=0.15000000000000002: RMSE=92.65
+TAF alpha=0.9, beta=0.4, weight=0.2: RMSE=100.83
+TAF alpha=0.9, beta=0.4, weight=0.25: RMSE=110.13
+TAF alpha=0.9, beta=0.4, weight=0.3: RMSE=120.30
+TAF alpha=0.9, beta=0.4, weight=0.35000000000000003: RMSE=131.13
+TAF alpha=0.9, beta=0.4, weight=0.4: RMSE=142.48
+TAF alpha=0.9, beta=0.4, weight=0.45: RMSE=154.23
+TAF alpha=0.9, beta=0.5, weight=0.05: RMSE=80.98
+TAF alpha=0.9, beta=0.5, weight=0.1: RMSE=85.89
+TAF alpha=0.9, beta=0.5, weight=0.15000000000000002: RMSE=92.61
+TAF alpha=0.9, beta=0.5, weight=0.2: RMSE=100.79
+TAF alpha=0.9, beta=0.5, weight=0.25: RMSE=110.08
+TAF alpha=0.9, beta=0.5, weight=0.3: RMSE=120.25
+TAF alpha=0.9, beta=0.5, weight=0.35000000000000003: RMSE=131.07
+TAF alpha=0.9, beta=0.5, weight=0.4: RMSE=142.41
+TAF alpha=0.9, beta=0.5, weight=0.45: RMSE=154.15
+TAF alpha=0.9, beta=0.6, weight=0.05: RMSE=80.96
+TAF alpha=0.9, beta=0.6, weight=0.1: RMSE=85.85
+TAF alpha=0.9, beta=0.6, weight=0.15000000000000002: RMSE=92.56
+TAF alpha=0.9, beta=0.6, weight=0.2: RMSE=100.71
+TAF alpha=0.9, beta=0.6, weight=0.25: RMSE=109.99
+TAF alpha=0.9, beta=0.6, weight=0.3: RMSE=120.15
+TAF alpha=0.9, beta=0.6, weight=0.35000000000000003: RMSE=130.96
+TAF alpha=0.9, beta=0.6, weight=0.4: RMSE=142.29
+TAF alpha=0.9, beta=0.6, weight=0.45: RMSE=154.02
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.05: RMSE=80.94
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.1: RMSE=85.81
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.15000000000000002: RMSE=92.49
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.2: RMSE=100.63
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.25: RMSE=109.90
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.3: RMSE=120.04
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.35000000000000003: RMSE=130.85
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.4: RMSE=142.17
+TAF alpha=0.9, beta=0.7000000000000001, weight=0.45: RMSE=153.90
+TAF alpha=0.9, beta=0.8, weight=0.05: RMSE=80.91
+TAF alpha=0.9, beta=0.8, weight=0.1: RMSE=85.76
+TAF alpha=0.9, beta=0.8, weight=0.15000000000000002: RMSE=92.43
+TAF alpha=0.9, beta=0.8, weight=0.2: RMSE=100.56
+TAF alpha=0.9, beta=0.8, weight=0.25: RMSE=109.83
+TAF alpha=0.9, beta=0.8, weight=0.3: RMSE=119.96
+TAF alpha=0.9, beta=0.8, weight=0.35000000000000003: RMSE=130.77
+TAF alpha=0.9, beta=0.8, weight=0.4: RMSE=142.09
+TAF alpha=0.9, beta=0.8, weight=0.45: RMSE=153.82
+TAF alpha=0.9, beta=0.9, weight=0.05: RMSE=80.89
+TAF alpha=0.9, beta=0.9, weight=0.1: RMSE=85.73
+TAF alpha=0.9, beta=0.9, weight=0.15000000000000002: RMSE=92.40
+TAF alpha=0.9, beta=0.9, weight=0.2: RMSE=100.55
+TAF alpha=0.9, beta=0.9, weight=0.25: RMSE=109.84
+TAF alpha=0.9, beta=0.9, weight=0.3: RMSE=120.01
+TAF alpha=0.9, beta=0.9, weight=0.35000000000000003: RMSE=130.86
+TAF alpha=0.9, beta=0.9, weight=0.4: RMSE=142.22
+TAF alpha=0.9, beta=0.9, weight=0.45: RMSE=153.99
+Saved plot for column: B1
+Cross-Validation RMSEs: 79.47792708843524
+Saved plot for column: B1
+Cross-Validation RMSEs: 82.96551155537715
+Saved plot for column: B1
+Cross-Validation RMSEs: 88.42223603349582
+Saved plot for column: B1
+Cross-Validation RMSEs: 95.51119330648167
+Saved plot for column: B1
+Cross-Validation RMSEs: 79.27359051272019
+Saved plot for column: B1
+Cross-Validation RMSEs: 82.58181585320831
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.89339369688243
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.87243641123767
+Saved plot for column: B1
+Cross-Validation RMSEs: 79.00212580241954
+Saved plot for column: B1
+Cross-Validation RMSEs: 82.09037848983023
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.24316169739407
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.12201096642337
+Saved plot for column: B1
+Cross-Validation RMSEs: 78.72832570692167
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.6538836757109
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.75545249253807
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.67819768863322
+Saved plot for column: B1
+Cross-Validation RMSEs: 78.6217278119825
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.68199994886415
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.1240797917844
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.5375299862355
+Saved plot for column: B1
+Cross-Validation RMSEs: 78.93710589958782
+Saved plot for column: B1
+Cross-Validation RMSEs: 82.85326814588653
+Saved plot for column: B1
+Cross-Validation RMSEs: 89.5526562922908
+Saved plot for column: B1
+Cross-Validation RMSEs: 98.46882403814789
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.4074854843163
+Saved plot for column: B1
+Cross-Validation RMSEs: 88.84896084694168
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.59801020681836
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.48265262430363
+Saved plot for column: B1
+Cross-Validation RMSEs: 96.47525807727592
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.3060737710987
+Saved plot for column: B1
+Cross-Validation RMSEs: 98.76149304481144
+Saved plot for column: B1
+Cross-Validation RMSEs: 79.82458722824654
+Saved plot for column: B1
+Cross-Validation RMSEs: 83.6480763079777
+Saved plot for column: B1
+Cross-Validation RMSEs: 89.40913832851113
+Saved plot for column: B1
+Cross-Validation RMSEs: 96.76231066910644
+Saved plot for column: B1
+Cross-Validation RMSEs: 79.8877144109039
+Saved plot for column: B1
+Cross-Validation RMSEs: 83.81599278606616
+Saved plot for column: B1
+Cross-Validation RMSEs: 89.71124446689015
+Saved plot for column: B1
+Cross-Validation RMSEs: 97.21629043041521
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.39299053397441
+Saved plot for column: B1
+Cross-Validation RMSEs: 84.883410663891
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.35298365060697
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.41607302039043
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.34564715042823
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.80427757879256
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.19390145870996
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.80317489058788
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.69837828095986
+Saved plot for column: B1
+Cross-Validation RMSEs: 95.4810168454523
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.74733624580011
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.57934292841725
+Saved plot for column: B1
+Cross-Validation RMSEs: 95.29653277280913
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.61090594962162
+Saved plot for column: B1
+Cross-Validation RMSEs: 87.29208724867753
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.85563643763668
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.37076944791153
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.82637500088671
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.1899039748909
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.07290827554093
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.45215948103277
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.92744249200986
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.2421052636237
+Saved plot for column: B1
+Cross-Validation RMSEs: 84.46251133796223
+Saved plot for column: B1
+Cross-Validation RMSEs: 90.57730001596245
+Saved plot for column: B1
+Cross-Validation RMSEs: 98.23334376441272
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.58829839696348
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.1716561805384
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.64113551841407
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.62998517626853
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.09860740214556
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.19364822824932
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.14488070760744
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.33747727571102
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.6653919230596
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.83070407842534
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.32073165807905
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.63240345529144
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.78284479666922
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.2384897310639
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.48403283599606
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.58564713903131
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.17598043021295
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.410893832992
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.5456813951439
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.18735907729841
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.5989153504497
+Saved plot for column: B1
+Cross-Validation RMSEs: 94.0363801027845
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.82094770879563
+Saved plot for column: B1
+Cross-Validation RMSEs: 88.15597221458239
+Saved plot for column: B1
+Cross-Validation RMSEs: 96.69183028802969
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.50175868720986
+Saved plot for column: B1
+Cross-Validation RMSEs: 84.96424865589977
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.29105859192492
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.12585252723869
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.84239615152235
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.64919517234732
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.3025516413516
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.1228217298594
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.20742266364785
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.11986219778088
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.19733239524082
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.35689377985283
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.34026532346878
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.18866629300385
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.3477989851169
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.33763844485846
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.20569538574247
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.39926966497067
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.43603529541397
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.29678400636746
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.59671171644042
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.74623382311337
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.37090730266269
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.74504601556171
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.9644695829283
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.33006233704693
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.65587396637821
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.82361400221973
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.64151056392093
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.23215350474129
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.66944136474989
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.59594717276181
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.918985098549
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.78686072697609
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.48457253554275
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.09134780397528
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.1298879194931
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.98676732808998
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.13789770139614
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.22446025633334
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.12778046497307
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.15655830287241
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.26572251004215
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.19361544058192
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.18384629345671
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.32236337263933
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.2796159016857
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.18587179316293
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.32445152707315
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.28012458693011
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.14094820065807
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.23374935841845
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.14560829999903
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.08295444119446
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.13156637972978
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.01338539903712
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.71720336553726
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.37611193964796
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.87125174604003
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.84491044370965
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.94049293855542
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.8213157216094
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.52400061717141
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.06108511567304
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.0612592488678
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.87523165603524
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.09683563439405
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.13336258910884
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.98206487294087
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.10877805427053
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.158010106699
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.01931342102168
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.10360682075708
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.14732290133982
+Saved plot for column: B1
+Cross-Validation RMSEs: 93.00314401269526
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.07312298239711
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.08655656297813
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.91403573899213
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.03011737438969
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.00535978874056
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.8009275659511
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.0050572614272
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.9791651054694
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.79374319408761
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.75949652780022
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.45581908340947
+Saved plot for column: B1
+Cross-Validation RMSEs: 91.98200037196828
+Saved plot for column: B1
+Cross-Validation RMSEs: 99.98035012471631
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.94239520363098
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.81993981381477
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.51517913342055
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.0328437428586
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.99977699774784
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.77826157497421
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.05770123232749
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.04954250423782
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.85151960743005
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.05721447416637
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.04864518317093
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.8502996424653
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.03855510320402
+Saved plot for column: B1
+Cross-Validation RMSEs: 86.01145734628513
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.79577754349198
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.00838566099686
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.95251279771216
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.71091581669921
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.9820238632486
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.90379224135123
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.64451512325637
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.97149805075242
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.89211941947987
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.63964718419669
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.78366892486851
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.50084880173311
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.04383807519683
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.93651698265053
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.80484974555651
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.48861314115821
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.00686219211777
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.9446166816649
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.69294702450414
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.02262714054297
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.97604823867466
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.73904501881213
+Saved plot for column: B1
+Cross-Validation RMSEs: 81.01482693484263
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.96055659559616
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.71640365047296
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.99356925522588
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.9185715324018
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.65535173670757
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.9677051845228
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.86838839964231
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.58357692141166
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.94378513037051
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.82392175419753
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.52261219381974
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.91920610028072
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.78457021953912
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.47761837658268
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.79755946906411
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.52630811121823
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.07821389441219
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.92762186581287
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.78482015809008
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.45621856398019
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.98375744123689
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.896298883375
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.61912201448398
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.99314822936888
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.91499546665474
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.64650745086522
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.98215864775558
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.89325661358504
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.61485152156548
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.96152895071283
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.85278101438705
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.55635417761674
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.93795221525144
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.80755776318163
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.49238220794813
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.91304997362414
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.76265428675751
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.43278545991106
+Saved plot for column: B1
+Cross-Validation RMSEs: 80.88662318837721
+Saved plot for column: B1
+Cross-Validation RMSEs: 85.72739518646434
+Saved plot for column: B1
+Cross-Validation RMSEs: 92.40404541449463
++===========================================+
+Runtime for: Model/run_tests.py
+-----------> 00d:00h:03m:47s
++===========================================+

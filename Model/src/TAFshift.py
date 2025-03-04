@@ -46,11 +46,15 @@ class TAFShift:
         predicted_taf = predicted_taf.reshape(-1, 1)
         # predicted_taf = predicted_taf
 
+        # using Robust scaling
         if normalize:
-            scale_factor = np.max(np.abs(predicted_taf))
-            if scale_factor == 0:
-                scale_factor = 1.0
-            predicted_taf = predicted_taf / scale_factor
+            median_taf = np.median(predicted_taf)
+            q1, q3 = np.percentile(predicted_taf, [22, 95])
+            iqr = q3 - q1
+            if iqr < 1e-6:  
+                iqr = np.std(predicted_taf) if np.std(predicted_taf) > 0 else 1.0
+            predicted_taf = (predicted_taf - median_taf) / iqr 
+            # predicted_taf *= weight 
 
         # adjusted_forecast = forecasted * (1 + weight * predicted_taf)
         adjusted_forecast = forecasted + weight * predicted_taf

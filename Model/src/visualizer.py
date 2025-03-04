@@ -77,8 +77,8 @@ class Visualizer:
         plt.plot(full_time[train_end:test_end], plot_array_forecast[train_end:test_end], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
 
         # Add labels and title
-        plt.xlabel('Time')
-        plt.ylabel('Value')
+        plt.xlabel('Time (Hours)')
+        plt.ylabel('Value (Watts)')
         plt.title(f'{curr_system}, RMSE: {rmse:.2f} | TAF A:{TAFvars[0]} B:{TAFvars[1]} W:{TAFvars[2]}')
         
         plt.legend()
@@ -86,7 +86,7 @@ class Visualizer:
         # save_dir = f"/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/{curr_dir}/"
         save_dir = f"{curr_dir}/"
         
-        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} N_{neurons} B_{batch_size} L_{look_back} E_{epochs} D_{dropout}.png")
+        plt.savefig(f"{save_dir}{curr_system}_predictions Lr_{layers} H_{headroom} N_{neurons} B_{batch_size} L_{look_back} E_{epochs} D_{dropout} (TAF A {TAFvars[0]} B {TAFvars[1]} W {TAFvars[2]}).png")
         
         plt.close()
         
