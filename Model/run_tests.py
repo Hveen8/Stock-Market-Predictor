@@ -73,7 +73,7 @@ def run():
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results5'
+        curr_dir = 'results6'
 
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -108,7 +108,7 @@ def run():
                                 # beta_range = [0.4, 0.5, 0.6]
                                 beta_range = [0.5]
                                 # weight_range = np.arange(0.005, 0.1, 0.005)
-                                weight_range = [0.005, 0.01, 0.015, 0.02, 0.025, 0.03, 0.035]
+                                weight_range = [0.02, 0.025, 0.03, 0.035]
 
                                 # Generate all possible (alpha, beta, weight) combinations
                                 taf_params_list = [(round(alpha, 2), round(beta, 2), round(weight, 3)) 

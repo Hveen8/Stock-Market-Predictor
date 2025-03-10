@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=test     # create a short name for your job
-#SBATCH --partition=bigcard # smallcard | midcard | dualcard | bigcard
+#SBATCH --partition=dualcard # smallcard | midcard | dualcard | bigcard
 #SBATCH --nodes=1                # node count - unles you are VERY good at what you're doing, you should keep this as-is
 #SBATCH --ntasks-per-node=1               # total number of tasks across all nodes - you only have 1 node, so you only have 1 task. Leave this.
 #SBATCH --cpus-per-task=1        # cpu-cores per task (>1 if multi-threaded tasks) - play with this number if you are using a lot of CPU, but most people are using these machines for GPU only

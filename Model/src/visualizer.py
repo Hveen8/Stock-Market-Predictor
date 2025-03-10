@@ -71,8 +71,8 @@ class Visualizer:
         # Plotting
         plt.figure(figsize=(12, 6))
 
-        plt.plot(full_time[:train_end], curr_dataset[:train_end], color='blue', linewidth=1.5, label='Given Data (TRAIN)')
-        plt.plot(full_time[train_end:len(curr_dataset)], curr_dataset[train_end:len(curr_dataset)], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
+        plt.plot(full_time[:len(curr_dataset)], curr_dataset, color='blue', linewidth=1.5, label='Given Data (TRAIN)')
+        plt.plot(full_time[train_end:test_end], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
         # plt.plot(full_time[:len(curr_dataset)], plot_array_train[:len(curr_dataset)], color='green', linewidth=1.0, alpha=0.75, label='Training Data (Prediction)')
         plt.plot(full_time[train_end:test_end], plot_array_forecast[train_end:test_end], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
 
