@@ -3,7 +3,7 @@ import numpy as np
 from src.data_preprocessor import DataPreprocessor
 from src.lstm_model import LSTMModel
 from src.forecast_engine import ForecastEngine
-from src.TAFshift import TAFShift
+from src.TAFshift import TAFShift, taf_search_test
 from src.utils import calculate_rmse
 
 def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, taf_params_list):

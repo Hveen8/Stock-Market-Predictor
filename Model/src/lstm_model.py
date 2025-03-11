@@ -27,7 +27,7 @@ class LSTMModel:
             # In multi-layered the last is non-stateful ***
             model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
         else:
-            model.add(LSTM(neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
+            model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
         model.add(Dense(1))
         model.compile(loss='mean_squared_error', optimizer='adam')
         model.summary()

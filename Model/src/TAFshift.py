@@ -36,11 +36,12 @@ class TAFShift:
 
         
         # return taf_values.reshape(-1, 1), taf_values[-len(predictions_array):].reshape(-1, 1)
+        print(taf_values[len(data):])
         return taf_values, taf_values[len(data):]
         print(taf_values[len(data):])
         # return taf_values.reshape(-1, 1), taf_values[len(data):].reshape(-1, 1)
 
-    def apply_taf(self, historical_data, forecasted, weight=1.0, normalize=False):
+    def apply_taf(self, historical_data, forecasted, normalize=False, weight=0.0):
         _, predicted_taf = self.calculate_taf(historical_data, forecasted)
         # We need to reshape due to applying flatten in calculate_tafm must be in (n, 1) shape for plotting
         predicted_taf = predicted_taf.reshape(-1, 1)
@@ -59,3 +60,35 @@ class TAFShift:
         # adjusted_forecast = forecasted * (1 + weight * predicted_taf)
         adjusted_forecast = forecasted + weight * predicted_taf
         return adjusted_forecast
+    
+
+def taf_search_test(calculate_rmse, historical_data, forecasted, test_data, normalize=False):
+    """Function for getting optimal TAF"""
+    alpha_range = np.arange(0.0, 1.0, 0.05)
+    optimal_alpha = 0
+    beta_range = np.arange(0.0, 1.0, 0.05)
+    optimal_beta = 0
+    weight_range = np.arange(0.0, 0.2, 0.005)
+    optimal_weight = 0
+
+    # Relys on the assumption that the weights and TAF parameters (alpha and beta) affect RMSE independently
+    lowest_rmse = float('inf')
+    optimal_taf = TAFShift()
+    for a in alpha_range:
+        for b in beta_range:
+            taf_shift = TAFShift(alpha=a, beta=b)
+            adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=1.0)
+            rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+            if rmse < lowest_rmse:
+                lowest_rmse = rmse
+                optimal_alpha = a
+                optimal_beta = b
+                optimal_taf = taf_shift
+    optimalTAF_forecast = None
+    for w in weight_range:
+        adjusted_forecast = optimal_taf.apply_taf(historical_data, forecasted, normalize, weight=w)
+        rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+        if rmse < lowest_rmse:
+            lowest_rmse = rmse
+            optimal_weight = w
+    print('Optimal TAF and Weight: ', )
