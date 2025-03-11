@@ -23,7 +23,7 @@ class TAFShift:
 
         # Using the first timestep (from data) as initial smoothed forecast
         st[0] = combined_data[0]
-        tt[0] = 0
+        tt[0] = combined_data[1] - combined_data[0]
 
         taf_values = np.zeros(n)
         
@@ -36,9 +36,8 @@ class TAFShift:
 
         
         # return taf_values.reshape(-1, 1), taf_values[-len(predictions_array):].reshape(-1, 1)
-        print(taf_values[len(data):])
+        # print(taf_values[len(data):])
         return taf_values, taf_values[len(data):]
-        print(taf_values[len(data):])
         # return taf_values.reshape(-1, 1), taf_values[len(data):].reshape(-1, 1)
 
     def apply_taf(self, historical_data, forecasted, normalize=False, weight=0.0):
@@ -64,34 +63,49 @@ class TAFShift:
 
 def taf_search_test(calculate_rmse, historical_data, forecasted, test_data, normalize=False):
     """Function for getting optimal TAF"""
-    alpha_range = np.arange(0.0, 1.0, 0.05)
+    optimal_TAF_params = {}
+    alpha_range = np.arange(0.0, 1.0, 0.1)
     optimal_alpha = 0
-    beta_range = np.arange(0.0, 1.0, 0.05)
+    beta_range = np.arange(0.0, 1.0, 0.1)
     optimal_beta = 0
-    weight_range = np.arange(0.0, 0.2, 0.005)
+    weight_range = np.arange(0.0, 0.2, 0.01)
     optimal_weight = 0
 
     # Relys on the assumption that the weights and TAF parameters (alpha and beta) affect RMSE independently
-    lowest_rmse = float('inf')
+    lowest_rmse = 1000000
     optimal_taf = TAFShift()
+    optimalTAF_forecast = None
     for a in alpha_range:
         for b in beta_range:
             taf_shift = TAFShift(alpha=a, beta=b)
-            adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=1.0)
-            rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
-            if rmse < lowest_rmse:
-                lowest_rmse = rmse
-                optimal_alpha = a
-                optimal_beta = b
-                optimal_taf = taf_shift
-    optimalTAF_forecast = None
-    for w in weight_range:
-        adjusted_forecast = optimal_taf.apply_taf(historical_data, forecasted, normalize, weight=w)
-        rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
-        if rmse < lowest_rmse:
-            lowest_rmse = rmse
-            optimal_weight = w
-            optimalTAF_forecast = adjusted_forecast
-    print(f"Optimal TAF -- a: {optimal_alpha} and b: {optimal_beta} | Weight -- {optimal_weight} ")
-    optimal_TAF_params = (optimal_alpha, optimal_beta, optimal_weight)
-    return optimal_TAF_params, optimalTAF_forecast
+            # adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=0.5)
+            for w in weight_range:
+                adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=w)
+                rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+                if rmse < lowest_rmse:
+                    lowest_rmse = rmse
+                    optimal_alpha = a
+                    optimal_beta = b
+                    optimal_weight = w
+                    optimalTAF_forecast = adjusted_forecast
+    # for a in alpha_range:
+    #     for b in beta_range:
+    #         taf_shift = TAFShift(alpha=a, beta=b)
+    #         adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=1.0)
+    #         rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+    #         if rmse < lowest_rmse:
+    #             optimal_alpha = a
+    #             optimal_beta = b
+    #             optimal_taf = taf_shift         
+    #     for w in weight_range:
+    #         # adjusted_forecast = optimal_taf.apply_taf(historical_data, forecasted, normalize, weight=w)
+    #         rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+    #         if rmse < lowest_rmse:
+    #             lowest_rmse = rmse
+    #             optimal_weight = w
+    #             optimalTAF_forecast = adjusted_forecast
+
+    print(f"TAF alpha: {optimal_alpha}, beta: {optimal_beta}, weight: {optimal_weight} | RMSE={lowest_rmse:.2f}")
+
+    optimal_TAF_params[(optimal_alpha, optimal_beta, optimal_weight)] = (lowest_rmse, optimalTAF_forecast)
+    return optimal_TAF_params

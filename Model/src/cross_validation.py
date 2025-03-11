@@ -64,17 +64,20 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     # test_data_inverted  = data_preprocessor.scaler.inverse_transform(test_data)
 
     # Per params, generating different TAF shifts
-    rmse_results = {}
-    for (alpha, beta, weight) in taf_params_list:
-        taf_shift = TAFShift(alpha=alpha, beta=beta)
-        # Here, we use the (inverted) training predictions as the historical base.
-        # You might choose a different historical reference (e.g., the raw train data)
-        rmse_taf_preTAF = calculate_rmse(forecasted_inverted[:800, 0], test_data[:800, 0])
-        print('pre TAF: ', rmse_taf_preTAF)
-        adjusted_forecast = taf_shift.apply_taf(scaled_train, forecasted_inverted, weight=weight, normalize=False)
-        rmse_taf = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
-        rmse_results[(alpha, beta, weight)] = (rmse_taf, adjusted_forecast)
-        print(f"TAF alpha={alpha}, beta={beta}, weight={weight}: RMSE={rmse_taf:.2f}")
+    # rmse_results = {}
+    # for (alpha, beta, weight) in taf_params_list:
+    #     taf_shift = TAFShift(alpha=alpha, beta=beta)
+    #     # Here, we use the (inverted) training predictions as the historical base.
+    #     # You might choose a different historical reference (e.g., the raw train data)
+    #     adjusted_forecast = taf_shift.apply_taf(scaled_train, forecasted_inverted, weight=weight, normalize=False)
+    #     rmse_taf = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+    #     rmse_results[(alpha, beta, weight)] = (rmse_taf, adjusted_forecast)
+    #     print(f"TAF alpha={alpha}, beta={beta}, weight={weight}: RMSE={rmse_taf:.2f}")
+    rmse_taf_preTAF = calculate_rmse(forecasted_inverted[:, 0], test_data[:, 0])
+    print('pre TAF: ', rmse_taf_preTAF)
+    rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False)
+
+    
 
     # Calculate RMSE between forecast and actual test data
     # rmse = np.sqrt(np.mean((forecasted_inverted[:, 0] - test_data_inverted[:, 0]) ** 2))
@@ -82,6 +85,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     # rmse = calculate_rmse(forecasted_inverted[:, 0], test_data[:, 0])
     # print(f"Fold RMSE: {rmse:.2f}")
     # rmse_list.append(rmse)
+
 
     # return [data_preprocessor, lstm_model, forecast_engine], train_data_inverted, effective_train_end, test_end, forecasted_inverted, rmse_list
     return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results

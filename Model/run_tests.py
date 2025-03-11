@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 # gpu_strategy = tf.distribute.MirroredStrategy()
 #print(f"Number of GPUs Available: {gpu_strategy.num_replicas_in_sync}")
 
-gpus = len(tf.config.list_physical_devices('GPU'))
-print(f"Num GPUs Available: {gpus}")
+# gpus = len(tf.config.list_physical_devices('GPU'))
+# print(f"Num GPUs Available: {gpus}")
 #print(f"Worker (1 task per node) {os.environ.get('SLURM_PROCID', 'N/A')} sees {len(gpus)} GPU(s).")
 
 # Tensorflow distributed compute strategy (some shit that makes a distributed environment/rule-set)
@@ -68,12 +68,12 @@ def run():
     # Iterate through each column (assuming each column represents a system)
     for curr_system in df.columns:
 
-        if curr_system != 'B1':
+        if curr_system == 'B1' or 'Timestamp':
             continue
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results6'
+        curr_dir = 'results7'
 
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -87,9 +87,11 @@ def run():
                                 headroom = hm
                                 dropout = do
 
-                                forecast_horizon = 2000    # number of points to forecast per fold
+                                # ======================================================================== #
+                                forecast_horizon = 1000    # number of points to forecast per fold
                                 initial_train_size = 8000  # choose your training size
                                 step_size = 0              # roll the window forward by this many points
+                                # ======================================================================== #
 
                                 look_back = math.ceil(initial_train_size*0.6)
 
@@ -127,7 +129,7 @@ def run():
                                                         forecast_engine=model[2])
                                 # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
                                 for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
-                                    if rmse_taf < 79:
+                                    if rmse_taf < 90:
                                         visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
                                         print("Cross-Validation RMSEs:", rmse_taf)    
 
