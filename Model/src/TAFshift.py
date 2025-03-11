@@ -91,4 +91,7 @@ def taf_search_test(calculate_rmse, historical_data, forecasted, test_data, norm
         if rmse < lowest_rmse:
             lowest_rmse = rmse
             optimal_weight = w
-    print('Optimal TAF and Weight: ', )
+            optimalTAF_forecast = adjusted_forecast
+    print(f"Optimal TAF -- a: {optimal_alpha} and b: {optimal_beta} | Weight -- {optimal_weight} ")
+    optimal_TAF_params = (optimal_alpha, optimal_beta, optimal_weight)
+    return optimal_TAF_params, optimalTAF_forecast
