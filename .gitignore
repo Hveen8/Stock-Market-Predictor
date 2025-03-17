@@ -1,0 +1,4 @@
+Model/results
+test_slurm5_L2_batched.py
+test_slurm5_L_batched.py
+logs/
