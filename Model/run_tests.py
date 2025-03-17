@@ -16,8 +16,8 @@ import matplotlib.pyplot as plt
 # gpu_strategy = tf.distribute.MirroredStrategy()
 #print(f"Number of GPUs Available: {gpu_strategy.num_replicas_in_sync}")
 
-# gpus = len(tf.config.list_physical_devices('GPU'))
-# print(f"Num GPUs Available: {gpus}")
+gpus = len(tf.config.list_physical_devices('GPU'))
+print(f"Num GPUs Available: {gpus}")
 #print(f"Worker (1 task per node) {os.environ.get('SLURM_PROCID', 'N/A')} sees {len(gpus)} GPU(s).")
 
 # Tensorflow distributed compute strategy (some shit that makes a distributed environment/rule-set)
@@ -64,16 +64,15 @@ def run():
     neurons         = 100
     forecast_steps  = 2000
 
-
     # Iterate through each column (assuming each column represents a system)
     for curr_system in df.columns:
 
-        if curr_system == 'B1' or 'Timestamp':
+        if curr_system == 'B1' or curr_system == 'Timestamp':
             continue
 
         curr_dataset = df[curr_system].values.reshape(-1, 1).astype('float32')
 
-        curr_dir = 'results7'
+        curr_dir = 'results8'
 
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -88,7 +87,7 @@ def run():
                                 dropout = do
 
                                 # ======================================================================== #
-                                forecast_horizon = 1000    # number of points to forecast per fold
+                                forecast_horizon = 2000    # number of points to forecast per fold
                                 initial_train_size = 8000  # choose your training size
                                 step_size = 0              # roll the window forward by this many points
                                 # ======================================================================== #
