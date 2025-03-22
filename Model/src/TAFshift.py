@@ -81,7 +81,7 @@ def taf_search_test(calculate_rmse, historical_data, forecasted, test_data, norm
             # adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=0.5)
             for w in weight_range:
                 adjusted_forecast = taf_shift.apply_taf(historical_data, forecasted, normalize, weight=w)
-                rmse = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
+                rmse = calculate_rmse(historical_data+adjusted_forecast[:, 0], historical_data+test_data[:, 0])
                 if rmse < lowest_rmse:
                     lowest_rmse = rmse
                     optimal_alpha = a

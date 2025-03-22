@@ -54,13 +54,15 @@ def run():
     # batch_size_list = [128, 256]
     batch_size_list = [256]
     # look_back_list  = [6000]
-    look_back_list  = list(range(1000, 6001, 500))
-    # look_back_list = [6000]
-    epoch_list      = list(range(10, 21, 1))
+    # look_back_list  = list(range(3000, 6001, 250))
+    look_back_list = [6000]
+    # epoch_list      = list(range(10, 101, 1))
+    # epoch_list      = list(range(10, 31, 1))
+    epoch_list = [20]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
-    dropout_list    = [0]
-    # dropout_list    = np.linspace(1.0, 0.0, 11)
+    # dropout_list    = [0]
+    dropout_list    = np.linspace(1.0, 0.0, 11)
     activation      = 'tanh'
     layers          = 2
     neurons         = 100
@@ -77,13 +79,12 @@ def run():
         curr_dir = 'results9'
 
         # ======================================================================== #
-        forecast_horizon = 60   # number of points to forecast per fold
+        forecast_horizon = 2000    # number of points to forecast per fold
         initial_train_size = 8000  # choose your training size
         step_size = 0              # roll the window forward by this many points
         # ======================================================================== #
 
         optimal_model_params = None
-        cross_val_times = None
         lowest_rmse = 1000000
         for bs in batch_size_list:
             for lb in look_back_list:
@@ -126,18 +127,12 @@ def run():
                                 # print(taf_params_list)
 
                                 
-                                model, train_data_inverted, train_end, test_end, non_taf_forecast, local_rmse = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, False)
+                                local_rmse = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, False)
 
                                 print(f'RMSE: {local_rmse} | Look_back: {look_back}, Epochs: {epochs}')
                                 
                                 if local_rmse < lowest_rmse:
                                     optimal_model_params = model_params
-                                    cross_val_times = {'model': model,
-                                                       'train_data_inverted': train_data_inverted,
-                                                       'train_end': train_end,
-                                                       'test_end': test_end,
-                                                       'non_taf_forecast': non_taf_forecast,
-                                                       'local_rmse': local_rmse}
                             
  
 
@@ -206,16 +201,6 @@ def run():
                                 continue
         
 
-        cross_val_times
-
-        visualizer = Visualizer(scaler=cross_val_times['model'][0].scaler,
-                                trained_model=cross_val_times['model'][1],
-                                forecast_engine=cross_val_times['model'][2])        
-        visualizer.plot_results(cross_val_times['local_rmse'], cross_val_times['train_data_inverted'], cross_val_times['train_end'], cross_val_times['test_end'], cross_val_times['non_taf_forecast'], curr_dataset, curr_system, results_dir+curr_dir, [0, 0, 0])
-        print("Cross-Validation RMSEs:", local_rmse)   
-
-
-        # == Doing it agian for TAF, not the best ==
 
         model, train_data_inverted, train_end, test_end, rmse_TAFs = time_series_cross_validation(curr_dataset, optimal_model_params, forecast_horizon, initial_train_size, step_size, True)
 
@@ -226,8 +211,9 @@ def run():
                                 forecast_engine=model[2])
         # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
         for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
-            visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
-            print("Cross-Validation RMSEs (TAF):", rmse_taf)   
+            if rmse_taf < 1000:
+                visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, curr_system, results_dir+curr_dir, [alpha, beta, weight])
+                print("Cross-Validation RMSEs:", rmse_taf)   
 
 if __name__ == "__main__":
     run()

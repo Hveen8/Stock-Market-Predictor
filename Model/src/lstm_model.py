@@ -17,6 +17,9 @@ class LSTMModel:
         self.trainPredict = None
 
     def _build_model(self):
+        # SHOULD ONLY HAVE ONE MODEL IN MEMORY (TF handles the models in memory in a funny (funny = i dont know))
+        # So clear_session is to clear the way tf stores/handles the models
+        tf.keras.backend.clear_session()
         model = Sequential()
         # batch_input_shape (batch_size, num_steps, features)
         model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))

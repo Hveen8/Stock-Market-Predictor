@@ -24,6 +24,8 @@ export TRANSFORMERS_CACHE=/local/cache
 export HF_HOME=/local/cache
 export SENTENCE_TRANSFORMERS_HOME=/local/cache
 
+export TF_GPU_ALLOCATOR=cuda_malloc_async
+
 # ------------------
 #      Run FIle
 # ------------------

@@ -61,20 +61,23 @@ class Visualizer:
         # print('Train Score: %.2f RMSE' % (train_rmse))
 
         # Create full time array for x-axis
-        full_time = np.arange(len(curr_dataset) + len(future_predictions_inverted))
+        # full_time = np.arange(len(curr_dataset) + len(future_predictions_inverted))
+        full_time = np.arange(len(future_predictions_inverted))
         # full_time = np.arange(train_end + len(future_predictions_inverted))
 
         # Create plot array for plot values
         # plot_array_train = self.create_plot_array(full_time, len(curr_dataset)-len(train_predictions_inverted), train_predictions_inverted)
-        plot_array_forecast = self.create_plot_array(full_time, train_end, future_predictions_inverted)
+        # plot_array_forecast = self.create_plot_array(full_time, train_end, future_predictions_inverted)
+        plot_array_forecast = self.create_plot_array(full_time, 0, future_predictions_inverted)
 
         # Plotting
         plt.figure(figsize=(12, 6))
 
-        plt.plot(full_time[:len(curr_dataset)], curr_dataset, color='blue', linewidth=1.5, label='Given Data (TRAIN)')
-        plt.plot(full_time[train_end:test_end], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
-        # plt.plot(full_time[:len(curr_dataset)], plot_array_train[:len(curr_dataset)], color='green', linewidth=1.0, alpha=0.75, label='Training Data (Prediction)')
-        plt.plot(full_time[train_end:test_end], plot_array_forecast[train_end:test_end], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
+        # plt.plot(full_time[:len(curr_dataset)], curr_dataset, color='blue', linewidth=1.5, label='Given Data (TRAIN)') 
+        # plt.plot(full_time[train_end:test_end], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
+        # plt.plot(full_time[train_end:test_end], plot_array_forecast[train_end:test_end], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
+        plt.plot(full_time[:], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
+        plt.plot(full_time[:], plot_array_forecast[:], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
 
         # Add labels and title
         plt.xlabel('Time (Hours)')

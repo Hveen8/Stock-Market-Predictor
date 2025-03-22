@@ -6,7 +6,7 @@ from src.forecast_engine import ForecastEngine
 from src.TAFshift import TAFShift, taf_search_test
 from src.utils import calculate_rmse
 
-def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, taf_params_list):
+def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, OPTIMAL=False):
 # def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size):
     """
     curr_dataset: the full dataset (2D array, e.g. shape (n_samples, 1))
@@ -38,6 +38,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     print('*********** Starting New Cross-Validation ***********')
     print(f"Fold (Cross Validation) with train indices {start}:{effective_train_end} and test indices {effective_train_end}:{test_end}")
 
+# THIS IS WHAT I AM CHANGING FOR THE MULTI FEATURES
     # *****Need to tie input layer to Model class*****
     trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
     print('trainX shape (After Reshape): ', trainX.shape)
@@ -75,9 +76,13 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     #     print(f"TAF alpha={alpha}, beta={beta}, weight={weight}: RMSE={rmse_taf:.2f}")
     rmse_taf_preTAF = calculate_rmse(forecasted_inverted[:, 0], test_data[:, 0])
     print('pre TAF: ', rmse_taf_preTAF)
-    rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False)
+    # rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False) 
+    if OPTIMAL:
+        rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False) 
+        return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results
+    else:
+        return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, forecasted_inverted, rmse_taf_preTAF
 
-    
 
     # Calculate RMSE between forecast and actual test data
     # rmse = np.sqrt(np.mean((forecasted_inverted[:, 0] - test_data_inverted[:, 0]) ** 2))
@@ -88,4 +93,4 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
 
 
     # return [data_preprocessor, lstm_model, forecast_engine], train_data_inverted, effective_train_end, test_end, forecasted_inverted, rmse_list
-    return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results
+    # return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results
