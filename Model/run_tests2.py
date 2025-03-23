@@ -65,7 +65,7 @@ def run():
     features = len(feature_cols)
     batch_size_list = [256]
     # look_back_list  = list(range(4000, 6001, 500))
-    look_back_list = [2000]
+    look_back_list = [5000]
     # epoch_list      = list(range(2, 21, 1))
     epoch_list      = [6]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]

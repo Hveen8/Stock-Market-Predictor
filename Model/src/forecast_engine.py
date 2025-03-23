@@ -35,7 +35,7 @@ class ForecastEngine(LSTMModel):
         # What the class will fill
         self.futurePredictions = None
 
-    def forecast(self, start_input, steps, target_col_idx):
+    def forecast(self, start_input, steps, target_col_idx=0):
         # # Define a new forecasting model
         # forecast_model = Sequential()
         # forecast_model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
@@ -51,7 +51,7 @@ class ForecastEngine(LSTMModel):
         # forecast_model.compile(loss='mean_squared_error', optimizer='adam')
 
         # Use _build_model from LSTMModel to create a new model for forecasting
-        forecast_model = self._build_model()  # Rebuild model for forecasting
+        forecast_model = self._build_model(batch_size=1)  # Rebuild model for forecasting
 
         # Set weights from the trained model
         forecast_model.set_weights(self.trained_model.model.get_weights())
@@ -77,7 +77,7 @@ class ForecastEngine(LSTMModel):
             new_step[target_col_idx] = next_target_value
 
 
-            current_sequence = np.vstack((current_sequence[1:], new_step))
+            last_look_back_seq = np.vstack((last_look_back_seq[1:], new_step))
 
             # for b in range(self.batch_size):
             #     new_predictions.append(pred[b, -1, 0])
