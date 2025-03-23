@@ -41,9 +41,8 @@ class DataPreprocessor:
         dataX, dataY = [], []
 
         for i in range(len(dataset)-look_back-1):
-            # Note the 0 here indicated to put into a 1D array [1, 2, 3]
-            # Instead of 2D [[1], [2], [3]]
-            input = dataset[i:(i+look_back), :]
+            # Note the : here indicated to put into a 2D array [[1,2,3], [1,2,3], [1,2,3]]
+            input = dataset[i:(i+look_back), :] # IF there was only 1 feature, then need 0 to put into 1D
             # Appened into shape(X, 3)
             dataX.append(input)
             output = dataset[i + look_back, target_feature]

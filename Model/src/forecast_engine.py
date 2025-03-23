@@ -35,7 +35,7 @@ class ForecastEngine(LSTMModel):
         # What the class will fill
         self.futurePredictions = None
 
-    def forecast(self, start_input, steps):
+    def forecast(self, start_input, steps, target_col_idx):
         # # Define a new forecasting model
         # forecast_model = Sequential()
         # forecast_model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
@@ -57,27 +57,43 @@ class ForecastEngine(LSTMModel):
         forecast_model.set_weights(self.trained_model.model.get_weights())
 
         new_predictions = []
-        current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction
+        # current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction
+        last_look_back_seq = start_input[-1]
 
-        print('Future batch steps: ', math.ceil( steps/self.batch_size ))
-        for i in range(math.ceil( steps/self.batch_size )):
-            pred = forecast_model.predict(current_batch, batch_size=self.batch_size)
+        # print('Future batch steps: ', math.ceil( steps/self.batch_size ))
+        # for i in range(math.ceil( steps/self.batch_size )):
+        for i in range(steps):
+            # (1, look_back, num_features)
+            current_input = np.expand_dims(last_look_back_seq, axis=0)
+            # Can do this (batch_size=1) since have Dense(1)
+            pred = forecast_model.predict(current_input, batch_size=1)
+            next_target_value = pred[0, 0]
+            
+            new_predictions.append(next_target_value)
 
-            for b in range(self.batch_size):
-                new_predictions.append(pred[b, -1, 0])
-            # print('Predictions shape: ', pred[i, -1, :].shape)
-		    # print('New Inference (Prediction): ', pred[-1, -1, 0])
 
-            # Update each sequence in the batch
-            new_batch = np.zeros_like(current_batch)
-            for b in range(self.batch_size):
-                # Shift the sequence
-                rolled = np.roll(current_batch[b], -1)
-                # Add the new prediction at the end
-                rolled[-1] = pred[b, -1, 0]
-                new_batch[b] = rolled
+            new_step = np.copy(last_look_back_seq[-1])
+            # Replace the target column with the prediction. Other features stay the same
+            new_step[target_col_idx] = next_target_value
 
-            current_batch = new_batch
+
+            current_sequence = np.vstack((current_sequence[1:], new_step))
+
+            # for b in range(self.batch_size):
+            #     new_predictions.append(pred[b, -1, 0])
+            # # print('Predictions shape: ', pred[i, -1, :].shape)
+		    # # print('New Inference (Prediction): ', pred[-1, -1, 0])
+
+            # # Update each sequence in the batch
+            # new_batch = np.zeros_like(current_batch)
+            # for b in range(self.batch_size):
+            #     # Shift the sequence
+            #     rolled = np.roll(current_batch[b], -1)
+            #     # Add the new prediction at the end
+            #     rolled[-1] = pred[b, -1, 0]
+            #     new_batch[b] = rolled
+
+            # current_batch = new_batch
 
         # Convert predictions to a numpy array (predictions_array)
         self.futurePredictions = np.array(new_predictions).reshape(-1, 1)

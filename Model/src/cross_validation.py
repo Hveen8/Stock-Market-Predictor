@@ -66,7 +66,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     trainPredict = lstm_model.predict(trainX)
 
     forecast_engine = ForecastEngine(trained_model=lstm_model, isReturnSeq=True)
-    forecastPredict = forecast_engine.forecast(trainX, forecast_horizon)
+    forecastPredict = forecast_engine.forecast(trainX, forecast_horizon, target_feature_col)
     print('Forecast infered data shape: ', forecastPredict.shape)
     
     # Invert the scaling for the forecast, train and test data
