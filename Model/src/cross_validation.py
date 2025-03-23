@@ -39,7 +39,8 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     effective_train_samples = len(dataX)
     effective_train_end = start + effective_train_samples + model_params['look_back']
 
-    test_end = effective_train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
+    # test_end = effective_train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
+    test_end = effective_train_end + forecast_horizon
     test_data = curr_dataset[effective_train_end:test_end]
 
     print('*********** Starting New Cross-Validation ***********')
