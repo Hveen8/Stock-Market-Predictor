@@ -37,16 +37,17 @@ class DataPreprocessor:
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
-    def create_dataset(self, dataset, look_back=1):
+    def create_dataset(self, dataset, look_back=1, target_feature=0):
         dataX, dataY = [], []
 
         for i in range(len(dataset)-look_back-1):
             # Note the 0 here indicated to put into a 1D array [1, 2, 3]
             # Instead of 2D [[1], [2], [3]]
-            a = dataset[i:(i+look_back), 0]
+            input = dataset[i:(i+look_back), :]
             # Appened into shape(X, 3)
-            dataX.append(a)
-            dataY.append(dataset[i + look_back, 0])
+            dataX.append(input)
+            output = dataset[i + look_back, target_feature]
+            dataY.append(output)
 
         return np.array(dataX), np.array(dataY)
 
@@ -55,5 +56,20 @@ class DataPreprocessor:
         trim_size = len(dataX) - (len(dataX) % batch_size)
         return dataX[:trim_size], dataY[:trim_size]
 
-    def combine_feature(self):
-        pass
+    def invert_1d_prediction(self, pred_1d, feature_cols_num, target_feature=0):
+        # pred_1d shape: (samples,1) -> what the INFERENCE output of the LSTM is
+        # (samples, num_features) -> (samples,1) keeping target column
+        padded = np.zeros((pred_1d.shape[0], feature_cols_num), dtype=np.float32)
+        # [0, 0, 1, 0]
+        # [0, 0, 1, 0] <- is essentially this
+        # [0, 0, 1, 0]
+        padded[:, target_feature] = pred_1d[:, 0]
+        inverted = self.scaler.inverse_transform(padded)
+        # Return just the "target" column (out of all the feature columns)
+        return inverted[:, target_feature].reshape(-1,1)
+
+def filter_multi_features(dataset, stock_rows, feature_cols):
+    df_symbol = dataset[dataset['symbol'] == stock_rows].copy()
+    df_symbol[feature_cols] = df_symbol[feature_cols].fillna(0)
+    full_dataset = df_symbol[feature_cols].values.astype('float32')
+    return full_dataset

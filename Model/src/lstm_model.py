@@ -3,9 +3,10 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense, InputLayer
 
 class LSTMModel:
-    def __init__(self, layers, look_back, batch_size, neurons, epochs, activation, dropout, isReturnSeq=False):
+    def __init__(self, layers, look_back, batch_size, neurons, epochs, activation, dropout, features=1, isReturnSeq=False):
         self.layers = layers
         self.isReturnSeq = isReturnSeq # should be either True or False
+        self.features = features
         self.look_back = look_back
         self.batch_size = batch_size
         self.neurons = neurons
@@ -22,7 +23,7 @@ class LSTMModel:
         tf.keras.backend.clear_session()
         model = Sequential()
         # batch_input_shape (batch_size, num_steps, features)
-        model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, 1)))
+        model.add(InputLayer(batch_input_shape=(self.batch_size, self.look_back, self.features)))
         # the more complex the data -> more neurons needed
         if self.layers > 1:
             for l in range(self.layers-1):

@@ -6,7 +6,7 @@ from src.forecast_engine import ForecastEngine
 from src.TAFshift import TAFShift, taf_search_test
 from src.utils import calculate_rmse
 
-def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, OPTIMAL=False):
+def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, target_feature_col=0, OPTIMAL=False):
 # def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size):
     """
     curr_dataset: the full dataset (2D array, e.g. shape (n_samples, 1))
@@ -27,11 +27,18 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     data_preprocessor = DataPreprocessor(headroom=model_params['headroom'])
     scaled_train = data_preprocessor.fit_transform(train_data)
 
-    dataX, dataY = data_preprocessor.create_dataset(scaled_train, look_back=model_params['look_back'])
+    
+
+    dataX, dataY = data_preprocessor.create_dataset(scaled_train, 
+                                                    look_back=model_params['look_back'],
+                                                    target_feature=target_feature_col)
+    if len(dataX) == 0:
+        raise ValueError("No training/data samples generated (dataX). Look back may be too big")
     dataX, dataY = data_preprocessor.trim_XY(dataX, dataY, model_params['batch_size'])
 
     effective_train_samples = len(dataX)
     effective_train_end = start + effective_train_samples + model_params['look_back']
+
     test_end = effective_train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
     test_data = curr_dataset[effective_train_end:test_end]
 
@@ -40,12 +47,15 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
 
 # THIS IS WHAT I AM CHANGING FOR THE MULTI FEATURES
     # *****Need to tie input layer to Model class*****
-    trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
+    # trainX = np.reshape(dataX, (dataX.shape[0], dataX.shape[1], 1))
+    # NO NEED to reshape since dataX is already 3D, (samples, look_back, num_features)
+    trainX = dataX
     print('trainX shape (After Reshape): ', trainX.shape)
     trainY = dataY
 
     lstm_model = LSTMModel(layers=model_params['layers'],
                             isReturnSeq=False,
+                            features=model_params['features'],
                             look_back=model_params['look_back'],
                             batch_size=model_params['batch_size'],
                             neurons=model_params['neurons'],
@@ -60,8 +70,15 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     print('Forecast infered data shape: ', forecastPredict.shape)
     
     # Invert the scaling for the forecast, train and test data
-    forecasted_inverted = data_preprocessor.scaler.inverse_transform(forecastPredict)
-    train_predict_inverted = data_preprocessor.scaler.inverse_transform(trainPredict)
+    forecasted_inverted = data_preprocessor.invert_1d_prediction(forecastPredict, model_params['features'], target_feature_col)
+    # Ensuring forecasted_inverted has the same number of rows as test_data
+    # I ran into issues with mismatch due to th batch size
+    num_test_samples = test_data.shape[0]
+    if forecasted_inverted.shape[0] > num_test_samples:
+        forecasted_inverted = forecasted_inverted[:num_test_samples]
+    elif forecasted_inverted.shape[0] < num_test_samples:
+        test_data = test_data[:forecasted_inverted.shape[0]]
+    train_predict_inverted = data_preprocessor.invert_1d_prediction(trainPredict, model_params['features'], target_feature_col)
     # test_data_inverted  = data_preprocessor.scaler.inverse_transform(test_data)
 
     # Per params, generating different TAF shifts

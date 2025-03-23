@@ -51,6 +51,7 @@ def run():
     # activation = 'tanh'  # or 'relu' but relu is shit
     # dropout = 0.1
 
+    features = 1
     # batch_size_list = [128, 256]
     batch_size_list = [256]
     # look_back_list  = [6000]
@@ -99,7 +100,8 @@ def run():
 
                                 # look_back = math.ceil(initial_train_size*0.6)
 
-                                model_params = {'look_back': look_back,
+                                model_params = {'features': features,
+                                                'look_back': look_back,
                                                 'batch_size': batch_size,
                                                 'epochs': epochs,
                                                 'headroom': headroom,
@@ -131,6 +133,7 @@ def run():
                                 print(f'RMSE: {local_rmse} | Look_back: {look_back}, Epochs: {epochs}')
                                 
                                 if local_rmse < lowest_rmse:
+                                    lowest_rmse = local_rmse
                                     optimal_model_params = model_params
                                     cross_val_times = {'model': model,
                                                        'train_data_inverted': train_data_inverted,
@@ -205,8 +208,6 @@ def run():
                                 print("+======================================================================================+")
                                 continue
         
-
-        cross_val_times
 
         visualizer = Visualizer(scaler=cross_val_times['model'][0].scaler,
                                 trained_model=cross_val_times['model'][1],

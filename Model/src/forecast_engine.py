@@ -4,9 +4,10 @@ import tensorflow as tf
 from .lstm_model import LSTMModel
 
 class ForecastEngine(LSTMModel):
-    def __init__(self, trained_model, layers=None, isReturnSeq=True, look_back=None, batch_size=None, neurons=None, epochs=None, activation=None, dropout=None):
+    def __init__(self, trained_model, layers=None, isReturnSeq=True, features=None, look_back=None, batch_size=None, neurons=None, epochs=None, activation=None, dropout=None):
         params = {'layers': layers,
                 'isReturnSeq' : isReturnSeq,
+                'features' : features,
                 'look_back': look_back,
                 'batch_size': batch_size,
                 'neurons': neurons,
@@ -22,6 +23,7 @@ class ForecastEngine(LSTMModel):
         # Initialize LSTMModel with inherited parameters
         super().__init__(layers=params['layers'],
                          isReturnSeq=params['isReturnSeq'],
+                         features=params['features'],
                          look_back=params['look_back'],
                          batch_size=params['batch_size'],
                          neurons=params['neurons'],
