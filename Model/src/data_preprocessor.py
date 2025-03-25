@@ -45,7 +45,7 @@ class DataPreprocessor:
             input = dataset[i:(i+look_back), :] # IF there was only 1 feature, then need 0 to put into 1D
             # Appened into shape(X, 3)
             dataX.append(input)
-            output = dataset[i + look_back, target_feature]
+            output = dataset[i + look_back, :]
             dataY.append(output)
 
         return np.array(dataX), np.array(dataY)

@@ -42,6 +42,7 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     # test_end = effective_train_end + math.ceil(forecast_horizon/model_params['batch_size'])*model_params['batch_size']
     test_end = effective_train_end + forecast_horizon
     test_data = curr_dataset[effective_train_end:test_end]
+    print('test_data shape: ', test_data.shape)
 
     print('*********** Starting New Cross-Validation ***********')
     print(f"Fold (Cross Validation) with train indices {start}:{effective_train_end} and test indices {effective_train_end}:{test_end}")
@@ -92,11 +93,11 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     #     rmse_taf = calculate_rmse(adjusted_forecast[:, 0], test_data[:, 0])
     #     rmse_results[(alpha, beta, weight)] = (rmse_taf, adjusted_forecast)
     #     print(f"TAF alpha={alpha}, beta={beta}, weight={weight}: RMSE={rmse_taf:.2f}")
-    rmse_taf_preTAF = calculate_rmse(forecasted_inverted[:, 0], test_data[:, 0])
+    rmse_taf_preTAF = calculate_rmse(forecasted_inverted[:, 0], test_data[:, target_feature_col])
     print('pre TAF: ', rmse_taf_preTAF)
     # rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False) 
     if OPTIMAL:
-        rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False) 
+        rmse_results = taf_search_test(calculate_rmse, scaled_train[:, target_feature_col], forecasted_inverted, test_data[:, target_feature_col], normalize=False) 
         return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results
     else:
         return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, forecasted_inverted, rmse_taf_preTAF

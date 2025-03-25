@@ -52,22 +52,22 @@ def run():
     # dropout = 0.1
 
     feature_cols = ['open',
-                'high',
-                'low',
-                'close',
-                'volume',
-                'rsi',
-                'macd',
-                'macdh',
-                'macds']
+                    'high',
+                    'low',
+                    'close',
+                    'volume',
+                    'rsi',
+                    'macd',
+                    'macdh',
+                    'macds']
     target_feature_col = 3
     
     features = len(feature_cols)
     batch_size_list = [256]
-    # look_back_list  = list(range(4000, 6001, 500))
-    look_back_list = [5000]
-    # epoch_list      = list(range(2, 21, 1))
-    epoch_list      = [6]
+    # look_back_list  = list(range(1000, 4001, 250))
+    look_back_list = [4000]
+    # epoch_list      = list(range(2, 41, 1))
+    epoch_list      = [18]
     # headroom_list   = [1.0, 0.5, 0.6, 0.7, 0.8, 0.9, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
     headroom_list   = [1.0]
     dropout_list    = [0]
@@ -95,8 +95,8 @@ def run():
         curr_dir = 'results10'
 
         # ======================================================================== #
-        forecast_horizon = 60   # number of points to forecast per fold
-        initial_train_size = 8000  # choose your training size
+        forecast_horizon = 100   # number of points to forecast per fold
+        initial_train_size = 4500  # choose your training size
         step_size = 0              # roll the window forward by this many points
         # ======================================================================== #
 
@@ -117,7 +117,7 @@ def run():
 
                                 # look_back = math.ceil(initial_train_size*0.6)
 
-                                model_params = {'features': features,
+                                model_params = {'features': 9,
                                                 'look_back': look_back,
                                                 'batch_size': batch_size,
                                                 'epochs': epochs,
@@ -229,7 +229,7 @@ def run():
         visualizer = Visualizer(scaler=cross_val_times['model'][0].scaler,
                                 trained_model=cross_val_times['model'][1],
                                 forecast_engine=cross_val_times['model'][2])        
-        visualizer.plot_results(cross_val_times['local_rmse'], cross_val_times['train_data_inverted'], cross_val_times['train_end'], cross_val_times['test_end'], cross_val_times['non_taf_forecast'], curr_dataset, stock, results_dir+curr_dir, [0, 0, 0])
+        visualizer.plot_results(cross_val_times['local_rmse'], cross_val_times['train_data_inverted'], cross_val_times['train_end'], cross_val_times['test_end'], cross_val_times['non_taf_forecast'], curr_dataset, stock, target_feature_col, results_dir+curr_dir, [0, 0, 0])
         print("Cross-Validation RMSEs:", cross_val_times['local_rmse'])   
 
 
@@ -244,7 +244,7 @@ def run():
                                 forecast_engine=model[2])
         # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
         for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
-            visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, stock, results_dir+curr_dir, [alpha, beta, weight])
+            visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, stock, target_feature_col, results_dir+curr_dir, [alpha, beta, weight])
             print("Cross-Validation RMSEs (TAF):", rmse_taf)   
 
 if __name__ == "__main__":

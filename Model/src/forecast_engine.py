@@ -51,38 +51,45 @@ class ForecastEngine(LSTMModel):
         # forecast_model.compile(loss='mean_squared_error', optimizer='adam')
 
         # Use _build_model from LSTMModel to create a new model for forecasting
-        forecast_model = self._build_model(batch_size=1)  # Rebuild model for forecasting
+        forecast_model = self._build_model(batch_size=self.batch_size)  # Rebuild model for forecasting
 
         # Set weights from the trained model
         forecast_model.set_weights(self.trained_model.model.get_weights())
 
         new_predictions = []
-        # current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction
-        last_look_back_seq = start_input[-1]
+        current_batch = start_input[-self.batch_size:]  # Get the last batch for prediction
+        # current_batch = [current_batch.copy() for _ in range(self.batch_size)]
+        # last_look_back_seq = start_input[-1]
 
         # print('Future batch steps: ', math.ceil( steps/self.batch_size ))
         # for i in range(math.ceil( steps/self.batch_size )):
         for i in range(steps):
-            # (1, look_back, num_features)
-            current_input = np.expand_dims(last_look_back_seq, axis=0)
-            # Can do this (batch_size=1) since have Dense(1)
-            pred = forecast_model.predict(current_input, batch_size=1)
-            next_target_value = pred[0, 0]
+            # # (1, look_back, num_features)
+            # current_input = np.expand_dims(last_look_back_seq, axis=0)
+            # # Can do this (batch_size=1) since have Dense(1)
+            # pred = forecast_model.predict(current_input, batch_size=1)
+            # next_target_value = pred[0, 0]
             
-            new_predictions.append(next_target_value)
+            # new_predictions.append(next_target_value)
 
 
-            new_step = np.copy(last_look_back_seq[-1])
-            # Replace the target column with the prediction. Other features stay the same
-            new_step[target_col_idx] = next_target_value
+            # new_step = np.copy(last_look_back_seq[-1])
+            # # Replace the target column with the prediction. Other features stay the same
+            # new_step[target_col_idx] = next_target_value
 
 
-            last_look_back_seq = np.vstack((last_look_back_seq[1:], new_step))
+            # last_look_back_seq = np.vstack((last_look_back_seq[1:], new_step))
+
+
+            pred = forecast_model.predict(current_batch, batch_size=self.batch_size)
+            new_predictions.append(pred[-1, -1, target_col_idx])
+            # Get all the next infered values/timesteps, put into 3D shape
+            new_step = pred[:, -1, :].reshape(self.batch_size, 1, -1)
 
             # for b in range(self.batch_size):
             #     new_predictions.append(pred[b, -1, 0])
-            # # print('Predictions shape: ', pred[i, -1, :].shape)
-		    # # print('New Inference (Prediction): ', pred[-1, -1, 0])
+            # print('Predictions shape: ', pred[i, -1, :].shape)
+		    # print('New Inference (Prediction): ', pred[-1, -1, 0])
 
             # # Update each sequence in the batch
             # new_batch = np.zeros_like(current_batch)
@@ -92,8 +99,11 @@ class ForecastEngine(LSTMModel):
             #     # Add the new prediction at the end
             #     rolled[-1] = pred[b, -1, 0]
             #     new_batch[b] = rolled
-
             # current_batch = new_batch
+
+            # Update of batch for next prediction step, dropping the oldest value (in look back) and
+            # adding the new infered values (newest in look back)
+            current_batch = np.concatenate([current_batch[:, 1:, :], new_step], axis=1)
 
         # Convert predictions to a numpy array (predictions_array)
         self.futurePredictions = np.array(new_predictions).reshape(-1, 1)

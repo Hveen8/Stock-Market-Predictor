@@ -31,7 +31,7 @@ class Visualizer:
         return plot_array
 
     # def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, curr_dir):
-    def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, curr_dir, TAFvars):
+    def plot_results(self, rmse, train_predictions_inverted, train_end, test_end, future_predictions_inverted, curr_dataset, curr_system, target_col, curr_dir, TAFvars):
         """Both Train and Forecast must be given INVERTED, following the .predict/forecast output"""
         # Extract parameters from the trained model
         look_back = self.trained_model.look_back
@@ -76,7 +76,7 @@ class Visualizer:
         # plt.plot(full_time[:len(curr_dataset)], curr_dataset, color='blue', linewidth=1.5, label='Given Data (TRAIN)') 
         # plt.plot(full_time[train_end:test_end], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
         # plt.plot(full_time[train_end:test_end], plot_array_forecast[train_end:test_end], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
-        plt.plot(full_time[:], curr_dataset[train_end:test_end], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
+        plt.plot(full_time[:], curr_dataset[train_end:test_end, target_col], color='green', linewidth=1.5, alpha=0.95, label='Given Data (TEST)')
         plt.plot(full_time[:], plot_array_forecast[:], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
 
         # Add labels and title
