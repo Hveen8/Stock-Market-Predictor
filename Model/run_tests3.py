@@ -72,8 +72,8 @@ def run():
     headroom_list   = [1.0]
     dropout_list    = [0]
     # dropout_list    = np.linspace(1.0, 0.0, 11)
-    # activation      = 'tanh'
-    activation      = 'relu'
+    activation      = 'tanh'
+    # activation      = 'relu'
     layers          = 2
     neurons         = 100
     # forecast_steps  = 2000
@@ -93,7 +93,7 @@ def run():
 
         curr_dataset = filter_multi_features(df, stock, feature_cols)
 
-        curr_dir = 'results10'
+        curr_dir = 'results10_long'
 
         # ======================================================================== #
         forecast_horizon = 100   # number of points to forecast per fold
@@ -135,23 +135,17 @@ def run():
                                 # beta_range = [0.5]
                                 # # weight_range = np.arange(0.005, 0.1, 0.005)
                                 # weight_range = [0.02, 0.025, 0.03, 0.035]
-
-
-
                                 
-                                model, train_data_inverted, train_end, test_end, non_taf_forecast, local_rmse = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, target_feature_col, False)
+                                model, train_data_inverted, train_end, test_end, non_taf_forecast, rmse_non_taf, rmse_TAFs = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size, target_feature_col, True)
 
-                                print(f'RMSE: {local_rmse} | Look_back: {look_back}, Epochs: {epochs}')
-                                
-                                if local_rmse < lowest_rmse:
-                                    lowest_rmse = local_rmse
-                                    optimal_model_params = model_params
-                                    cross_val_times = {'model': model,
-                                                       'train_data_inverted': train_data_inverted,
-                                                       'train_end': train_end,
-                                                       'test_end': test_end,
-                                                       'non_taf_forecast': non_taf_forecast,
-                                                       'local_rmse': local_rmse}
+                                visualizer = Visualizer(scaler=model[0].scaler,
+                                trained_model=model[1],
+                                forecast_engine=model[2])
+                                visualizer.plot_results(rmse_non_taf, train_data_inverted, train_end, test_end, non_taf_forecast, curr_dataset, stock, target_feature_col, results_dir+curr_dir, [0, 0, 0])
+                                print("Cross-Validation RMSEs (Non-TAF):", rmse_non_taf)   
+                                for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
+                                    visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, stock, target_feature_col, results_dir+curr_dir, [alpha, beta, weight])
+                                    print("Cross-Validation RMSEs (TAF):", rmse_taf)   
                             
                             except Exception as e:
                                 print("+======================================================================================+")
@@ -161,28 +155,6 @@ def run():
                                 print("+======================================================================================+")
                                 print("+======================================================================================+")
                                 continue
-        
-
-        visualizer = Visualizer(scaler=cross_val_times['model'][0].scaler,
-                                trained_model=cross_val_times['model'][1],
-                                forecast_engine=cross_val_times['model'][2])        
-        visualizer.plot_results(cross_val_times['local_rmse'], cross_val_times['train_data_inverted'], cross_val_times['train_end'], cross_val_times['test_end'], cross_val_times['non_taf_forecast'], curr_dataset, stock, target_feature_col, results_dir+curr_dir, [0, 0, 0])
-        print("Cross-Validation RMSEs (Non-TAF):", cross_val_times['local_rmse'])   
-
-
-        # == Doing it agian for TAF, not the best ==
-
-        model, train_data_inverted, train_end, test_end, non_taf_forecast, rmse_non_taf, rmse_TAFs = time_series_cross_validation(curr_dataset, optimal_model_params, forecast_horizon, initial_train_size, step_size, target_feature_col, True)
-
-        # model, train_data_inverted, train_end, test_end, forecasted_inverted, rmse_list = time_series_cross_validation(curr_dataset, model_params, forecast_horizon, initial_train_size, step_size)
-
-        visualizer = Visualizer(scaler=model[0].scaler,
-                                trained_model=model[1],
-                                forecast_engine=model[2])
-        # visualizer.plot_results(np.mean(rmse_list), train_data_inverted, train_end, test_end, forecasted_inverted, curr_dataset, curr_system, results_dir+curr_dir)
-        for (alpha, beta, weight), (rmse_taf, adjusted_forecast) in rmse_TAFs.items():
-            visualizer.plot_results(rmse_taf, train_data_inverted, train_end, test_end, adjusted_forecast, curr_dataset, stock, target_feature_col, results_dir+curr_dir, [alpha, beta, weight])
-            print("Cross-Validation RMSEs (TAF):", rmse_taf)   
 
 if __name__ == "__main__":
     run()

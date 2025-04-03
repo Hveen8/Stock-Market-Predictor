@@ -80,8 +80,8 @@ class Visualizer:
         plt.plot(full_time[:], plot_array_forecast[:], color='red', linestyle='--', linewidth=1.5, alpha=0.75, label='Future Predictions')
 
         # Add labels and title
-        plt.xlabel('Time (Hours)')
-        plt.ylabel('Value (Watts)')
+        plt.xlabel('Time (Days)')
+        plt.ylabel('Value (Points)')
         plt.title(f'{curr_system}, RMSE: {rmse:.2f} | TAF A:{TAFvars[0]} B:{TAFvars[1]} W:{TAFvars[2]}')
         
         plt.legend()

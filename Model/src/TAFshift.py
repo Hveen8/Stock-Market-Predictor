@@ -42,7 +42,7 @@ class TAFShift:
 
     def apply_taf(self, historical_data, forecasted, normalize=False, weight=0.0):
         _, predicted_taf = self.calculate_taf(historical_data, forecasted)
-        # We need to reshape due to applying flatten in calculate_tafm must be in (n, 1) shape for plotting
+        # We need to reshape due to applying flatten in calculate_taf must be in (n, 1) shape for plotting
         predicted_taf = predicted_taf.reshape(-1, 1)
         # predicted_taf = predicted_taf
 

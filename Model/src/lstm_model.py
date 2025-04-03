@@ -1,9 +1,9 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, InputLayer
+from tensorflow.keras.layers import LSTM, Dense, InputLayer, RepeatVector, TimeDistributed
 
 class LSTMModel:
-    def __init__(self, layers, look_back, batch_size, neurons, epochs, activation, dropout, features=1, isReturnSeq=False):
+    def __init__(self, layers, look_back, batch_size, neurons, epochs, activation, dropout, features=1, isReturnSeq=False, forecast_horizon=1):
         self.layers = layers
         self.isReturnSeq = isReturnSeq # should be either True or False
         self.features = features
@@ -13,11 +13,11 @@ class LSTMModel:
         self.epochs = epochs
         self.activation = activation # should be either the str 'tanh' or 'relu'
         self.dropout = dropout
-        self.model = self._build_model(self.batch_size)
+        self.model = self._build_model(self.batch_size, forecast_horizon) 
         # What the class will fill
         self.trainPredict = None
 
-    def _build_model(self, batch_size):
+    def _build_model(self, batch_size, forecast_horizon):
         # SHOULD ONLY HAVE ONE MODEL IN MEMORY (TF handles the models in memory in a funny (funny = i dont know))
         # So clear_session is to clear the way tf stores/handles the models
         tf.keras.backend.clear_session()
@@ -33,6 +33,11 @@ class LSTMModel:
         else:
             model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
         model.add(Dense(9))
+        # # Repeat the final hidden state to produce forecast_horizon steps (Our forecast)
+        # model.add(RepeatVector(forecast_horizon))
+        # # Use an LSTM that returns sequences, or simply a TimeDistributed Dense layer
+        # model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=True))
+        # model.add(TimeDistributed(Dense(self.features)))  # Now outputs shape (batch_size, forecast_horizon, features)
         model.compile(loss='mean_squared_error', optimizer='adam')
         model.summary()
         return model

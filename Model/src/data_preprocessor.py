@@ -37,7 +37,7 @@ class DataPreprocessor:
     def inverse_transform(self, data):
         return self.scaler.inverse_transform(data)
 
-    def create_dataset(self, dataset, look_back=1, target_feature=0):
+    def create_dataset(self, dataset, look_back=1, target_feature=0, forecast_horizon=1):
         dataX, dataY = [], []
 
         for i in range(len(dataset)-look_back-1):
@@ -46,6 +46,7 @@ class DataPreprocessor:
             # Appened into shape(X, 3)
             dataX.append(input)
             output = dataset[i + look_back, :]
+            # output = dataset[i+look_back:i+look_back+forecast_horizon, :]
             dataY.append(output)
 
         return np.array(dataX), np.array(dataY)
@@ -56,14 +57,21 @@ class DataPreprocessor:
         return dataX[:trim_size], dataY[:trim_size]
 
     def invert_1d_prediction(self, pred_1d, feature_cols_num, target_feature=0):
-        # pred_1d shape: (samples,1) -> what the INFERENCE output of the LSTM is
-        # (samples, num_features) -> (samples,1) keeping target column
-        padded = np.zeros((pred_1d.shape[0], feature_cols_num), dtype=np.float32)
-        # [0, 0, 1, 0]
-        # [0, 0, 1, 0] <- is essentially this
-        # [0, 0, 1, 0]
-        padded[:, target_feature] = pred_1d[:, 0]
-        inverted = self.scaler.inverse_transform(padded)
+        # If we are looking at ALL the included features
+        if pred_1d.shape[1] == feature_cols_num:
+            inverted = self.scaler.inverse_transform(pred_1d)
+        else:
+            # pred_1d shape: (samples,1) -> what the INFERENCE output of the LSTM is
+            # (samples, num_features) -> (samples,1) keeping target column
+            padded = np.zeros((pred_1d.shape[0], feature_cols_num), dtype=np.float32)
+            # [0, 0, 1, 0]
+            # [0, 0, 1, 0] <- is essentially this
+            # [0, 0, 1, 0]
+            if pred_1d.shape[1] == 1:
+                padded[:, target_feature] = pred_1d[:, 0]
+            else:
+                padded[:, target_feature] = pred_1d[:, target_feature]
+            inverted = self.scaler.inverse_transform(padded)
         # Return just the "target" column (out of all the feature columns)
         return inverted[:, target_feature].reshape(-1,1)
 

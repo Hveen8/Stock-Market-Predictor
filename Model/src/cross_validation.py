@@ -1,5 +1,7 @@
 import math
 import numpy as np
+import tensorflow as tf
+
 from src.data_preprocessor import DataPreprocessor
 from src.lstm_model import LSTMModel
 from src.forecast_engine import ForecastEngine
@@ -18,6 +20,8 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
 
     Returns: list of RMSE values, one per fold
     """
+    tf.keras.backend.clear_session()
+    curr_dataset = np.nan_to_num(curr_dataset, nan=0.0)
     rmse_list = []
     n = len(curr_dataset)
     start = 0
@@ -63,16 +67,20 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
                             neurons=model_params['neurons'],
                             epochs=model_params['epochs'],
                             activation=model_params['activation'],
-                            dropout=model_params['dropout'])
+                            dropout=model_params['dropout'],
+                            forecast_horizon=forecast_horizon)
     lstm_model.train(trainX, trainY)
     trainPredict = lstm_model.predict(trainX)
 
     forecast_engine = ForecastEngine(trained_model=lstm_model, isReturnSeq=True)
     forecastPredict = forecast_engine.forecast(trainX, forecast_horizon, target_feature_col)
     print('Forecast infered data shape: ', forecastPredict.shape)
-    
+    print("NaNs in forecastPredict:", np.isnan(forecastPredict).sum())
+
     # Invert the scaling for the forecast, train and test data
     forecasted_inverted = data_preprocessor.invert_1d_prediction(forecastPredict, model_params['features'], target_feature_col)
+    print("NaNs in forecasted_inverted:", np.isnan(forecasted_inverted).sum())
+
     # Ensuring forecasted_inverted has the same number of rows as test_data
     # I ran into issues with mismatch due to th batch size
     num_test_samples = test_data.shape[0]
@@ -80,7 +88,8 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
         forecasted_inverted = forecasted_inverted[:num_test_samples]
     elif forecasted_inverted.shape[0] < num_test_samples:
         test_data = test_data[:forecasted_inverted.shape[0]]
-    train_predict_inverted = data_preprocessor.invert_1d_prediction(trainPredict, model_params['features'], target_feature_col)
+    # train_predict_inverted = data_preprocessor.invert_1d_prediction(trainPredict, model_params['features'], target_feature_col)
+    train_predict_inverted = 0
     # test_data_inverted  = data_preprocessor.scaler.inverse_transform(test_data)
 
     # Per params, generating different TAF shifts
@@ -97,8 +106,8 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
     print('pre TAF: ', rmse_taf_preTAF)
     # rmse_results = taf_search_test(calculate_rmse, scaled_train, forecasted_inverted, test_data, normalize=False) 
     if OPTIMAL:
-        rmse_results = taf_search_test(calculate_rmse, scaled_train[:, target_feature_col], forecasted_inverted, test_data[:, target_feature_col], normalize=False) 
-        return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, rmse_results
+        rmse_TAF_results = taf_search_test(calculate_rmse, scaled_train[:effective_train_end, target_feature_col], forecasted_inverted, test_data[:, target_feature_col], normalize=False) 
+        return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, forecasted_inverted, rmse_taf_preTAF, rmse_TAF_results
     else:
         return [data_preprocessor, lstm_model, forecast_engine], train_predict_inverted, effective_train_end, test_end, forecasted_inverted, rmse_taf_preTAF
 
