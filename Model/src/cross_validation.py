@@ -70,7 +70,8 @@ def time_series_cross_validation(curr_dataset, model_params, forecast_horizon, i
                             dropout=model_params['dropout'],
                             forecast_horizon=forecast_horizon)
     lstm_model.train(trainX, trainY)
-    trainPredict = lstm_model.predict(trainX)
+
+    # trainPredict = lstm_model.predict(trainX)
 
     forecast_engine = ForecastEngine(trained_model=lstm_model, isReturnSeq=True)
     forecastPredict = forecast_engine.forecast(trainX, forecast_horizon, target_feature_col)

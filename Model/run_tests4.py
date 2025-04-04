@@ -33,7 +33,7 @@ def run():
     data_dir = '/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/data/'
     results_dir = '/mnt/slurm_nfs/ece498_w25_20/Stock-Market-Predictor/Model/results/'
 
-    curr_dir = 'results11_long'
+    curr_dir = 'results12'
 
     # 1. Load and Prepare Data
     # Ensure the CSV is divided into columns named 'System1', 'System2', etc.
@@ -59,8 +59,8 @@ def run():
     features = len(feature_cols)
     
     # Fixed parameters
-    batch_size = 256
-    headroom = 1.0
+    batch_size = 1024
+    headroom = 2.0
     dropout = 0.0
     layers = 2
     neurons = 100
@@ -116,8 +116,8 @@ def run():
         # *****************************
         # Define parameter bounds
         pbounds = {
-            'look_back': (1000, 4000),
-            'epochs': (1, 500)
+            'look_back': (1467, 1467),
+            'epochs': (78, 78)
         }
         # *****************************
         

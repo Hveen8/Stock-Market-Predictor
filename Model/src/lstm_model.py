@@ -32,7 +32,7 @@ class LSTMModel:
             model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, return_sequences=self.isReturnSeq))
         else:
             model.add(LSTM(self.neurons, activation=self.activation, dropout=self.dropout, stateful=True, return_sequences=self.isReturnSeq))
-        model.add(Dense(9))
+        model.add(Dense(self.features))
         # # Repeat the final hidden state to produce forecast_horizon steps (Our forecast)
         # model.add(RepeatVector(forecast_horizon))
         # # Use an LSTM that returns sequences, or simply a TimeDistributed Dense layer
